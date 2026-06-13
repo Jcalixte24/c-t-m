@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Creative Talent Management</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Domine:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -743,6 +743,181 @@ a,button,.tc,.exp-card,.tc-cta,.tc-lnk,.lbtn,.fsend,.cta-card,[onclick]{cursor:p
 @media(max-width:960px){.tgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:540px){.tgrid{grid-template-columns:1fr}}
 
+
+/* THEME SOMBRE FUSIONNE (ref. artifacts CTM) */
+:root{
+  --disp:'Syne',sans-serif;
+  --ui:'DM Sans',sans-serif;
+  --lbl:'Space Mono',monospace;
+  --mono:'Space Mono',monospace;
+  --paper:#0e0b0c;
+  --warm:#16100f;
+  --panel:#1a1413;
+  --ink:#f3ede2;
+  --dim:rgba(243,237,226,.6);
+  --mid:rgba(243,237,226,.4);
+  --line:rgba(243,237,226,.09);
+  --line2:rgba(243,237,226,.16);
+}
+html,body{background:#0e0b0c}
+body{color:var(--ink);font-family:var(--ui)}
+::selection{background:var(--fire);color:#0e0b0c}
+#hero{background:radial-gradient(120% 80% at 80% -10%,rgba(217,87,41,.16),transparent 60%),#0e0b0c}
+#hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+  background-image:linear-gradient(rgba(243,237,226,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(243,237,226,.045) 1px,transparent 1px);
+  background-size:64px 64px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 78%);mask-image:linear-gradient(180deg,#000,transparent 78%);opacity:.6}
+.hero-l{position:relative;z-index:2}
+.nav.on{background:rgba(14,11,12,.86);box-shadow:0 1px 0 var(--line2)}
+.nav-name b{font-family:var(--lbl);color:var(--ink)}
+.nav-name small{color:var(--mid)}
+.nav-links a{font-family:var(--lbl);color:var(--dim)}
+.nav-links a:hover{color:var(--ink)}
+.hero-label{font-family:var(--lbl);color:var(--gold)}
+.hero-h{font-family:var(--disp);font-weight:800;letter-spacing:-.02em;line-height:.92;text-transform:uppercase;font-size:clamp(2.8rem,8vw,7rem)}
+.h-line-1{color:var(--ink);-webkit-text-stroke:0}
+.h-line-2{color:transparent;background:linear-gradient(100deg,var(--fire),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:0;font-weight:800}
+.h-line-3{color:transparent;-webkit-text-stroke:1.2px rgba(243,237,226,.5);-webkit-text-fill-color:transparent;background:none}
+.hero-desc{font-family:var(--ui);color:var(--dim);font-style:normal}
+.hero-desc strong{color:var(--ink);font-weight:600}
+.btn-p{background:linear-gradient(100deg,var(--fire),var(--gold));color:#1a0d05;font-family:var(--lbl);font-weight:700;border-radius:0;transform:skewX(-9deg);box-shadow:0 10px 30px rgba(217,87,41,.25)}
+.btn-p span{transform:skewX(9deg);color:#1a0d05}
+.btn-p::before{display:none}
+.btn-p:hover{filter:brightness(1.06);box-shadow:0 14px 38px rgba(217,87,41,.35)}
+.btn-s{font-family:var(--lbl);color:var(--dim)}
+.btn-s:hover{color:var(--ink)}
+.etag{font-family:var(--lbl);color:var(--gold)}
+.etag::before{background:var(--gold)}
+#about{background:var(--warm)}
+#activities{background:#0e0b0c}
+#process{background:var(--warm)}
+#roster{background:#0e0b0c}
+#contact{background:var(--warm)}
+.sep{background:linear-gradient(90deg,transparent,var(--line2) 18%,var(--line2) 82%,transparent)}
+.sep-bold{background:linear-gradient(90deg,transparent,rgba(217,87,41,.35) 18%,rgba(217,87,41,.35) 82%,transparent)}
+.about-h,.why-h,.contact-h,.roster-h,.act-h,.proc-h{font-family:var(--disp);font-weight:800;letter-spacing:-.01em;text-transform:uppercase;color:var(--ink)}
+.about-h em,.why-h em,.contact-h em,.act-h em,.proc-h em{color:var(--fire);font-style:normal}
+.about-h .stroke{-webkit-text-stroke:1px var(--ink);color:transparent}
+.about-body{color:var(--dim)}
+.about-pull{font-family:var(--disp);font-weight:600;color:var(--ink);border-left:3px solid var(--gold);background:rgba(253,199,88,.06)}
+.about-pull strong{color:var(--gold)}
+.exp-grid{background:var(--line2);border-color:var(--line2)}
+.exp-card{background:var(--panel)}
+.exp-card:hover{background:#211a18}
+.exp-card.ask{background:rgba(139,30,63,.18)}
+.exp-ico{color:var(--gold)}
+.exp-card:hover .exp-ico{color:var(--fire)}
+.exp-no{font-family:var(--lbl);color:var(--mid)}
+.exp-t{font-family:var(--disp);font-weight:700;text-transform:uppercase;color:var(--ink)}
+.exp-x{color:var(--dim)}
+.proc-h{color:var(--ink)}
+.pstep-no{font-family:var(--disp);color:transparent;-webkit-text-stroke:1px var(--gold)}
+.pstep-t{font-family:var(--disp);color:var(--ink)}
+.pstep-x{color:var(--dim)}
+.pstep{border-top-color:var(--line2)}
+.roster-note{color:var(--dim);font-family:var(--ui);font-style:normal}
+.tgrid{border-color:var(--line2)}
+.tc{background:var(--panel);border-color:var(--line2)}
+.tc:hover{background:#211a18}
+.tc-grad{background:linear-gradient(180deg,transparent 35%,var(--panel) 100%)}
+.tc:hover .tc-grad{background:linear-gradient(180deg,transparent 35%,#211a18 100%)}
+.tc-info{border-top-color:var(--line2)}
+.tc-name{font-family:var(--disp);font-weight:700;color:var(--ink);text-transform:none}
+.tc-name span{color:var(--mid)!important}
+.tc-sub{font-family:var(--lbl);color:var(--mid)}
+.tc-tag{background:rgba(14,11,12,.72);color:var(--gold);border:1px solid rgba(253,199,88,.3);font-family:var(--lbl)}
+.tc-lnk{font-family:var(--lbl);color:var(--dim)}
+.tc-lnk:hover{color:var(--gold)}
+.tc-cta{font-family:var(--lbl);color:var(--gold)}
+.tc:hover .tc-cta{color:var(--fire)}
+.mlov{background:rgba(8,6,7,.62)}
+.mlbox{background:var(--panel);border-color:var(--line2)}
+.ml-dom{font-family:var(--lbl);color:var(--gold)}
+.ml-name{font-family:var(--disp);font-weight:700;color:var(--ink)}
+.ml-bio{color:var(--dim)}
+.ml-link{font-family:var(--lbl);color:var(--dim);border-color:var(--line2)}
+.ml-link:hover{color:var(--gold);border-color:var(--gold);background:rgba(253,199,88,.08)}
+.ml-contact{background:linear-gradient(100deg,var(--fire),var(--gold));color:#1a0d05;font-family:var(--lbl);font-weight:700}
+.ml-contact::before{display:none}
+.mlclose{color:var(--mid)}
+.mlclose:hover{color:var(--fire)}
+.ml-ph{border-color:var(--fire)}
+#why{background:linear-gradient(180deg,#1a0a10,#0e0b0c)}
+#why::before{color:rgba(243,237,226,.04)}
+.why-h{color:var(--ink)}
+.why-h em{color:var(--gold)}
+.why-etag{color:var(--gold)}
+.why-etag::before{background:var(--gold)}
+.wi{border-color:var(--line2)}
+.wi:hover{border-color:var(--gold);background:rgba(253,199,88,.05)}
+.wi-t{font-family:var(--disp);font-weight:700;color:var(--ink)}
+.wi-b{color:var(--dim)}
+.why-cta-h{font-family:var(--disp);font-weight:800;color:var(--ink)}
+.why-cta-h em{color:var(--fire)}
+.cta-card{border-color:var(--line2)}
+.cta-card:hover{border-color:var(--gold)}
+.cta-k{font-family:var(--lbl);color:var(--gold)}
+.cta-t{font-family:var(--disp);font-weight:700;color:var(--ink)}
+.cta-x{color:var(--dim)}
+.cta-go{font-family:var(--lbl);color:var(--ink)}
+.cta-card:hover .cta-go{color:var(--gold)}
+.contact-intro{color:var(--dim);font-family:var(--ui)}
+.ci-lbl{font-family:var(--lbl);color:var(--gold)}
+.ci-val{color:var(--ink)}
+.ci-val:hover{color:var(--gold)}
+.fi{background:rgba(243,237,226,.04);border-color:var(--line2);color:var(--ink);font-family:var(--ui)}
+.fi::placeholder{color:var(--mid)}
+.fi:focus{border-color:var(--fire);box-shadow:0 0 0 3px rgba(217,87,41,.12)}
+.fsend{background:linear-gradient(100deg,var(--fire),var(--gold));border:none;color:#1a0d05;font-family:var(--lbl);font-weight:700}
+.fsend::before{display:none}
+.fsend:hover{filter:brightness(1.06)}
+footer{background:#0a0809;border-top:1px solid var(--line2)}
+footer p{color:rgba(243,237,226,.4)}
+footer img{filter:none;opacity:.7}
+.lbtn{border-color:var(--line2)}
+
+
+/* fix en-tetes de section (stack) + reveal */
+.act-head,.roster-head{display:block;margin-bottom:42px}
+.act-sub,.roster-note{display:block;max-width:600px;text-align:left;margin-top:16px;font-family:var(--ui);font-style:normal;color:var(--dim);font-size:.95rem;line-height:1.6}
+.rv.on{opacity:1!important;transform:none!important;filter:none!important}
+.about-h,.why-h,.contact-h,.roster-h,.act-h,.proc-h{line-height:1.06}
+.roster-note,.act-sub{margin-top:18px}
+@media(max-width:960px){.act-head,.roster-head{margin-bottom:32px}}
+
+
+/* footer + legal + cookies (sombre) */
+footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a{font-family:var(--lbl);font-size:.64rem;letter-spacing:.04em;color:rgba(243,237,226,.5);text-decoration:none;transition:color .3s}
+.foot-links a:hover{color:var(--gold)}
+.legalov{position:fixed;inset:0;z-index:3000;background:rgba(8,6,7,.7);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:24px}
+.legalov.open{display:flex}
+.legalbox{background:var(--panel);border:1px solid var(--line2);border-radius:18px;max-width:680px;width:100%;max-height:86vh;overflow:auto;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.legalbox::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rouge),var(--fire),var(--gold));border-radius:18px 18px 0 0}
+.legalclose{position:sticky;top:14px;float:right;margin:14px 16px 0 0;background:rgba(243,237,226,.08);border:none;width:32px;height:32px;border-radius:50%;color:var(--dim);font-size:14px;cursor:pointer;transition:all .3s;z-index:2}
+.legalclose:hover{color:var(--fire);background:rgba(243,237,226,.14)}
+.legalbody{padding:38px clamp(24px,5vw,52px) 46px}
+.legalbody h2{font-family:var(--disp);font-weight:800;font-size:1.5rem;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.legalbody .legal-up{font-family:var(--lbl);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.legalbody h3{font-family:var(--disp);font-weight:700;font-size:1rem;color:var(--ink);margin:22px 0 7px}
+.legalbody p,.legalbody li{font-family:var(--ui);font-size:.86rem;line-height:1.72;color:var(--dim)}
+.legalbody ul{padding-left:18px;margin-top:4px}.legalbody li{margin-bottom:4px}
+.legalbody a{color:var(--gold);text-decoration:underline}
+.legalbody strong{color:var(--ink)}
+.legalbody .legal-upd{margin-top:26px;font-size:.72rem;color:var(--mid);font-style:italic}
+.cookie{position:fixed;left:18px;right:18px;bottom:18px;z-index:2500;max-width:560px;margin:0 auto;background:#1a1413;border:1px solid var(--line2);color:rgba(243,237,226,.85);border-radius:16px;padding:20px 22px;box-shadow:0 18px 50px rgba(0,0,0,.5);display:none;gap:14px;flex-direction:column;transform:translateY(20px);opacity:0;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .5s}
+.cookie.show{display:flex;transform:translateY(0);opacity:1}
+.cookie p{font-family:var(--ui);font-size:.78rem;line-height:1.6}
+.cookie-acts{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ck-more{font-family:var(--lbl);font-size:.66rem;color:var(--gold);text-decoration:underline;margin-right:auto;cursor:pointer}
+.ck-btn{font-family:var(--lbl);font-size:.68rem;font-weight:700;padding:9px 18px;border-radius:9px;cursor:pointer;border:1px solid transparent;transition:all .3s}
+.ck-refuse{background:transparent;border-color:rgba(243,237,226,.25);color:rgba(243,237,226,.8)}
+.ck-refuse:hover{border-color:rgba(243,237,226,.55);color:#fff}
+.ck-accept{background:linear-gradient(100deg,var(--fire),var(--gold));color:#1a0d05}
+.ck-accept:hover{filter:brightness(1.06)}
+@media(max-width:540px){.ck-more{flex-basis:100%;margin-bottom:4px}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -1075,9 +1250,33 @@ a,button,.tc,.exp-card,.tc-cta,.tc-lnk,.lbtn,.fsend,.cta-card,[onclick]{cursor:p
 </section>
 
 <footer>
-  <p>&copy; 2026 Creative Talent Management &mdash; Abidjan, Côte d'Ivoire &middot; <span style="font-style:italic">L'ancrage est local, l'impact est global.</span></p>
+  <div class="foot-row">
+    <p>&copy; 2026 Creative Talent Management &mdash; Abidjan, Côte d'Ivoire</p>
+    <nav class="foot-links">
+      <a href="#" onclick="openLegal('privacy');return false" data-fr="Politique de confidentialité" data-en="Privacy Policy">Politique de confidentialité</a>
+      <a href="#" onclick="openLegal('cookies');return false" data-fr="Cookies" data-en="Cookies">Cookies</a>
+      <a href="#" onclick="openLegal('legal');return false" data-fr="Mentions légales" data-en="Legal notice">Mentions légales</a>
+    </nav>
+  </div>
   <img src="data:image/png;base64,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" alt="CTM"/>
 </footer>
+
+<!-- FENETRE LEGALE -->
+<div class="legalov" id="legal" onclick="if(event.target.id==='legal')closeLegal()">
+  <div class="legalbox">
+    <button class="legalclose" onclick="closeLegal()" aria-label="Fermer">&#x2715;</button>
+    <div class="legalbody" id="legalBody"></div>
+  </div>
+</div>
+<!-- BANNIERE COOKIES -->
+<div class="cookie" id="cookie">
+  <p data-fr="Nous utilisons le strict minimum de stockage local pour faire fonctionner le site et mémoriser vos préférences (langue, consentement). Aucun cookie publicitaire, aucun traçage." data-en="We use only the bare minimum of local storage to run the site and remember your preferences (language, consent). No advertising cookies, no tracking.">Nous utilisons le strict minimum de stockage local pour faire fonctionner le site et mémoriser vos préférences (langue, consentement). Aucun cookie publicitaire, aucun traçage.</p>
+  <div class="cookie-acts">
+    <a class="ck-more" href="#" onclick="openLegal('cookies');return false" data-fr="En savoir plus" data-en="Learn more">En savoir plus</a>
+    <button class="ck-btn ck-refuse" onclick="setConsent('refused')" data-fr="Refuser" data-en="Decline">Refuser</button>
+    <button class="ck-btn ck-accept" onclick="setConsent('accepted')" data-fr="Accepter" data-en="Accept">Accepter</button>
+  </div>
+</div>
 
 <script>
 /* ═══ FX PAUSE FLAG (utilisé pour les captures) ═══ */
@@ -1117,6 +1316,7 @@ function setLang(l){
   document.querySelectorAll('[data-fr]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.innerHTML=v});
   document.querySelectorAll('[data-pfr]').forEach(el=>{el.placeholder=el.getAttribute('data-p'+l)});
   if(document.getElementById('modal').classList.contains('open'))fillM(document.getElementById('modal').dataset.t);
+  var lg=document.getElementById('legal');if(lg&&lg.classList.contains('open')&&lg.dataset.doc)openLegal(lg.dataset.doc);
 }
 
 /* ═══ MODAL ═══ */
@@ -1159,6 +1359,20 @@ function fillM(k){
 }
 function clov(e){if(e.target.id==='modal')document.getElementById('modal').classList.remove('open')}
 function clbtn(){document.getElementById('modal').classList.remove('open')}
+
+/* COOKIES + MENTIONS LEGALES */
+const LEGAL={
+ privacy:{fr:`<div class="legal-up">Confidentialité</div><h2>Politique de confidentialité</h2><p>Creative Talent Management (« CTM ») accorde une grande importance à la protection de vos données personnelles.</p><h3>Responsable du traitement</h3><p>CTM, agence basée à Abidjan, Côte d'Ivoire. Contact : <a href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a>.</p><h3>Données collectées</h3><p>Nous ne collectons que les données transmises volontairement via le formulaire de contact : nom, e-mail, objet et message. Aucun profilage ni collecte automatique.</p><h3>Finalités</h3><ul><li>Répondre à vos demandes ;</li><li>Mettre en relation talents, marques et partenaires ;</li><li>Assurer le suivi de nos collaborations.</li></ul><h3>Base légale</h3><p>Votre consentement et l'intérêt légitime de CTM à répondre à votre sollicitation.</p><h3>Conservation</h3><p>Vos données sont conservées le temps nécessaire au traitement de votre demande.</p><h3>Partage</h3><p>Nous ne vendons ni ne louons vos données. Elles peuvent être partagées uniquement avec le ou les talents concernés.</p><h3>Services tiers</h3><p>Le site charge des polices via Google Fonts (transmission possible de votre adresse IP à Google) et propose des liens vers des plateformes externes régies par leurs propres politiques.</p><h3>Vos droits</h3><p>Accès, rectification, effacement et opposition : écrivez à <a href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a>.</p><p class="legal-upd">Dernière mise à jour : juin 2026.</p>`,
+   en:`<div class="legal-up">Privacy</div><h2>Privacy Policy</h2><p>Creative Talent Management ("CTM") takes the protection of your personal data seriously.</p><h3>Data controller</h3><p>CTM, an agency based in Abidjan, Côte d'Ivoire. Contact: <a href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a>.</p><h3>Data collected</h3><p>We only collect data you voluntarily provide through the contact form: name, e-mail, subject and message. No profiling or automatic collection.</p><h3>Purposes</h3><ul><li>Reply to your enquiries;</li><li>Connect talents, brands and partners;</li><li>Manage our collaborations.</li></ul><h3>Legal basis</h3><p>Your consent and CTM's legitimate interest in responding.</p><h3>Retention</h3><p>Data is kept only as long as needed to handle your request.</p><h3>Sharing</h3><p>We never sell or rent your data. It may be shared only with the talent(s) concerned.</p><h3>Third parties</h3><p>The site loads Google Fonts (may share your IP with Google) and links to external platforms governed by their own policies.</p><h3>Your rights</h3><p>Access, rectification, erasure and objection: email <a href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a>.</p><p class="legal-upd">Last updated: June 2026.</p>`},
+ cookies:{fr:`<div class="legal-up">Cookies</div><h2>Politique de cookies</h2><p>Ce site n'utilise <strong>aucun cookie publicitaire ni outil de traçage</strong>.</p><h3>Stockage local</h3><p>Nous utilisons uniquement le stockage local de votre navigateur (localStorage) pour mémoriser votre choix de consentement et votre préférence de langue. Ces informations restent sur votre appareil.</p><h3>Services tiers</h3><p>Le chargement des polices Google Fonts peut entraîner des échanges techniques (dont votre adresse IP) avec Google. Les liens externes peuvent déposer leurs propres cookies une fois visités.</p><h3>Gérer vos préférences</h3><p>Vous pouvez refuser via la bannière, ou effacer les données en vidant le stockage de votre navigateur.</p><p class="legal-upd">Dernière mise à jour : juin 2026.</p>`,
+   en:`<div class="legal-up">Cookies</div><h2>Cookie Policy</h2><p>This site uses <strong>no advertising cookies and no tracking tools</strong>.</p><h3>Local storage</h3><p>We only use your browser's local storage to remember your consent choice and language preference. This stays on your device.</p><h3>Third parties</h3><p>Loading Google Fonts may involve technical exchanges (including your IP) with Google. External links may set their own cookies once visited.</p><h3>Manage preferences</h3><p>You can decline via the banner, or clear the data by clearing your browser storage.</p><p class="legal-upd">Last updated: June 2026.</p>`},
+ legal:{fr:`<div class="legal-up">Mentions légales</div><h2>Mentions légales</h2><h3>Éditeur</h3><p>Creative Talent Management (CTM) — agence de découverte, de représentation et de management de talents, basée à Abidjan, Côte d'Ivoire.</p><h3>Contact</h3><p>E-mail : <a href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a></p><h3>Directeur de la publication</h3><p>La direction de Creative Talent Management.</p><h3>Hébergement</h3><p>Site hébergé par son prestataire d'hébergement web ; coordonnées disponibles sur demande.</p><h3>Propriété intellectuelle</h3><p>L'ensemble des contenus (textes, logo, identité visuelle, photographies des talents) est protégé. Toute reproduction sans autorisation de CTM et des talents concernés est interdite.</p><p class="legal-upd">Dernière mise à jour : juin 2026.</p>`,
+   en:`<div class="legal-up">Legal notice</div><h2>Legal Notice</h2><h3>Publisher</h3><p>Creative Talent Management (CTM) — talent discovery, representation and management agency, based in Abidjan, Côte d'Ivoire.</p><h3>Contact</h3><p>E-mail: <a href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a></p><h3>Publication director</h3><p>The management of Creative Talent Management.</p><h3>Hosting</h3><p>This site is hosted by its web hosting provider; details available on request.</p><h3>Intellectual property</h3><p>All content (texts, logo, visual identity, talents' photographs) is protected. Any reproduction without authorisation is prohibited.</p><p class="legal-upd">Last updated: June 2026.</p>`}
+};
+function openLegal(doc){var lg=document.getElementById('legal');lg.dataset.doc=doc;document.getElementById('legalBody').innerHTML=(LEGAL[doc]&&LEGAL[doc][lang])||LEGAL[doc].fr;lg.classList.add('open');}
+function closeLegal(){document.getElementById('legal').classList.remove('open');}
+(function(){var b=document.getElementById('cookie');if(!b)return;var c=null;try{c=localStorage.getItem('ctm-consent')}catch(e){}if(!c){setTimeout(function(){b.classList.add('show')},900);}window.setConsent=function(v){try{localStorage.setItem('ctm-consent',v)}catch(e){}b.classList.remove('show');};})();
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeLegal();if(typeof clbtn==='function')clbtn();}});
 </script>
 </body>
 </html>
