@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JCN — Grille Tarifaire 2025 | Côte d'Ivoire</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
+
+  :root {
+    --noir:    #060810;
+    --bleu:    #0B1628;
+    --bleu-m:  #0D2045;
+    --bleu-c:  #1A3A6B;
+    --or:      #D4A832;
+    --or-vif:  #F5C842;
+    --blanc:   #FFFFFF;
+    --texte:   #CBD8F0;
+    --gris:    #5A6A88;
+    --bordure: rgba(212,168,50,0.30);
+    --bordure-bleu: rgba(26,58,107,0.6);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bleu);
+    color: var(--texte);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--noir);
+    border-bottom: 2px solid var(--bordure);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--blanc);
+  }
+
+  .logo span {
+    color: var(--or-vif);
+  }
+
+  .badge-ci {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212,168,50,0.10);
+    border: 1px solid var(--bordure);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--or-vif);
+  }
+
+  .flag { font-size: 1.1rem; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--noir) 0%, var(--bleu-m) 55%, #071020 100%);
+    padding: 72px 48px 56px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--bordure);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(212,168,50,0.12) 0%, rgba(26,58,107,0.18) 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--or-vif);
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--blanc);
+    max-width: 680px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--or-vif);
+  }
+
+  .hero p {
+    color: rgba(203,216,240,0.75);
+    font-size: 1rem;
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .hero-meta {
+    margin-top: 36px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-item strong {
+    color: var(--or-vif);
+    font-weight: 700;
+  }
+
+  .meta-item span {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gris);
+  }
+
+  /* SECTIONS */
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 48px;
+  }
+
+  .section-container:nth-child(even) {
+    background: rgba(6,8,16,0.4);
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .section-icon {
+    width: 42px; height: 42px;
+    background: rgba(212,168,50,0.12);
+    border: 1px solid var(--bordure);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--blanc);
+  }
+
+  .section-title h2 span {
+    color: var(--or-vif);
+  }
+
+  /* TARIF CARDS */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .tarif-card {
+    background: linear-gradient(160deg, rgba(13,32,69,0.85) 0%, rgba(6,8,16,0.7) 100%);
+    border: 1px solid rgba(26,58,107,0.6);
+    border-radius: 14px;
+    padding: 28px;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .tarif-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212,168,50,0.5);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,50,0.15);
+  }
+
+  .tarif-card.popular {
+    background: linear-gradient(160deg, rgba(13,32,69,0.95) 0%, rgba(26,58,107,0.3) 100%);
+    border-color: rgba(212,168,50,0.55);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -11px; right: 20px;
+    background: var(--or-vif);
+    color: var(--noir);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  .card-name {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--or-vif);
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--blanc);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 0.82rem;
+    color: rgba(203,216,240,0.55);
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .price-block {
+    border-top: 1px solid rgba(26,58,107,0.5);
+    padding-top: 18px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .price {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--or-vif);
+    line-height: 1;
+  }
+
+  .price-unit {
+    font-size: 0.7rem;
+    color: var(--gris);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .price-range {
+    font-size: 0.72rem;
+    color: rgba(203,216,240,0.45);
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  /* FEATURE LIST */
+  .feature-list {
+    list-style: none;
+    margin-bottom: 0;
+  }
+
+  .feature-list li {
+    font-size: 0.8rem;
+    color: rgba(203,216,240,0.75);
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .feature-list li::before {
+    content: '✓';
+    color: var(--or-vif);
+    font-weight: 700;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  /* SEPARATOR */
+  .section-sep {
+    border: none;
+    border-top: 1px solid rgba(26,58,107,0.5);
+    margin: 0;
+  }
+
+  /* TABLE SECTION */
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: 14px;
+    border: 1px solid rgba(26,58,107,0.6);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    background: rgba(6,8,16,0.5);
+  }
+
+  thead th {
+    background: rgba(10,22,50,0.95);
+    color: var(--or-vif);
+    border-bottom: 2px solid rgba(212,168,50,0.35);
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  thead th:first-child { border-radius: 14px 0 0 0; }
+  thead th:last-child  { border-radius: 0 14px 0 0; }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(26,58,107,0.3);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(13,32,69,0.4); }
+
+  tbody td {
+    padding: 15px 20px;
+    color: rgba(203,216,240,0.85);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tbody td:first-child {
+    color: var(--blanc);
+    font-weight: 500;
+  }
+
+  .td-price {
+    color: var(--or-vif) !important;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(26,58,107,0.45);
+    color: #7BA8E0;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    margin-top: 4px;
+  }
+
+  .tag.orange {
+    background: rgba(212,168,50,0.15);
+    color: var(--or-vif);
+  }
+
+  /* NOTE BOX */
+  .note-box {
+    background: rgba(8,18,42,0.75);
+    border: 1px solid var(--bordure);
+    border-left: 3px solid var(--or-vif);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin-top: 24px;
+    font-size: 0.82rem;
+    color: rgba(203,216,240,0.75);
+    line-height: 1.7;
+  }
+
+  .note-box strong {
+    color: var(--or-vif);
+  }
+
+  /* FORMULES */
+  .formules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .formules-grid { grid-template-columns: 1fr; }
+    header { padding: 20px 24px; flex-direction: column; gap: 14px; }
+    .hero { padding: 48px 24px 40px; }
+    .section-container { padding: 48px 24px; }
+    .hero-meta { gap: 20px; }
+  }
+
+  .formule-card {
+    background: linear-gradient(160deg, rgba(13,32,69,0.85) 0%, rgba(6,8,16,0.7) 100%);
+    border: 1px solid rgba(26,58,107,0.55);
+    border-radius: 16px;
+    padding: 32px 26px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formule-card.highlight {
+    background: linear-gradient(145deg, rgba(13,32,69,0.95), rgba(26,58,107,0.45));
+    border-color: rgba(212,168,50,0.55);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,50,0.1);
+  }
+
+  .formule-tier {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 6px;
+  }
+
+  .formule-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--blanc);
+    margin-bottom: 6px;
+  }
+
+  .formule-desc {
+    font-size: 0.8rem;
+    color: var(--gris);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .formule-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--or-vif);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .formule-pricedesc {
+    font-size: 0.72rem;
+    color: var(--gris);
+    margin-bottom: 24px;
+  }
+
+  .formule-features {
+    list-style: none;
+    flex: 1;
+  }
+
+  .formule-features li {
+    font-size: 0.82rem;
+    color: rgba(203,216,240,0.8);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(26,58,107,0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .formule-features li:last-child { border-bottom: none; }
+
+  .formule-features li .check {
+    color: var(--or-vif);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .formule-features li .cross {
+    color: rgba(203,216,240,0.15);
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--noir);
+    border-top: 1px solid var(--bordure);
+    padding: 36px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--blanc);
+  }
+
+  .footer-logo span { color: var(--or-vif); }
+
+  .footer-text {
+    font-size: 0.78rem;
+    color: var(--gris);
+    text-align: center;
+  }
+
+  .footer-contact {
+    font-size: 0.8rem;
+    color: var(--or-vif);
+    font-weight: 500;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; color: black; }
+    header, footer { background: #f0f0f0; }
+    .tarif-card, .formule-card { border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">JCN<span>.</span></div>
+  <div class="badge-ci"><span class="flag">🇨🇮</span> Côte d'Ivoire · Marché Local · FCFA</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">Grille Tarifaire Officielle · 2025</p>
+  <h1>Services <em>Digitaux</em> &amp; Technologiques</h1>
+  <p>Tarifs adaptés au marché ivoirien. Tous les prix sont exprimés en Francs CFA (XOF) et s'appliquent aux projets réalisés depuis Abidjan et en Côte d'Ivoire.</p>
+  <div class="hero-meta">
+    <div class="meta-item">
+      <strong>4</strong>
+      <span>Domaines d'expertise</span>
+    </div>
+    <div class="meta-item">
+      <strong>FCFA</strong>
+      <span>Devise locale</span>
+    </div>
+    <div class="meta-item">
+      <strong>2025</strong>
+      <span>Tarification en vigueur</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 1. DATA ANALYST -->
+<!-- ============================================================ -->
+<div class="section-container">
+  <div class="section-title">
+    <div class="section-icon">📊</div>
+    <h2>Data <span>Analyst</span></h2>
+  </div>
+
+  <div class="cards-grid">
+    <div class="tarif-card">
+      <div class="card-name">Prestation</div>
+      <div class="card-title">Collecte &amp; Nettoyage de données</div>
+      <div class="card-desc">Extraction, structuration et nettoyage de vos données brutes (Excel, CSV, base de données). Rapport de qualité inclus.</div>
+      <ul class="feature-list">
+        <li>Jusqu'à 50 000 lignes</li>
+        <li>Rapport de conformité</li>
+        <li>Livraison sous 5 jours</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">75 000 F</span>
+          <span class="price-unit">par projet</span>
+        </div>
+        <div class="price-range">+50K lignes<br>Sur devis</div>
+      </div>
+    </div>
+
+    <div class="tarif-card popular">
+      <div class="popular-badge">⭐ Populaire</div>
+      <div class="card-name">Prestation</div>
+      <div class="card-title">Tableau de bord &amp; Reporting</div>
+      <div class="card-desc">Création de dashboards interactifs (Power BI, Looker Studio, Excel). Visualisation claire des KPIs de votre activité.</div>
+      <ul class="feature-list">
+        <li>Dashboard interactif</li>
+        <li>Jusqu'à 10 KPIs</li>
+        <li>Formation 1h incluse</li>
+        <li>Mise à jour automatique</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">150 000 F</span>
+          <span class="price-unit">par dashboard</span>
+        </div>
+        <div class="price-range">+10 KPIs<br>+25 000 F/tranche</div>
+      </div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="card-name">Prestation</div>
+      <div class="card-title">Analyse &amp; Rapport Décisionnel</div>
+      <div class="card-desc">Analyse approfondie de vos données avec recommandations stratégiques. Idéal pour les PME et startups ivoiriennes.</div>
+      <ul class="feature-list">
+        <li>Analyse exploratoire</li>
+        <li>Rapport PDF complet</li>
+        <li>Insights &amp; recommandations</li>
+        <li>Présentation incluse</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">200 000 F</span>
+          <span class="price-unit">par étude</span>
+        </div>
+        <div class="price-range">Complexe<br>Sur devis</div>
+      </div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="card-name">Prestation</div>
+      <div class="card-title">Modèle Prédictif &amp; Machine Learning</div>
+      <div class="card-desc">Construction de modèles ML pour prévision des ventes, segmentation clients, détection d'anomalies.</div>
+      <ul class="feature-list">
+        <li>Modèle ML personnalisé</li>
+        <li>Documentation technique</li>
+        <li>Déploiement basique</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">350 000 F</span>
+          <span class="price-unit">par modèle</span>
+        </div>
+        <div class="price-range">Maintenance<br>+75K/mois</div>
+      </div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="card-name">Tarif Journalier</div>
+      <div class="card-title">Consulting &amp; Mission TJM</div>
+      <div class="card-desc">Intervention en régie sur vos projets data. Idéal pour audits ponctuels ou missions longues durées.</div>
+      <ul class="feature-list">
+        <li>Présence sur site ou remote</li>
+        <li>Compte-rendu quotidien</li>
+        <li>Disponibilité flexible</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">35 000 F</span>
+          <span class="price-unit">par jour</span>
+        </div>
+        <div class="price-range">Mensuel<br>À partir de 600K</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>Note :</strong> Les tarifs Data Analyst s'entendent hors frais d'outils tiers (licences Power BI Premium, hébergement cloud, etc.). Un devis personnalisé est établi pour tout projet supérieur à 500 000 FCFA.
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- ============================================================ -->
+<!-- 2. DÉVELOPPEUR WEB -->
+<!-- ============================================================ -->
+<div class="section-container">
+  <div class="section-title">
+    <div class="section-icon">💻</div>
+    <h2>Développeur <span>Web</span></h2>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Type de projet</th>
+          <th>Description</th>
+          <th>Délai estimé</th>
+          <th>Tarif</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Landing Page<br>
+            <span class="tag">Starter</span>
+          </td>
+          <td>Page unique, responsive, SEO de base. Idéal pour événements, promotions, lancement de produit.</td>
+          <td>3 – 5 jours</td>
+          <td class="td-price">50 000 – 80 000 F</td>
+        </tr>
+        <tr>
+          <td>
+            Site Vitrine<br>
+            <span class="tag">Essentiel</span>
+          </td>
+          <td>Site institutionnel 3 à 6 pages (Accueil, À propos, Services, Contact). Design responsive, formulaire de contact, hébergement 1 an.</td>
+          <td>7 – 14 jours</td>
+          <td class="td-price">150 000 – 300 000 F</td>
+        </tr>
+        <tr>
+          <td>
+            Site Vitrine Premium<br>
+            <span class="tag orange">Pro</span>
+          </td>
+          <td>Site avancé jusqu'à 10 pages avec animations, galerie photos/vidéos, blog intégré, Google Analytics, SEO avancé.</td>
+          <td>14 – 21 jours</td>
+          <td class="td-price">300 000 – 600 000 F</td>
+        </tr>
+        <tr>
+          <td>
+            Site E-commerce<br>
+            <span class="tag orange">Business</span>
+          </td>
+          <td>Boutique en ligne complète : catalogue produits, panier, paiement en ligne (CinetPay, Wave, Orange Money), gestion stocks.</td>
+          <td>21 – 45 jours</td>
+          <td class="td-price">500 000 – 1 200 000 F</td>
+        </tr>
+        <tr>
+          <td>
+            Portail / Web App<br>
+            <span class="tag orange">Entreprise</span>
+          </td>
+          <td>Application web métier avec authentification, rôles utilisateurs, tableau de bord, API REST, base de données.</td>
+          <td>45 – 90 jours</td>
+          <td class="td-price">À partir de 1 500 000 F</td>
+        </tr>
+        <tr>
+          <td>Refonte / Migration</td>
+          <td>Modernisation d'un site existant, migration CMS (vers WordPress, Webflow ou solution sur mesure).</td>
+          <td>7 – 30 jours</td>
+          <td class="td-price">100 000 – 500 000 F</td>
+        </tr>
+        <tr>
+          <td>Maintenance Web</td>
+          <td>Mises à jour, sauvegardes, corrections de bugs, ajout de contenus, support technique mensuel.</td>
+          <td>Contrat mensuel</td>
+          <td class="td-price">25 000 – 75 000 F/mois</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    <strong>Inclus dans chaque projet web :</strong> Hébergement 1 an, nom de domaine (.ci ou .com), certificat SSL (HTTPS), responsive mobile, et une session de formation à la gestion du contenu.
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- ============================================================ -->
+<!-- 3. DÉVELOPPEUR APPLICATION MOBILE -->
+<!-- ============================================================ -->
+<div class="section-container">
+  <div class="section-title">
+    <div class="section-icon">📱</div>
+    <h2>Développeur <span>Application Mobile</span></h2>
+  </div>
+
+  <div class="cards-grid">
+    <div class="tarif-card">
+      <div class="card-name">Application</div>
+      <div class="card-title">App Vitrine / Catalogue</div>
+      <div class="card-desc">Application mobile simple présentant vos produits ou services. Notifications push, galerie, contact direct.</div>
+      <ul class="feature-list">
+        <li>iOS + Android (React Native)</li>
+        <li>5 à 8 écrans</li>
+        <li>Publication Store incluse</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">400 000 F</span>
+          <span class="price-unit">par projet</span>
+        </div>
+        <div class="price-range">Délai : 30–45 j</div>
+      </div>
+    </div>
+
+    <div class="tarif-card popular">
+      <div class="popular-badge">⭐ Recommandé</div>
+      <div class="card-name">Application</div>
+      <div class="card-title">App Business avec Back-office</div>
+      <div class="card-desc">Application métier avec authentification, profil utilisateur, base de données en temps réel, tableau de bord admin web.</div>
+      <ul class="feature-list">
+        <li>iOS + Android</li>
+        <li>Auth (login, inscription)</li>
+        <li>Back-office web inclus</li>
+        <li>API REST + base de données</li>
+        <li>Notifications push</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">900 000 F</span>
+          <span class="price-unit">par projet</span>
+        </div>
+        <div class="price-range">Délai : 60–90 j</div>
+      </div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="card-name">Application</div>
+      <div class="card-title">App E-commerce Mobile</div>
+      <div class="card-desc">Boutique mobile avec catalogue, panier, paiement (Wave, Orange Money, MTN MoMo, carte bancaire), suivi commandes.</div>
+      <ul class="feature-list">
+        <li>iOS + Android</li>
+        <li>Paiement mobile money CI</li>
+        <li>Gestion commandes/livraisons</li>
+        <li>Notifications et promos</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">1 200 000 F</span>
+          <span class="price-unit">par projet</span>
+        </div>
+        <div class="price-range">Délai : 60–90 j</div>
+      </div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="card-name">Application</div>
+      <div class="card-title">App sur Mesure / Complexe</div>
+      <div class="card-desc">Application avec géolocalisation, paiements intégrés, chat en temps réel, IA embarquée ou fonctionnalités spécifiques métier.</div>
+      <ul class="feature-list">
+        <li>Architecture évolutive</li>
+        <li>Géoloc, map, tracking</li>
+        <li>Chat temps réel</li>
+        <li>Intégration API tierces</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">1 800 000 F+</span>
+          <span class="price-unit">sur devis</span>
+        </div>
+        <div class="price-range">Délai : 90–180 j</div>
+      </div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="card-name">Service Récurrent</div>
+      <div class="card-title">Maintenance Application</div>
+      <div class="card-desc">Mises à jour OS, correction de bugs, ajout de fonctionnalités mineures, monitoring des crashs, support utilisateurs.</div>
+      <ul class="feature-list">
+        <li>Mises à jour mensuelles</li>
+        <li>Rapport mensuel</li>
+        <li>Support prioritaire</li>
+      </ul>
+      <div class="price-block">
+        <div class="price">
+          <span class="price-amount">75 000 F</span>
+          <span class="price-unit">par mois</span>
+        </div>
+        <div class="price-range">Annuel<br>800 000 F</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>Technologies utilisées :</strong> React Native (iOS &amp; Android simultanément), Flutter, ou natif selon les besoins. Les frais de compte développeur Apple (99 €/an) et Google Play (25 $ une fois) sont à la charge du client.
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- ============================================================ -->
+<!-- 4. AUTRES SERVICES DIGITAUX -->
+<!-- ============================================================ -->
+<div class="section-container">
+  <div class="section-title">
+    <div class="section-icon">🎯</div>
+    <h2>Autres <span>Services Digitaux</span></h2>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Description</th>
+          <th>Tarif</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Identité Visuelle<br>
+            <span class="tag">Branding</span>
+          </td>
+          <td>Logo (3 propositions), charte graphique, couleurs, typographies, guide d'utilisation.</td>
+          <td class="td-price">100 000 – 250 000 F</td>
+        </tr>
+        <tr>
+          <td>
+            Design UI/UX<br>
+            <span class="tag">Maquette</span>
+          </td>
+          <td>Maquettes Figma de votre site ou application avant développement. Prototype interactif, validation avec le client.</td>
+          <td class="td-price">75 000 – 200 000 F</td>
+        </tr>
+        <tr>
+          <td>
+            SEO &amp; Référencement<br>
+            <span class="tag">Visibilité</span>
+          </td>
+          <td>Audit SEO, optimisation on-page, mots-clés stratégiques, création de contenus optimisés, suivi mensuel des positions.</td>
+          <td class="td-price">50 000 – 120 000 F/mois</td>
+        </tr>
+        <tr>
+          <td>
+            Community Management<br>
+            <span class="tag">Réseaux Sociaux</span>
+          </td>
+          <td>Gestion de vos pages Facebook, Instagram, LinkedIn, TikTok. Création de contenus, planification, engagement, rapports.</td>
+          <td class="td-price">75 000 – 200 000 F/mois</td>
+        </tr>
+        <tr>
+          <td>
+            Campagnes Pub Digitales<br>
+            <span class="tag orange">Ads</span>
+          </td>
+          <td>Configuration et gestion de campagnes Google Ads, Meta Ads, TikTok Ads. Budget pub non inclus.</td>
+          <td class="td-price">50 000 F/mois + 15% budget</td>
+        </tr>
+        <tr>
+          <td>
+            Intégration CRM<br>
+            <span class="tag orange">Business</span>
+          </td>
+          <td>Mise en place d'un CRM (HubSpot, Zoho, Odoo) adapté à votre activité. Import données, formation équipe.</td>
+          <td class="td-price">200 000 – 600 000 F</td>
+        </tr>
+        <tr>
+          <td>
+            Automatisation &amp; No-Code<br>
+            <span class="tag orange">Efficacité</span>
+          </td>
+          <td>Automatisation de workflows avec Make (Integromat), Zapier, n8n. Connecter vos outils pour gagner du temps.</td>
+          <td class="td-price">100 000 – 350 000 F</td>
+        </tr>
+        <tr>
+          <td>
+            Formation Digitale<br>
+            <span class="tag">Présentiel / Online</span>
+          </td>
+          <td>Formation sur mesure pour vos équipes : Excel avancé, Power BI, outils web, marketing digital. En présentiel à Abidjan ou en ligne.</td>
+          <td class="td-price">20 000 F/pers/jour<br>ou 150 000 F/groupe</td>
+        </tr>
+        <tr>
+          <td>
+            Audit Digital<br>
+            <span class="tag">Conseil</span>
+          </td>
+          <td>Audit de votre présence digitale (site, réseaux, données, outils). Rapport détaillé + feuille de route stratégique.</td>
+          <td class="td-price">150 000 – 300 000 F</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- ============================================================ -->
+<!-- 5. FORMULES RETAINER / ABONNEMENT -->
+<!-- ============================================================ -->
+<div class="section-container">
+  <div class="section-title">
+    <div class="section-icon">🔄</div>
+    <h2>Formules <span>Abonnement Mensuel</span></h2>
+  </div>
+
+  <div class="formules-grid">
+    <div class="formule-card">
+      <div class="formule-tier">Formule</div>
+      <div class="formule-name">Starter</div>
+      <div class="formule-desc">Pour les TPE, entrepreneurs et startups en démarrage.</div>
+      <div class="formule-price">150 000 F</div>
+      <div class="formule-pricedesc">par mois · engagement 3 mois min.</div>
+      <ul class="formule-features">
+        <li><span class="check">✓</span> Maintenance site web (1 site)</li>
+        <li><span class="check">✓</span> 4 publications réseaux sociaux/mois</li>
+        <li><span class="check">✓</span> 1 rapport mensuel (données clés)</li>
+        <li><span class="check">✓</span> Support WhatsApp (réponse sous 24h)</li>
+        <li><span class="cross">✗</span> Développement de fonctionnalités</li>
+        <li><span class="cross">✗</span> Campagnes publicitaires</li>
+      </ul>
+    </div>
+
+    <div class="formule-card highlight">
+      <div class="formule-tier">Formule</div>
+      <div class="formule-name">Growth</div>
+      <div class="formule-desc">Pour les PME qui veulent croître et automatiser leur digital.</div>
+      <div class="formule-price">350 000 F</div>
+      <div class="formule-pricedesc">par mois · engagement 6 mois min.</div>
+      <ul class="formule-features">
+        <li><span class="check">✓</span> Maintenance site + app (jusqu'à 2)</li>
+        <li><span class="check">✓</span> 12 publications réseaux sociaux/mois</li>
+        <li><span class="check">✓</span> Dashboard mensuel + analyse</li>
+        <li><span class="check">✓</span> 1 campagne pub/mois (hors budget)</li>
+        <li><span class="check">✓</span> 5h de développement incluses</li>
+        <li><span class="check">✓</span> Support prioritaire (réponse sous 4h)</li>
+      </ul>
+    </div>
+
+    <div class="formule-card">
+      <div class="formule-tier">Formule</div>
+      <div class="formule-name">Enterprise</div>
+      <div class="formule-desc">Pour les grandes structures avec besoins digitaux récurrents.</div>
+      <div class="formule-price">Sur devis</div>
+      <div class="formule-pricedesc">engagement 12 mois · SLA garanti</div>
+      <ul class="formule-features">
+        <li><span class="check">✓</span> Tout ce qui est dans Growth</li>
+        <li><span class="check">✓</span> Ressource dédiée (jour/sem)</li>
+        <li><span class="check">✓</span> Analyses data avancées</li>
+        <li><span class="check">✓</span> Développements illimités (volume)</li>
+        <li><span class="check">✓</span> Formation équipes incluse</li>
+        <li><span class="check">✓</span> Astreinte week-end disponible</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <strong>Conditions générales :</strong> Les tarifs s'entendent HT (hors taxes). Un acompte de 40% est demandé à la commande, le solde à la livraison. Devis gratuit sous 48h. Des remises sont accordées pour les associations, ONG et projets à impact social en Côte d'Ivoire. Paiement accepté par virement, Wave, Orange Money, MTN MoMo ou chèque bancaire.
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">JCN<span>.</span></div>
+  <div class="footer-text">
+    Grille tarifaire indicative · Côte d'Ivoire · 2025<br>
+    Tous les prix sont en Francs CFA (XOF) · Tarifs susceptibles d'évoluer
+  </div>
+  <div class="footer-contact">📩 Demander un devis personnalisé</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Exprimer un besoin — Creative Talent Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rouge:#8b1e3f;--fire:#d95729;--gold:#fdc758;
+  --paper:#FAF6F0;--warm:#F3EDE3;--ink:#1C1410;--dim:#7A6A5A;--mid:#A8927C;
+  --line:rgba(28,20,16,.08);--line2:rgba(28,20,16,.14);
+  --disp:'Syne',sans-serif;--ui:'DM Sans',sans-serif;--lbl:'Space Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--ui);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand b{font-family:var(--disp);font-weight:800;font-size:1rem;letter-spacing:.02em;color:var(--ink);text-transform:uppercase}
+.back{font-family:var(--lbl);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .3s}
+.back:hover{color:var(--fire)}
+.eyebrow{font-family:var(--lbl);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--fire);display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);border-radius:10px;padding:7px 14px;margin-bottom:22px}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--fire)}
+.lead{font-size:1.02rem;color:var(--dim);max-width:580px;margin-bottom:40px}
+form{display:flex;flex-direction:column;gap:22px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:7px}
+label{font-family:var(--lbl);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+label .opt{color:var(--mid);text-transform:none;letter-spacing:0}
+.req{color:var(--fire)}
+input,textarea,select{font-family:var(--ui);font-size:.95rem;color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:12px;padding:13px 15px;outline:none;transition:border-color .3s,box-shadow .3s;width:100%}
+textarea{resize:vertical;min-height:120px}
+input:focus,textarea:focus,select:focus{border-color:var(--fire);box-shadow:0 0 0 3px rgba(217,87,41,.1)}
+input::placeholder,textarea::placeholder{color:var(--mid)}
+.hint{font-size:.78rem;color:var(--mid)}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{font-family:var(--lbl);font-size:.66rem;letter-spacing:.04em;border:1px solid var(--line2);border-radius:999px;padding:8px 14px;background:#fff;color:var(--dim);cursor:pointer;transition:all .25s;user-select:none}
+.chip.on{border-color:var(--fire);color:var(--fire);background:rgba(217,87,41,.07)}
+.submit{margin-top:8px;display:inline-flex;align-items:center;justify-content:center;gap:10px;align-self:flex-start;
+  background:linear-gradient(100deg,var(--fire),var(--gold));color:#2a1205;border:none;cursor:pointer;
+  font-family:var(--lbl);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:15px 30px;border-radius:0;transform:skewX(-9deg);transition:filter .3s,box-shadow .3s;box-shadow:0 10px 26px rgba(217,87,41,.22)}
+.submit span{transform:skewX(9deg)}
+.submit:hover{filter:brightness(1.05);box-shadow:0 14px 34px rgba(217,87,41,.32)}
+.note{font-size:.78rem;color:var(--mid);margin-top:6px}
+.ok{display:none;background:rgba(0,122,51,.08);border:1px solid rgba(0,122,51,.3);border-radius:12px;padding:18px 20px;color:#0a5a2a;font-size:.9rem}
+.ok.show{display:block}
+footer{margin-top:54px;padding-top:22px;border-top:1px solid var(--line2);font-family:var(--lbl);font-size:.62rem;letter-spacing:.06em;color:var(--mid)}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="index.html"><b>Creative Talent</b></a>
+    <a class="back" href="index.html">&#8592; Retour</a>
+  </div>
+
+  <div class="eyebrow">Demande sur mesure</div>
+  <h1>Exprimez un <em>besoin précis</em></h1>
+  <p class="lead">Vous cherchez un profil rare, une compétence particulière ou une combinaison de talents qui ne figure pas encore dans notre répertoire ? Décrivez-nous votre besoin en détail — nous partons en quête du talent exact qu'il vous faut.</p>
+
+  <div class="ok" id="ok">Merci ! Votre demande a bien été préparée. Votre logiciel de messagerie va s'ouvrir pour l'envoyer à notre équipe. Si rien ne se passe, écrivez-nous directement à <strong>contact@ctm-africa.com</strong>.</div>
+
+  <form id="briefForm" onsubmit="return sendBrief(event)">
+    <div class="row">
+      <div class="field">
+        <label>Nom / Structure <span class="req">*</span></label>
+        <input type="text" id="name" required placeholder="Votre nom ou société"/>
+      </div>
+      <div class="field">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" id="email" required placeholder="vous@exemple.com"/>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Vous êtes <span class="req">*</span></label>
+      <div class="chips" id="profilType">
+        <span class="chip" data-v="Une marque / entreprise">Une marque / entreprise</span>
+        <span class="chip" data-v="Un particulier">Un particulier</span>
+        <span class="chip" data-v="Une institution / ONG">Une institution / ONG</span>
+        <span class="chip" data-v="Un talent">Un talent</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Type de talent ou de compétence recherché(e) <span class="req">*</span></label>
+      <input type="text" id="profil" required placeholder="Ex : monteur vidéo, photographe culinaire, traducteur, danseur, community manager…"/>
+      <span class="hint">Soyez aussi précis que possible — métier, spécialité, style.</span>
+    </div>
+
+    <div class="field">
+      <label>Décrivez votre besoin en détail <span class="req">*</span></label>
+      <textarea id="detail" required placeholder="Contexte du projet, livrables attendus, compétences indispensables, expérience souhaitée, langues, contraintes particulières…"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Échéance <span class="opt">(optionnel)</span></label>
+        <input type="text" id="delai" placeholder="Ex : sous 2 semaines, mai 2026…"/>
+      </div>
+      <div class="field">
+        <label>Budget indicatif <span class="opt">(optionnel)</span></label>
+        <input type="text" id="budget" placeholder="Ex : à discuter, fourchette…"/>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Lieu / mode de collaboration <span class="opt">(optionnel)</span></label>
+      <input type="text" id="lieu" placeholder="Ex : Abidjan, à distance, hybride…"/>
+    </div>
+
+    <button class="submit" type="submit"><span>Envoyer ma demande &#8594;</span></button>
+    <p class="note">En envoyant, vous acceptez d'être recontacté par CTM au sujet de votre demande. Aucune donnée n'est partagée à des tiers.</p>
+  </form>
+
+  <footer>&copy; 2026 Creative Talent Management — Abidjan, Côte d'Ivoire</footer>
+</div>
+
+<script>
+document.querySelectorAll('#profilType .chip').forEach(c=>{
+  c.addEventListener('click',()=>c.classList.toggle('on'));
+});
+function sendBrief(e){
+  e.preventDefault();
+  const v=id=>document.getElementById(id).value.trim();
+  const types=[...document.querySelectorAll('#profilType .chip.on')].map(c=>c.dataset.v).join(', ')||'Non précisé';
+  const body=
+`Nouvelle demande sur mesure — CTM
+=================================
+Nom / Structure : ${v('name')}
+Email : ${v('email')}
+Profil demandeur : ${types}
+
+Talent / compétence recherché(e) :
+${v('profil')}
+
+Description détaillée :
+${v('detail')}
+
+Échéance : ${v('delai')||'—'}
+Budget indicatif : ${v('budget')||'—'}
+Lieu / collaboration : ${v('lieu')||'—'}
+`;
+  const subject='Demande sur mesure — '+(v('profil')||'nouveau besoin');
+  document.getElementById('ok').classList.add('show');
+  window.location.href='mailto:contact@ctm-africa.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  return false;
+}
+</script>
+</body>
+</html>
