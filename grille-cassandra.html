@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Grille tarifaire — Aude Cassandra Touré | Consulting Côte d'Ivoire</title>
+<meta name="description" content="Grille tarifaire des services de conseil d'Aude Cassandra Touré : gestion et pilotage de projet, coaching, insertion professionnelle et impact RSE en Côte d'Ivoire."/>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{margin:0}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState } = React;
+const services = [
+  {
+    id: "gestion",
+    icon: "◈",
+    label: "Gestion & Pilotage de projet",
+    color: "#C8965A",
+    packages: [
+      {
+        name: "Diagnostic",
+        duration: "1–2 jours",
+        price: "150 000 – 250 000",
+        description: "Audit de votre projet, feuille de route initiale et recommandations stratégiques.",
+        includes: ["Entretien approfondi (2h)", "Analyse du contexte", "Rapport de diagnostic", "Plan d'action priorisé"],
+      },
+      {
+        name: "Coordination ponctuelle",
+        duration: "1 semaine – 1 mois",
+        price: "400 000 – 900 000",
+        description: "Pilotage opérationnel d'une phase ou d'une activité spécifique de votre projet.",
+        includes: ["Coordination des acteurs", "Suivi d'avancement hebdomadaire", "Gestion des livrables", "Reporting final"],
+        highlight: true,
+      },
+      {
+        name: "Accompagnement long terme",
+        duration: "3 – 6 mois",
+        price: "Sur devis",
+        description: "Partenariat structurant pour piloter un projet de A à Z, de la conception à l'évaluation.",
+        includes: ["Planification complète", "Coordination multi-acteurs", "Suivi-évaluation continu", "Rapport d'impact final"],
+      },
+    ],
+  },
+  {
+    id: "coaching",
+    icon: "◇",
+    label: "Coaching & Formation",
+    color: "#5A8C7A",
+    packages: [
+      {
+        name: "Séance individuelle",
+        duration: "1h30",
+        price: "35 000 – 50 000",
+        description: "Session de coaching ciblée sur une problématique professionnelle précise.",
+        includes: ["Entretien structuré", "Outils pratiques", "Compte-rendu écrit", "Ressources personnalisées"],
+      },
+      {
+        name: "Parcours coaching",
+        duration: "4 à 8 séances",
+        price: "120 000 – 300 000",
+        description: "Accompagnement en profondeur pour un changement de posture ou une transition professionnelle.",
+        includes: ["Bilan initial", "4 à 8 séances (1h30)", "Outils & exercices", "Suivi inter-séances"],
+        highlight: true,
+      },
+      {
+        name: "Formation groupe / atelier",
+        duration: "Demi-journée ou journée",
+        price: "200 000 – 500 000",
+        description: "Animation d'atelier de formation pour une équipe ou un groupe de bénéficiaires (jusqu'à 20 pers.).",
+        includes: ["Conception du programme", "Animation dynamique", "Supports pédagogiques", "Évaluation des acquis"],
+      },
+    ],
+  },
+  {
+    id: "insertion",
+    icon: "◉",
+    label: "Insertion Professionnelle",
+    color: "#7A6A9A",
+    packages: [
+      {
+        name: "Bilan & orientation",
+        duration: "2 – 3 séances",
+        price: "80 000 – 130 000",
+        description: "Identifier les compétences, axes de développement et pistes d'emploi ou d'entrepreneuriat.",
+        includes: ["Entretien bilan", "Analyse compétences", "Cartographie des opportunités", "Feuille de route personnelle"],
+      },
+      {
+        name: "Stratégie d'employabilité",
+        duration: "1 mois",
+        price: "150 000 – 280 000",
+        description: "Programme complet pour booster votre profil, votre CV et votre réseau.",
+        includes: ["Optimisation CV & LinkedIn", "Préparation entretiens", "Ateliers pitch", "Mise en réseau"],
+        highlight: true,
+      },
+      {
+        name: "Programme collectif",
+        duration: "Sur mesure",
+        price: "Sur devis",
+        description: "Dispositif d'insertion pour une structure (ONG, entreprise) accompagnant plusieurs jeunes.",
+        includes: ["Diagnostic de groupe", "Ateliers collectifs", "Coaching individuel", "Reporting d'impact"],
+      },
+    ],
+  },
+  {
+    id: "rse",
+    icon: "◎",
+    label: "RSE & Impact Social",
+    color: "#B85C5C",
+    packages: [
+      {
+        name: "Diagnostic RSE",
+        duration: "2 – 3 jours",
+        price: "300 000 – 500 000",
+        description: "Audit de vos pratiques actuelles et identification des axes d'impact social prioritaires.",
+        includes: ["Entretiens parties prenantes", "Analyse documentaire", "Rapport de diagnostic", "Recommandations prioritaires"],
+      },
+      {
+        name: "Mission RSE ponctuelle",
+        duration: "1 – 3 mois",
+        price: "500 000 – 1 500 000",
+        description: "Conception et mise en œuvre d'une initiative RSE ciblée : insertion, formation, communautaire.",
+        includes: ["Stratégie d'impact", "Coordination terrain", "Ateliers de sensibilisation", "Rapport d'impact"],
+        highlight: true,
+      },
+      {
+        name: "Partenariat stratégique",
+        duration: "6 – 12 mois",
+        price: "Sur devis",
+        description: "Accompagnement durable pour ancrer une démarche RSE dans la culture et les opérations de votre organisation.",
+        includes: ["Stratégie RSE annuelle", "Formation des équipes", "Pilotage des projets", "Rapport annuel d'impact"],
+      },
+    ],
+  },
+];
+
+const intlServices = [
+  {
+    name: "Mission de conseil internationale",
+    description: "Intervention ponctuelle pour des organisations basées hors de Côte d'Ivoire (France, Afrique francophone, institutions internationales).",
+    price: "À partir de 500 €/jour",
+    note: "Frais de déplacement et d'hébergement en sus. Devis personnalisé selon la durée et la nature de la mission.",
+  },
+  {
+    name: "Facilitation & formation à distance",
+    description: "Ateliers, coachings ou consultations en visioconférence pour des équipes ou bénéficiaires à l'international.",
+    price: "150 – 300 € / session",
+    note: "Sessions de 1h30 à 3h. Forfaits multi-sessions disponibles sur devis.",
+  },
+  {
+    name: "Expertise pour ONG & bailleurs",
+    description: "Appui technique à la conception, au suivi ou à l'évaluation de projets de développement financés par des bailleurs internationaux.",
+    price: "Sur devis",
+    note: "Tarification selon les barèmes bailleurs ou en régie journalière. Disponibilité à discuter selon calendrier.",
+  },
+];
+
+function App() {
+  const [activeTab, setActiveTab] = useState("gestion");
+  const [showIntl, setShowIntl] = useState(false);
+
+  const activeService = services.find((s) => s.id === activeTab);
+
+  return (
+    <div style={{ fontFamily: "'Segoe UI', system-ui, sans-serif", background: "#F9F6F1", minHeight: "100vh", color: "#1A1A1A" }}>
+      {/* Header */}
+      <div style={{ background: "#1A1A1A", color: "#F9F6F1", padding: "48px 24px 40px", textAlign: "center" }}>
+        <p style={{ fontSize: "12px", letterSpacing: "3px", textTransform: "uppercase", color: "#C8965A", margin: "0 0 12px" }}>
+          Aude Cassandra Touré · Consultante Stratégique
+        </p>
+        <h1 style={{ fontSize: "clamp(28px, 5vw, 42px)", fontWeight: "300", margin: "0 0 8px", letterSpacing: "-0.5px" }}>
+          Grille <em style={{ fontStyle: "italic", color: "#C8965A" }}>tarifaire</em>
+        </h1>
+        <p style={{ fontSize: "15px", color: "#A0A0A0", margin: "0 0 4px" }}>Abidjan, Côte d'Ivoire · 2026</p>
+        <p style={{ fontSize: "13px", color: "#666", margin: "0" }}>
+          Tarifs indicatifs en Francs CFA (FCFA) — Devis personnalisé sur demande
+        </p>
+      </div>
+
+      {/* Tabs */}
+      <div style={{ background: "#fff", borderBottom: "1px solid #E8E2D9", position: "sticky", top: 0, zIndex: 10, overflowX: "auto" }}>
+        <div style={{ display: "flex", maxWidth: "900px", margin: "0 auto", padding: "0 16px" }}>
+          {services.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => setActiveTab(s.id)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: "16px 20px",
+                cursor: "pointer",
+                fontSize: "13px",
+                fontWeight: activeTab === s.id ? "600" : "400",
+                color: activeTab === s.id ? s.color : "#666",
+                borderBottom: activeTab === s.id ? `2px solid ${s.color}` : "2px solid transparent",
+                whiteSpace: "nowrap",
+                transition: "all 0.2s",
+                letterSpacing: "0.3px",
+              }}
+            >
+              <span style={{ marginRight: "6px" }}>{s.icon}</span>
+              {s.label.split(" & ")[0].split(" ")[0]} {s.id === "rse" ? "& Impact" : ""}
+              {s.id === "gestion" ? " & Pilotage" : ""}
+              {s.id === "coaching" ? " & Formation" : ""}
+              {s.id === "insertion" ? " Professionnelle" : ""}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px 16px" }}>
+        {/* Service title */}
+        <div style={{ marginBottom: "32px" }}>
+          <h2 style={{ fontSize: "22px", fontWeight: "600", margin: "0 0 8px", color: "#1A1A1A" }}>
+            <span style={{ color: activeService.color, marginRight: "10px" }}>{activeService.icon}</span>
+            {activeService.label}
+          </h2>
+          <div style={{ width: "48px", height: "2px", background: activeService.color }}></div>
+        </div>
+
+        {/* Packages */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "20px", marginBottom: "48px" }}>
+          {activeService.packages.map((pkg) => (
+            <div
+              key={pkg.name}
+              style={{
+                background: pkg.highlight ? "#1A1A1A" : "#fff",
+                color: pkg.highlight ? "#F9F6F1" : "#1A1A1A",
+                border: pkg.highlight ? "none" : "1px solid #E8E2D9",
+                borderRadius: "8px",
+                padding: "28px",
+                position: "relative",
+                boxShadow: pkg.highlight ? "0 4px 24px rgba(0,0,0,0.15)" : "none",
+              }}
+            >
+              {pkg.highlight && (
+                <div style={{
+                  position: "absolute", top: "-12px", left: "24px",
+                  background: activeService.color, color: "#fff",
+                  fontSize: "11px", fontWeight: "700", letterSpacing: "1.5px",
+                  textTransform: "uppercase", padding: "4px 12px", borderRadius: "20px",
+                }}>
+                  Recommandé
+                </div>
+              )}
+              <div style={{ marginBottom: "16px" }}>
+                <h3 style={{ fontSize: "17px", fontWeight: "700", margin: "0 0 4px" }}>{pkg.name}</h3>
+                <p style={{ fontSize: "12px", color: pkg.highlight ? "#A0A0A0" : "#888", margin: "0", letterSpacing: "0.5px" }}>
+                  ⏱ {pkg.duration}
+                </p>
+              </div>
+              <p style={{ fontSize: "22px", fontWeight: "700", color: pkg.highlight ? activeService.color : activeService.color, margin: "0 0 12px" }}>
+                {pkg.price.includes("Sur") ? pkg.price : `${pkg.price} FCFA`}
+              </p>
+              <p style={{ fontSize: "13px", color: pkg.highlight ? "#C0C0C0" : "#555", margin: "0 0 20px", lineHeight: "1.6" }}>
+                {pkg.description}
+              </p>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                {pkg.includes.map((item) => (
+                  <li key={item} style={{ fontSize: "13px", color: pkg.highlight ? "#D0D0D0" : "#444", margin: "0 0 8px", display: "flex", alignItems: "flex-start", gap: "8px" }}>
+                    <span style={{ color: activeService.color, flexShrink: 0, marginTop: "2px" }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* International section toggle */}
+        <div style={{ borderTop: "1px solid #E8E2D9", paddingTop: "40px" }}>
+          <button
+            onClick={() => setShowIntl(!showIntl)}
+            style={{
+              background: "none",
+              border: "1.5px solid #1A1A1A",
+              borderRadius: "6px",
+              padding: "14px 28px",
+              cursor: "pointer",
+              fontSize: "14px",
+              fontWeight: "600",
+              color: "#1A1A1A",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              letterSpacing: "0.5px",
+              transition: "all 0.2s",
+            }}
+          >
+            <span style={{ fontSize: "18px" }}>🌍</span>
+            {showIntl ? "Masquer" : "Afficher"} les tarifs internationaux
+            <span style={{ fontSize: "18px", transform: showIntl ? "rotate(180deg)" : "none", display: "inline-block", transition: "transform 0.2s" }}>›</span>
+          </button>
+
+          {showIntl && (
+            <div style={{ marginTop: "32px" }}>
+              <h2 style={{ fontSize: "20px", fontWeight: "600", margin: "0 0 8px" }}>
+                Missions <em style={{ fontStyle: "italic", color: "#C8965A" }}>internationales</em>
+              </h2>
+              <p style={{ fontSize: "14px", color: "#666", margin: "0 0 28px" }}>
+                Pour les organisations basées en France, en Afrique francophone ou à l'international
+              </p>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "20px" }}>
+                {intlServices.map((svc) => (
+                  <div key={svc.name} style={{ background: "#fff", border: "1px solid #E8E2D9", borderRadius: "8px", padding: "24px" }}>
+                    <h3 style={{ fontSize: "16px", fontWeight: "700", margin: "0 0 10px", color: "#1A1A1A" }}>{svc.name}</h3>
+                    <p style={{ fontSize: "21px", fontWeight: "700", color: "#C8965A", margin: "0 0 12px" }}>{svc.price}</p>
+                    <p style={{ fontSize: "13px", color: "#444", margin: "0 0 12px", lineHeight: "1.6" }}>{svc.description}</p>
+                    <p style={{ fontSize: "12px", color: "#888", margin: "0", fontStyle: "italic", lineHeight: "1.5" }}>{svc.note}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Notes */}
+        <div style={{ marginTop: "48px", background: "#F0EBE3", borderRadius: "8px", padding: "24px" }}>
+          <h3 style={{ fontSize: "15px", fontWeight: "700", margin: "0 0 12px", color: "#1A1A1A" }}>📋 Informations pratiques</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px" }}>
+            {[
+              { label: "Modalités de paiement", value: "Virement bancaire, Mobile Money (Wave, Orange Money)" },
+              { label: "Acompte", value: "30 % à la signature, solde à la livraison" },
+              { label: "Devis", value: "Gratuit — réponse sous 48h ouvrées" },
+              { label: "Déplacements", value: "Grand Abidjan inclus. Hors Abidjan : frais en sus" },
+            ].map((item) => (
+              <div key={item.label}>
+                <p style={{ fontSize: "11px", fontWeight: "700", letterSpacing: "1px", textTransform: "uppercase", color: "#888", margin: "0 0 4px" }}>{item.label}</p>
+                <p style={{ fontSize: "13px", color: "#333", margin: "0", lineHeight: "1.5" }}>{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ marginTop: "40px", textAlign: "center", padding: "32px 0" }}>
+          <p style={{ fontSize: "16px", color: "#555", margin: "0 0 20px" }}>
+            Chaque mission est unique — discutons de votre projet pour un devis sur mesure.
+          </p>
+          <a
+            href="https://hostmyclaudehtml.com/p/L-hZlS9kuw#booking"
+            style={{
+              display: "inline-block",
+              background: "#1A1A1A",
+              color: "#F9F6F1",
+              padding: "16px 40px",
+              borderRadius: "4px",
+              textDecoration: "none",
+              fontSize: "14px",
+              fontWeight: "600",
+              letterSpacing: "1px",
+              textTransform: "uppercase",
+            }}
+          >
+            Réserver une session →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+const __root = ReactDOM.createRoot(document.getElementById('root'));
+__root.render(<App/>);
+</script>
+</body>
+</html>
