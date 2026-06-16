@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CTM — Creative Talent Management</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f5f0;
+      --grey: #888;
+      --grey-light: #e8e8e3;
+      --accent: #c8a96e;
+      --dark-bg: #111111;
+      --radius: 12px;
+      --gap: 2rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Georgia, serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(10,10,10,0.93);
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-size: 1.1rem;
+      font-weight: bold;
+      letter-spacing: 0.35em;
+      color: var(--accent);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: var(--white);
+      font-family: Arial, sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      padding: 8rem 4rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: 'CTM';
+      position: absolute;
+      right: -3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28vw;
+      font-weight: bold;
+      color: rgba(255,255,255,0.025);
+      letter-spacing: -0.05em;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero-content { max-width: 760px; position: relative; }
+    .hero-tag {
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.4rem;
+      font-weight: normal;
+    }
+    .hero-sub {
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      color: rgba(245,245,240,0.5);
+      margin-bottom: 2.5rem;
+      max-width: 460px;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: var(--black);
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    /* SECTIONS */
+    .section { padding: 6rem 4rem; background: var(--white); }
+    .section-dark { background: var(--dark-bg); }
+
+    .section-header { margin-bottom: 3.5rem; max-width: 600px; }
+    .section-tag {
+      font-family: Arial, sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: normal;
+      margin-bottom: 0.6rem;
+      color: var(--black);
+    }
+    .section-dark .section-header h2 { color: var(--white); }
+    .section-header p {
+      font-family: Arial, sans-serif;
+      font-size: 0.92rem;
+      color: var(--grey);
+    }
+    .section-dark .section-header p { color: rgba(245,245,240,0.4); }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--gap);
+    }
+
+    /* HERO CARD — pour site perso (grande carte) */
+    .grid-hero { grid-template-columns: 1fr; }
+    .card-hero { flex-direction: row; min-height: 300px; }
+    .card-hero .card-preview { width: 55%; flex-shrink: 0; height: auto; min-height: 300px; }
+    .card-hero .card-body { justify-content: center; padding: 2.5rem; }
+    .card-hero .card-body h3 { font-size: 1.6rem; }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--grey-light);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    .card-dark {
+      background: #1a1a1a;
+      border-color: #2a2a2a;
+    }
+    .card-dark:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+
+    /* IFRAME PREVIEW */
+    .card-preview {
+      height: 200px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      background: #1a1a1a;
+      flex-shrink: 0;
+    }
+    .card-preview iframe {
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      transform-origin: top left;
+      border: none;
+      pointer-events: none;
+      display: block;
+    }
+    /* fallback gradient visible derrière l'iframe */
+    .card-preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .card-preview iframe { position: relative; z-index: 1; }
+
+    .card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .card-cat {
+      font-family: Arial, sans-serif;
+      font-size: 0.66rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .card-body h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      line-height: 1.3;
+      color: var(--black);
+    }
+    .card-dark .card-body h3 { color: var(--white); }
+    .card-body p {
+      font-family: Arial, sans-serif;
+      font-size: 0.84rem;
+      color: var(--grey);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .card-dark .card-body p { color: rgba(245,245,240,0.4); }
+    .card-link {
+      font-family: Arial, sans-serif;
+      font-size: 0.74rem;
+      color: var(--accent);
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    /* CONTACT */
+    .contact-block {
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .contact-block h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: normal;
+      color: var(--white);
+    }
+    .contact-block p {
+      font-family: Arial, sans-serif;
+      font-size: 0.95rem;
+      color: rgba(245,245,240,0.45);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--black);
+      text-align: center;
+      padding: 1.5rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,245,240,0.2);
+      border-top: 1px solid #1a1a1a;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .card-hero { flex-direction: column; }
+      .card-hero .card-preview { width: 100%; height: 200px; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.68rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .section { padding: 4rem 1.5rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <span class="nav-logo">CTM</span>
+    <ul class="nav-links">
+      <li><a href="#perso">Portfolio</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#produits">Produits</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">Creative Talent Management · Abidjan</p>
+      <h1>Chaque projet mérite<br>une exécution à sa hauteur.</h1>
+      <p class="hero-sub">Sites web, produits digitaux et dashboards data — conçus pour performer.</p>
+      <a href="#perso" class="btn-primary">Voir les réalisations</a>
+    </div>
+  </header>
+
+  <!-- SECTION SITE PERSO JCN -->
+  <section class="section" id="perso">
+    <div class="section-header">
+      <span class="section-tag">00</span>
+      <h2>Site personnel</h2>
+      <p>Portfolio de Japhet Calixte — Data Analyst &amp; Développeur web.</p>
+    </div>
+    <div class="grid grid-hero">
+      <a href="https://jcn-portfolio.vercel.app" target="_blank" class="card card-hero">
+        <div class="card-preview">
+          <iframe src="https://jcn-portfolio.vercel.app" loading="lazy" title="JCN Portfolio"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Portfolio · Data · Dev</span>
+          <h3>JCN — Japhet Calixte</h3>
+          <p>Portfolio personnel de Japhet Calixte, Data Analyst Junior et développeur web basé à Abidjan. Présentation des compétences, projets et réalisations.</p>
+          <span class="card-link">jcn-portfolio.vercel.app →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION CLIENTS -->
+  <section class="section section-dark" id="clients">
+    <div class="section-header">
+      <span class="section-tag">01</span>
+      <h2>Sites clients</h2>
+      <p>Des plateformes sur mesure pour des professionnels qui comptent.</p>
+    </div>
+    <div class="grid">
+
+      <a href="https://groupescolairelemiri.com" target="_blank" class="card card-dark">
+        <div class="card-preview">
+          <iframe src="https://groupescolairelemiri.com" loading="lazy" title="Groupe Scolaire Le Miri"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Éducation</span>
+          <h3>Groupe Scolaire Le Miri</h3>
+          <p>Site institutionnel pour une école K-12 à Bingerville. Inscriptions en ligne, portails parents, enseignants et administration.</p>
+          <span class="card-link">groupescolairelemiri.com →</span>
+        </div>
+      </a>
+
+      <a href="https://sir-heal.lovable.app" target="_blank" class="card card-dark">
+        <div class="card-preview">
+          <iframe src="https://sir-heal.lovable.app" loading="lazy" title="Sir Heal"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Musique · Cinéma</span>
+          <h3>Sir Heal</h3>
+          <p>Portfolio d'Illman Touré, compositeur et sound designer. Courts-métrages, longs-métrages, publicités et branding audio.</p>
+          <span class="card-link">sir-heal.lovable.app →</span>
+        </div>
+      </a>
+
+      <a href="https://creative-talent-management.netlify.app/cassandra" target="_blank" class="card card-dark">
+        <div class="card-preview">
+          <iframe src="https://creative-talent-management.netlify.app/cassandra" loading="lazy" title="Cassandra Touré"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Consulting</span>
+          <h3>Cassandra Touré</h3>
+          <p>Site pro d'une consultante stratégique. Gestion de projet, coaching, insertion professionnelle et développement culturel.</p>
+          <span class="card-link">cassandra →</span>
+        </div>
+      </a>
+
+      <a href="https://chef-inaice.netlify.app" target="_blank" class="card card-dark">
+        <div class="card-preview">
+          <iframe src="https://chef-inaice.netlify.app" loading="lazy" title="Chef Inaice"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Gastronomie</span>
+          <h3>Chef Inaice</h3>
+          <p>Vitrine digitale pour un chef cuisinier. Présentation du parcours, des spécialités et des prestations.</p>
+          <span class="card-link">chef-inaice.netlify.app →</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SECTION PRODUITS CTM -->
+  <section class="section" id="produits">
+    <div class="section-header">
+      <span class="section-tag">02</span>
+      <h2>Produits CTM</h2>
+      <p>Des outils digitaux construits de A à Z pour l'écosystème ivoirien.</p>
+    </div>
+    <div class="grid">
+
+      <a href="https://jcalixte24.github.io/c-t-m/" target="_blank" class="card">
+        <div class="card-preview">
+          <iframe src="https://jcalixte24.github.io/c-t-m/" loading="lazy" title="CTM Agency"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Agence</span>
+          <h3>CTM Agency</h3>
+          <p>Site vitrine de l'agence — mise en relation de talents créatifs (chefs, développeurs, artistes, consultants) avec des opportunités à Abidjan.</p>
+          <span class="card-link">jcalixte24.github.io/c-t-m →</span>
+        </div>
+      </a>
+
+      <a href="https://charts-ci.vercel.app" target="_blank" class="card">
+        <div class="card-preview">
+          <iframe src="https://charts-ci.vercel.app" loading="lazy" title="CI Charts"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Musique · Data</span>
+          <h3>CI Charts</h3>
+          <p>Classements musicaux non officiels de Côte d'Ivoire agrégés depuis Apple Music, Spotify, YouTube et Deezer.</p>
+          <span class="card-link">charts-ci.vercel.app →</span>
+        </div>
+      </a>
+
+      <a href="https://talent-ci-form.vercel.app" target="_blank" class="card">
+        <div class="card-preview">
+          <iframe src="https://talent-ci-form.vercel.app" loading="lazy" title="Talents CI"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Recrutement</span>
+          <h3>Talents CI — Formulaires</h3>
+          <p>Plateforme de formulaires clients pour agence de recrutement. Collecte et gestion des candidatures en ligne.</p>
+          <span class="card-link">talent-ci-form.vercel.app →</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- SECTION DATA -->
+  <section class="section section-dark" id="data">
+    <div class="section-header">
+      <span class="section-tag">03</span>
+      <h2>Data & Analytics</h2>
+      <p>Analyses de données, dashboards interactifs et visualisations.</p>
+    </div>
+    <div class="grid">
+
+      <a href="https://chatbot-ia-1z24.onrender.com" target="_blank" class="card card-dark">
+        <div class="card-preview">
+          <iframe src="https://chatbot-ia-1z24.onrender.com" loading="lazy" title="Chatbot IA"></iframe>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">IA · NLP</span>
+          <h3>Chatbot IA</h3>
+          <p>Application de chatbot basée sur l'intelligence artificielle. Interface conversationnelle déployée sur Render.</p>
+          <span class="card-link">chatbot-ia-1z24.onrender.com →</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/jcalixte24/spotify-analytics" target="_blank" class="card card-dark">
+        <div class="card-preview" style="background: linear-gradient(135deg,#0a0a0a,#1db954); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:Arial;font-size:0.78rem;letter-spacing:0.1em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Voir sur GitHub</span>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Musique · Visualisation</span>
+          <h3>Spotify Analytics</h3>
+          <p>Dashboard des hits mondiaux 1980–2022. Exploration par genres, géographie, timeline et top 50. Stack : HTML, JS, Python, ApexCharts.</p>
+          <span class="card-link">Voir sur GitHub →</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/jcalixte24/projet-web-analytics-1" target="_blank" class="card card-dark">
+        <div class="card-preview" style="background: linear-gradient(135deg,#1a237e,#7986cb); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:Arial;font-size:0.78rem;letter-spacing:0.1em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Voir sur GitHub</span>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">RH · Économie</span>
+          <h3>Analyse des Salaires — France</h3>
+          <p>Dashboard interactif des salaires segmentés par âge, genre, métier, région, diplôme et taille d'entreprise. Stack : HTML, JS, Python, pandas.</p>
+          <span class="card-link">Voir sur GitHub →</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/jcalixte24/Git-PBI" target="_blank" class="card card-dark">
+        <div class="card-preview" style="background: linear-gradient(135deg,#1a0a00,#f2c94c); display:flex; align-items:center; justify-content:center;">
+          <span style="font-family:Arial;font-size:0.78rem;letter-spacing:0.1em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Voir sur GitHub</span>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Power BI</span>
+          <h3>Dashboard Power BI</h3>
+          <p>Rapport interactif développé sur Microsoft Power BI. Visualisation de données métier avec indicateurs clés et filtres dynamiques.</p>
+          <span class="card-link">Voir sur GitHub →</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="contact-block" style="max-width:500px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1.2rem;">
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem); font-weight:normal;">Un projet en tête ?</h2>
+      <p style="font-family:Arial,sans-serif; font-size:0.95rem; color:var(--grey);">On transforme vos idées en produits qui fonctionnent.</p>
+      <a href="mailto:japhetndri15@gmail.com" class="btn-primary">Travaillons ensemble</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 CTM — Creative Talent Management · Abidjan
+  </footer>
+
+</body>
+</html>
