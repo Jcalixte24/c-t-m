@@ -5,525 +5,1244 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CTM — Creative Talent Management</title>
   <style>
+    /* ═══════════════════════════════════════════
+       BASE
+    ═══════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0a0a0a;
-      --white: #f5f5f0;
-      --grey: #888;
-      --grey-light: #e8e8e3;
-      --accent: #c8a96e;
-      --dark-bg: #111111;
-      --radius: 12px;
-      --gap: 2rem;
+      --black:   #080808;
+      --off-black: #0e0e0e;
+      --white:   #f0ede8;
+      --grey:    #666;
+      --muted:   rgba(240,237,232,0.38);
+      --accent:  #c8a96e;
+      --accent2: #e8c98e;
+      --r: 14px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: Georgia, serif;
-      background: var(--white);
-      color: var(--black);
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Georgia', serif;
       line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
     }
 
-    a { text-decoration: none; color: inherit; }
+    a { text-decoration: none; color: inherit; cursor: none; }
+    img { display: block; max-width: 100%; }
 
-    /* NAV */
+    /* ═══════════════════════════════════════════
+       CUSTOM CURSOR
+    ═══════════════════════════════════════════ */
+    #cursor-dot {
+      position: fixed;
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background 0.2s;
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(200,169,110,0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s cubic-bezier(0.25,0.46,0.45,0.94),
+                  height 0.35s cubic-bezier(0.25,0.46,0.45,0.94),
+                  border-color 0.3s;
+    }
+    body:has(a:hover) #cursor-ring,
+    body:has(.card:hover) #cursor-ring {
+      width: 64px; height: 64px;
+      border-color: rgba(200,169,110,0.8);
+    }
+
+    /* ═══════════════════════════════════════════
+       GRAIN OVERLAY
+    ═══════════════════════════════════════════ */
+    .grain {
+      position: fixed;
+      inset: -50%;
+      width: 200%; height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9000;
+      animation: grainMove 0.5s steps(2) infinite;
+    }
+    @keyframes grainMove {
+      0%   { transform: translate(0,0); }
+      25%  { transform: translate(-2%, 2%); }
+      50%  { transform: translate(2%, -2%); }
+      75%  { transform: translate(-1%, 3%); }
+      100% { transform: translate(1%, -1%); }
+    }
+
+    /* ═══════════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════════ */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 500;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 4rem;
-      background: rgba(10,10,10,0.93);
-      backdrop-filter: blur(10px);
+      padding: 1.4rem 4rem;
+      mix-blend-mode: normal;
+    }
+    .nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+      pointer-events: none;
     }
     .nav-logo {
-      font-size: 1.1rem;
+      position: relative;
+      font-size: 1rem;
       font-weight: bold;
-      letter-spacing: 0.35em;
+      letter-spacing: 0.5em;
       color: var(--accent);
+      z-index: 1;
+    }
+    .nav-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      z-index: 1;
     }
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
     }
     .nav-links a {
-      color: var(--white);
       font-family: Arial, sans-serif;
-      font-size: 0.76rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      font-family: Arial, sans-serif;
+      font-size: 0.68rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      opacity: 0.7;
-      transition: opacity 0.2s, color 0.2s;
+      border: 1px solid rgba(200,169,110,0.4);
+      padding: 0.55rem 1.3rem;
+      color: var(--accent);
+      border-radius: 2px;
+      transition: background 0.25s, color 0.25s;
     }
-    .nav-links a:hover { opacity: 1; color: var(--accent); }
+    .nav-cta:hover { background: var(--accent); color: var(--black); }
 
-    /* HERO */
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
     .hero {
-      min-height: 100vh;
-      background: var(--black);
-      display: flex;
-      align-items: center;
-      padding: 8rem 4rem 5rem;
       position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4rem 5rem;
       overflow: hidden;
     }
-    .hero::before {
-      content: 'CTM';
+
+    /* gradient sphere */
+    .hero-sphere {
       position: absolute;
-      right: -3rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 28vw;
-      font-weight: bold;
-      color: rgba(255,255,255,0.025);
-      letter-spacing: -0.05em;
+      top: -10%;
+      right: -5%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(ellipse at 40% 40%,
+        rgba(200,169,110,0.18) 0%,
+        rgba(200,169,110,0.06) 40%,
+        transparent 70%);
+      border-radius: 50%;
       pointer-events: none;
-      user-select: none;
+      animation: spherePulse 8s ease-in-out infinite;
     }
-    .hero-content { max-width: 760px; position: relative; }
-    .hero-tag {
+    @keyframes spherePulse {
+      0%, 100% { transform: scale(1) translate(0, 0); opacity: 1; }
+      50%       { transform: scale(1.05) translate(-2%, 2%); opacity: 0.7; }
+    }
+
+    .hero-line {
+      position: absolute;
+      left: 4rem;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(200,169,110,0.25), transparent);
+    }
+
+    .hero-eyebrow {
       font-family: Arial, sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.28em;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
     }
-    .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 1.4rem;
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 8vw, 9rem);
       font-weight: normal;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+      max-width: 900px;
+      overflow: hidden;
+    }
+    .hero-title .line {
+      display: block;
+      overflow: hidden;
+      padding-bottom: 0.1em;
+    }
+    .hero-title .line-inner {
+      display: block;
+      transform: translateY(110%);
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
     }
     .hero-sub {
       font-family: Arial, sans-serif;
-      font-size: 1rem;
-      color: rgba(245,245,240,0.5);
-      margin-bottom: 2.5rem;
-      max-width: 460px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 380px;
+      line-height: 1.8;
+      opacity: 0;
     }
-    .btn-primary {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      background: var(--accent);
-      color: var(--black);
-      font-family: Arial, sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: bold;
-      border-radius: 4px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
-
-    /* SECTIONS */
-    .section { padding: 6rem 4rem; background: var(--white); }
-    .section-dark { background: var(--dark-bg); }
-
-    .section-header { margin-bottom: 3.5rem; max-width: 600px; }
-    .section-tag {
-      font-family: Arial, sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 0.6rem;
-    }
-    .section-header h2 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      font-weight: normal;
-      margin-bottom: 0.6rem;
-      color: var(--black);
-    }
-    .section-dark .section-header h2 { color: var(--white); }
-    .section-header p {
-      font-family: Arial, sans-serif;
-      font-size: 0.92rem;
-      color: var(--grey);
-    }
-    .section-dark .section-header p { color: rgba(245,245,240,0.4); }
-
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: var(--gap);
-    }
-
-    /* HERO CARD — pour site perso (grande carte) */
-    .grid-hero { grid-template-columns: 1fr; }
-    .card-hero { flex-direction: row; min-height: 300px; }
-    .card-hero .card-preview { width: 55%; flex-shrink: 0; height: auto; min-height: 300px; }
-    .card-hero .card-body { justify-content: center; padding: 2.5rem; }
-    .card-hero .card-body h3 { font-size: 1.6rem; }
-
-    /* CARDS */
-    .card {
-      background: #fff;
-      border-radius: var(--radius);
-      overflow: hidden;
+    .hero-scroll {
       display: flex;
       flex-direction: column;
-      border: 1px solid var(--grey-light);
-      transition: transform 0.25s, box-shadow 0.25s;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
     }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    .hero-scroll span {
+      font-family: Arial, sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
     }
-    .card-dark {
-      background: #1a1a1a;
-      border-color: #2a2a2a;
+    .hero-scroll-line {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollDown 2s ease-in-out infinite;
     }
-    .card-dark:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    @keyframes scrollDown {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
 
-    /* IFRAME PREVIEW */
-    .card-preview {
-      height: 200px;
-      width: 100%;
+    /* hero stats */
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      opacity: 0;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      display: block;
+      font-size: 2rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       MARQUEE
+    ═══════════════════════════════════════════ */
+    .marquee-wrap {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 1.1rem 0;
       overflow: hidden;
-      position: relative;
-      background: #1a1a1a;
+      background: var(--off-black);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marqueeScroll 20s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 2rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
       flex-shrink: 0;
     }
-    .card-preview iframe {
-      width: 200%;
-      height: 200%;
+    .marquee-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTIONS
+    ═══════════════════════════════════════════ */
+    .section { padding: 8rem 4rem; position: relative; }
+    .section-alt { background: var(--off-black); }
+
+    .section-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: normal;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .section-sub {
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 5rem;
+      max-width: 500px;
+      line-height: 1.8;
+    }
+
+    /* ═══════════════════════════════════════════
+       FEATURED CARD (site perso)
+    ═══════════════════════════════════════════ */
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .featured-preview {
+      position: relative;
+      overflow: hidden;
+      background: #111;
+      min-height: 420px;
+    }
+    .featured-preview iframe {
+      width: 200%; height: 200%;
       transform: scale(0.5);
       transform-origin: top left;
       border: none;
       pointer-events: none;
-      display: block;
     }
-    /* fallback gradient visible derrière l'iframe */
-    .card-preview::before {
-      content: '';
+    .featured-preview-overlay {
       position: absolute;
       inset: 0;
-      z-index: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(8,8,8,0.6));
+      pointer-events: none;
     }
-    .card-preview iframe { position: relative; z-index: 1; }
-
-    .card-body {
-      padding: 1.5rem;
-      flex: 1;
+    .featured-info {
+      padding: 3.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      justify-content: space-between;
+      background: #111;
     }
-    .card-cat {
+    .featured-cat {
       font-family: Arial, sans-serif;
-      font-size: 0.66rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .featured-title {
+      font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+      font-weight: normal;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .featured-desc {
+      font-family: Arial, sans-serif;
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      flex: 1;
+    }
+    .featured-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 0.4rem;
+      transition: border-color 0.25s, gap 0.25s;
+    }
+    .featured-link:hover { border-color: var(--accent); gap: 1.4rem; }
+    .featured-link .arrow { color: var(--accent); }
+
+    /* ═══════════════════════════════════════════
+       PROJECT GRID
+    ═══════════════════════════════════════════ */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .projects-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+
+    .proj-card {
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--r);
+      overflow: hidden;
+      background: #0e0e0e;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      will-change: transform;
+      position: relative;
+    }
+    .proj-card:hover { border-color: rgba(200,169,110,0.3); transform: translateY(-10px); }
+
+    /* accent bar on hover */
+    .proj-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .proj-card:hover::after { transform: scaleX(1); }
+
+    .proj-preview {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+      background: #0a0a0a;
+      flex-shrink: 0;
+    }
+    .proj-preview iframe {
+      width: 200%; height: 200%;
+      transform: scale(0.5);
+      transform-origin: top left;
+      border: none;
+      pointer-events: none;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .proj-card:hover .proj-preview iframe {
+      transform: scale(0.52);
+    }
+    .proj-preview-img {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .proj-preview-img span {
+      font-family: Arial, sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* overlay on hover */
+    .proj-preview::after {
+      content: 'Voir le projet →';
+      position: absolute;
+      inset: 0;
+      background: rgba(8,8,8,0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
-    .card-body h3 {
-      font-size: 1.1rem;
-      font-weight: normal;
-      line-height: 1.3;
-      color: var(--black);
-    }
-    .card-dark .card-body h3 { color: var(--white); }
-    .card-body p {
-      font-family: Arial, sans-serif;
-      font-size: 0.84rem;
-      color: var(--grey);
-      line-height: 1.65;
-      flex: 1;
-    }
-    .card-dark .card-body p { color: rgba(245,245,240,0.4); }
-    .card-link {
-      font-family: Arial, sans-serif;
-      font-size: 0.74rem;
-      color: var(--accent);
-      margin-top: 0.5rem;
-      display: block;
-    }
+    .proj-card:hover .proj-preview::after { opacity: 1; }
 
-    /* CONTACT */
-    .contact-block {
-      text-align: center;
-      max-width: 500px;
-      margin: 0 auto;
+    .proj-body {
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 1.2rem;
+      gap: 0.5rem;
+      flex: 1;
     }
-    .contact-block h2 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    .proj-cat {
+      font-family: Arial, sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .proj-title {
+      font-size: 1rem;
       font-weight: normal;
       color: var(--white);
+      line-height: 1.3;
     }
-    .contact-block p {
+    .proj-desc {
       font-family: Arial, sans-serif;
-      font-size: 0.95rem;
-      color: rgba(245,245,240,0.45);
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
     }
+    .proj-url {
+      font-family: Arial, sans-serif;
+      font-size: 0.68rem;
+      color: rgba(200,169,110,0.6);
+      margin-top: 0.3rem;
+      transition: color 0.2s;
+    }
+    .proj-card:hover .proj-url { color: var(--accent); }
 
-    /* FOOTER */
-    .footer {
+    /* ═══════════════════════════════════════════
+       ABOUT STRIP
+    ═══════════════════════════════════════════ */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      padding: 8rem 4rem;
+      background: var(--white);
+      color: var(--black);
+    }
+    .about-left { }
+    .about-num {
+      font-size: clamp(5rem, 12vw, 10rem);
+      font-weight: normal;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0,0,0,0.15);
+      letter-spacing: -0.04em;
+      margin-bottom: -1rem;
+    }
+    .about-title {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: normal;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    .about-desc {
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.85;
+      max-width: 460px;
+    }
+    .about-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .about-stat-card {
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 10px;
+      padding: 1.8rem;
+    }
+    .about-stat-num {
+      font-size: 2.8rem;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .about-stat-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+    }
+    .about-stat-card.accent-card {
+      background: var(--black);
+      border-color: var(--black);
+    }
+    .about-stat-card.accent-card .about-stat-num,
+    .about-stat-card.accent-card .about-stat-label { color: var(--white); }
+    .about-stat-card.accent-card .about-stat-label { color: rgba(240,237,232,0.45); }
+
+    /* ═══════════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════════ */
+    .contact-section {
+      padding: 10rem 4rem;
       background: var(--black);
       text-align: center;
-      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-sphere {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse, rgba(200,169,110,0.08) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .contact-eyebrow {
       font-family: Arial, sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: rgba(245,245,240,0.2);
-      border-top: 1px solid #1a1a1a;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+    .contact-title {
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: normal;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .contact-title em { font-style: italic; color: var(--accent); }
+    .contact-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: var(--black);
+      font-family: Arial, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 3px;
+      transition: background 0.25s, transform 0.25s;
+      will-change: transform;
+    }
+    .btn-gold:hover { background: var(--accent2); transform: translateY(-3px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.5rem;
+      border: 1px solid rgba(240,237,232,0.2);
+      color: var(--white);
+      font-family: Arial, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: border-color 0.25s, transform 0.25s;
+      will-change: transform;
+    }
+    .btn-outline:hover { border-color: var(--white); transform: translateY(-3px); }
+
+    /* contact details row */
+    .contact-details {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      position: relative;
+    }
+    .contact-detail-item { text-align: center; }
+    .contact-detail-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .contact-detail-val {
+      font-family: Arial, sans-serif;
+      font-size: 0.85rem;
+      color: var(--white);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .card-hero { flex-direction: column; }
-      .card-hero .card-preview { width: 100%; height: 200px; }
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    .footer {
+      background: #040404;
+      padding: 2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-logo {
+      font-size: 0.85rem;
+      letter-spacing: 0.5em;
+      color: rgba(200,169,110,0.4);
+    }
+    .footer-copy {
+      font-family: Arial, sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.15);
+    }
+
+    /* ═══════════════════════════════════════════
+       REVEAL UTILITY
+    ═══════════════════════════════════════════ */
+    .reveal-up   { opacity: 0; transform: translateY(50px); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-preview { min-height: 300px; }
+      .about-strip { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
     }
     @media (max-width: 768px) {
       .nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.2rem; }
-      .nav-links a { font-size: 0.68rem; }
-      .hero { padding: 7rem 1.5rem 4rem; }
-      .section { padding: 4rem 1.5rem; }
-      .grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding: 0 1.5rem 4rem; }
+      .section { padding: 5rem 1.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .projects-grid.two-col { grid-template-columns: 1fr; }
+      .contact-section { padding: 6rem 1.5rem; }
+      .contact-details { flex-direction: column; gap: 2rem; }
+      .footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
+      #cursor-dot, #cursor-ring { display: none; }
+      body { cursor: auto; }
+      a { cursor: auto; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- CURSOR -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- GRAIN -->
+  <div class="grain"></div>
+
+  <!-- ══════════ NAV ══════════ -->
   <nav class="nav">
     <span class="nav-logo">CTM</span>
-    <ul class="nav-links">
-      <li><a href="#perso">Portfolio</a></li>
-      <li><a href="#clients">Clients</a></li>
-      <li><a href="#produits">Produits</a></li>
-      <li><a href="#data">Data</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#perso">Portfolio</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#produits">Produits</a></li>
+        <li><a href="#data">Data</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ══════════ HERO ══════════ -->
   <header class="hero">
-    <div class="hero-content">
-      <p class="hero-tag">Creative Talent Management · Abidjan</p>
-      <h1>Chaque projet mérite<br>une exécution à sa hauteur.</h1>
-      <p class="hero-sub">Sites web, produits digitaux et dashboards data — conçus pour performer.</p>
-      <a href="#perso" class="btn-primary">Voir les réalisations</a>
+    <div class="hero-sphere"></div>
+    <div class="hero-line"></div>
+
+    <p class="hero-eyebrow">Creative Talent Management · Abidjan, CI</p>
+
+    <h1 class="hero-title">
+      <span class="line"><span class="line-inner">Chaque projet</span></span>
+      <span class="line"><span class="line-inner"><em>mérite une</em></span></span>
+      <span class="line"><span class="line-inner">exécution parfaite.</span></span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-sub">Sites web, produits digitaux et dashboards data — conçus pour performer dans un marché qui n'attend pas.</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num" data-count="10">0</span>
+          <span class="stat-label">Projets livrés</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="4">0</span>
+          <span class="stat-label">Clients actifs</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" data-count="3">0</span>
+          <span class="stat-label">Expertises</span>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span>Scroll</span>
+      </div>
     </div>
   </header>
 
-  <!-- SECTION SITE PERSO JCN -->
-  <section class="section" id="perso">
-    <div class="section-header">
-      <span class="section-tag">00</span>
-      <h2>Site personnel</h2>
-      <p>Portfolio de Japhet Calixte — Data Analyst &amp; Développeur web.</p>
+  <!-- ══════════ MARQUEE ══════════ -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Sites web <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Produits digitaux <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Data Analytics <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Dashboards <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Branding <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Abidjan, CI <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Développement web <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Power BI <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Sites web <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Produits digitaux <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Data Analytics <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Dashboards <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Branding <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Abidjan, CI <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Développement web <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Power BI <span class="marquee-dot"></span></span>
     </div>
-    <div class="grid grid-hero">
-      <a href="https://jcn-portfolio.vercel.app" target="_blank" class="card card-hero">
-        <div class="card-preview">
-          <iframe src="https://jcn-portfolio.vercel.app" loading="lazy" title="JCN Portfolio"></iframe>
+  </div>
+
+  <!-- ══════════ SITE PERSO ══════════ -->
+  <section class="section" id="perso">
+    <p class="section-label reveal-left">00 — Portfolio</p>
+    <h2 class="section-title reveal-up">Site personnel</h2>
+    <p class="section-sub reveal-up">Portfolio de Japhet Calixte — Data Analyst &amp; Développeur web basé à Abidjan.</p>
+
+    <div class="featured-card reveal-up">
+      <div class="featured-preview">
+        <iframe src="https://jcn-portfolio.vercel.app" loading="lazy" title="JCN Portfolio"></iframe>
+        <div class="featured-preview-overlay"></div>
+      </div>
+      <div class="featured-info">
+        <div>
+          <p class="featured-cat">Portfolio · Data · Développement</p>
+          <h3 class="featured-title">JCN —<br>Japhet Calixte</h3>
+          <p class="featured-desc">Portfolio personnel de Japhet Calixte, Data Analyst Junior et développeur web. Présentation des compétences, projets et réalisations techniques — de la data visualisation au développement web full-stack.</p>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Portfolio · Data · Dev</span>
-          <h3>JCN — Japhet Calixte</h3>
-          <p>Portfolio personnel de Japhet Calixte, Data Analyst Junior et développeur web basé à Abidjan. Présentation des compétences, projets et réalisations.</p>
-          <span class="card-link">jcn-portfolio.vercel.app →</span>
-        </div>
-      </a>
+        <a href="https://jcn-portfolio.vercel.app" target="_blank" class="featured-link">
+          Visiter le site <span class="arrow">→</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- SECTION CLIENTS -->
-  <section class="section section-dark" id="clients">
-    <div class="section-header">
-      <span class="section-tag">01</span>
-      <h2>Sites clients</h2>
-      <p>Des plateformes sur mesure pour des professionnels qui comptent.</p>
-    </div>
-    <div class="grid">
+  <!-- ══════════ CLIENTS ══════════ -->
+  <section class="section section-alt" id="clients">
+    <p class="section-label reveal-left">01 — Réalisations</p>
+    <h2 class="section-title reveal-up">Sites clients</h2>
+    <p class="section-sub reveal-up">Des plateformes sur mesure pour des professionnels qui comptent.</p>
 
-      <a href="https://groupescolairelemiri.com" target="_blank" class="card card-dark">
-        <div class="card-preview">
-          <iframe src="https://groupescolairelemiri.com" loading="lazy" title="Groupe Scolaire Le Miri"></iframe>
+    <div class="projects-grid two-col">
+
+      <a href="https://groupescolairelemiri.com" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview">
+          <iframe src="https://groupescolairelemiri.com" loading="lazy" title="Le Miri"></iframe>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Éducation</span>
-          <h3>Groupe Scolaire Le Miri</h3>
-          <p>Site institutionnel pour une école K-12 à Bingerville. Inscriptions en ligne, portails parents, enseignants et administration.</p>
-          <span class="card-link">groupescolairelemiri.com →</span>
+        <div class="proj-body">
+          <span class="proj-cat">Éducation</span>
+          <h3 class="proj-title">Groupe Scolaire Le Miri</h3>
+          <p class="proj-desc">Site institutionnel pour une école K-12 à Bingerville. Inscriptions en ligne, portails parents, enseignants et administration.</p>
+          <span class="proj-url">groupescolairelemiri.com</span>
         </div>
       </a>
 
-      <a href="https://sir-heal.lovable.app" target="_blank" class="card card-dark">
-        <div class="card-preview">
+      <a href="https://sir-heal.lovable.app" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview">
           <iframe src="https://sir-heal.lovable.app" loading="lazy" title="Sir Heal"></iframe>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Musique · Cinéma</span>
-          <h3>Sir Heal</h3>
-          <p>Portfolio d'Illman Touré, compositeur et sound designer. Courts-métrages, longs-métrages, publicités et branding audio.</p>
-          <span class="card-link">sir-heal.lovable.app →</span>
+        <div class="proj-body">
+          <span class="proj-cat">Musique · Cinéma</span>
+          <h3 class="proj-title">Sir Heal</h3>
+          <p class="proj-desc">Portfolio d'Illman Touré, compositeur et sound designer. Courts-métrages, longs-métrages, publicités et branding audio.</p>
+          <span class="proj-url">sir-heal.lovable.app</span>
         </div>
       </a>
 
-      <a href="https://creative-talent-management.netlify.app/cassandra" target="_blank" class="card card-dark">
-        <div class="card-preview">
-          <iframe src="https://creative-talent-management.netlify.app/cassandra" loading="lazy" title="Cassandra Touré"></iframe>
+      <a href="https://creative-talent-management.netlify.app/cassandra" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview">
+          <iframe src="https://creative-talent-management.netlify.app/cassandra" loading="lazy" title="Cassandra"></iframe>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Consulting</span>
-          <h3>Cassandra Touré</h3>
-          <p>Site pro d'une consultante stratégique. Gestion de projet, coaching, insertion professionnelle et développement culturel.</p>
-          <span class="card-link">cassandra →</span>
+        <div class="proj-body">
+          <span class="proj-cat">Consulting</span>
+          <h3 class="proj-title">Cassandra Touré</h3>
+          <p class="proj-desc">Site pro d'une consultante stratégique. Gestion de projet, coaching, insertion professionnelle et développement culturel.</p>
+          <span class="proj-url">creative-talent-management.netlify.app/cassandra</span>
         </div>
       </a>
 
-      <a href="https://chef-inaice.netlify.app" target="_blank" class="card card-dark">
-        <div class="card-preview">
+      <a href="https://chef-inaice.netlify.app" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview">
           <iframe src="https://chef-inaice.netlify.app" loading="lazy" title="Chef Inaice"></iframe>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Gastronomie</span>
-          <h3>Chef Inaice</h3>
-          <p>Vitrine digitale pour un chef cuisinier. Présentation du parcours, des spécialités et des prestations.</p>
-          <span class="card-link">chef-inaice.netlify.app →</span>
+        <div class="proj-body">
+          <span class="proj-cat">Gastronomie</span>
+          <h3 class="proj-title">Chef Inaice</h3>
+          <p class="proj-desc">Vitrine digitale pour un chef cuisinier. Présentation du parcours, des spécialités et des prestations culinaires.</p>
+          <span class="proj-url">chef-inaice.netlify.app</span>
         </div>
       </a>
 
     </div>
   </section>
 
-  <!-- SECTION PRODUITS CTM -->
+  <!-- ══════════ PRODUITS CTM ══════════ -->
   <section class="section" id="produits">
-    <div class="section-header">
-      <span class="section-tag">02</span>
-      <h2>Produits CTM</h2>
-      <p>Des outils digitaux construits de A à Z pour l'écosystème ivoirien.</p>
-    </div>
-    <div class="grid">
+    <p class="section-label reveal-left">02 — Produits</p>
+    <h2 class="section-title reveal-up">Produits CTM</h2>
+    <p class="section-sub reveal-up">Des outils digitaux construits de A à Z pour l'écosystème ivoirien.</p>
 
-      <a href="https://jcalixte24.github.io/c-t-m/" target="_blank" class="card">
-        <div class="card-preview">
+    <div class="projects-grid">
+
+      <a href="https://jcalixte24.github.io/c-t-m/" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview">
           <iframe src="https://jcalixte24.github.io/c-t-m/" loading="lazy" title="CTM Agency"></iframe>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Agence</span>
-          <h3>CTM Agency</h3>
-          <p>Site vitrine de l'agence — mise en relation de talents créatifs (chefs, développeurs, artistes, consultants) avec des opportunités à Abidjan.</p>
-          <span class="card-link">jcalixte24.github.io/c-t-m →</span>
+        <div class="proj-body">
+          <span class="proj-cat">Agence</span>
+          <h3 class="proj-title">CTM Agency</h3>
+          <p class="proj-desc">Site vitrine de l'agence — mise en relation de talents créatifs avec des opportunités professionnelles à Abidjan.</p>
+          <span class="proj-url">jcalixte24.github.io/c-t-m</span>
         </div>
       </a>
 
-      <a href="https://charts-ci.vercel.app" target="_blank" class="card">
-        <div class="card-preview">
+      <a href="https://charts-ci.vercel.app" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview">
           <iframe src="https://charts-ci.vercel.app" loading="lazy" title="CI Charts"></iframe>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Musique · Data</span>
-          <h3>CI Charts</h3>
-          <p>Classements musicaux non officiels de Côte d'Ivoire agrégés depuis Apple Music, Spotify, YouTube et Deezer.</p>
-          <span class="card-link">charts-ci.vercel.app →</span>
+        <div class="proj-body">
+          <span class="proj-cat">Musique · Data</span>
+          <h3 class="proj-title">CI Charts</h3>
+          <p class="proj-desc">Classements musicaux non officiels de Côte d'Ivoire — Apple Music, Spotify, YouTube, Deezer agrégés en temps réel.</p>
+          <span class="proj-url">charts-ci.vercel.app</span>
         </div>
       </a>
 
-      <a href="https://talent-ci-form.vercel.app" target="_blank" class="card">
-        <div class="card-preview">
+      <a href="https://talent-ci-form.vercel.app" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview">
           <iframe src="https://talent-ci-form.vercel.app" loading="lazy" title="Talents CI"></iframe>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Recrutement</span>
-          <h3>Talents CI — Formulaires</h3>
-          <p>Plateforme de formulaires clients pour agence de recrutement. Collecte et gestion des candidatures en ligne.</p>
-          <span class="card-link">talent-ci-form.vercel.app →</span>
+        <div class="proj-body">
+          <span class="proj-cat">Recrutement</span>
+          <h3 class="proj-title">Talents CI</h3>
+          <p class="proj-desc">Plateforme de formulaires pour agence de recrutement. Collecte et gestion des candidatures en ligne.</p>
+          <span class="proj-url">talent-ci-form.vercel.app</span>
         </div>
       </a>
 
     </div>
   </section>
 
-  <!-- SECTION DATA -->
-  <section class="section section-dark" id="data">
-    <div class="section-header">
-      <span class="section-tag">03</span>
-      <h2>Data & Analytics</h2>
-      <p>Analyses de données, dashboards interactifs et visualisations.</p>
+  <!-- ══════════ ABOUT STRIP ══════════ -->
+  <div class="about-strip">
+    <div class="about-left">
+      <p class="about-num reveal-up">CTM</p>
+      <h2 class="about-title reveal-up">Une agence de<br>talent créatif<br>à Abidjan.</h2>
+      <p class="about-desc reveal-up">Nous concevons des expériences digitales pour des professionnels ambitieux — du site institutionnel au dashboard data en passant par les produits SaaS. Chaque projet est traité comme une œuvre à part entière.</p>
     </div>
-    <div class="grid">
+    <div class="about-right">
+      <div class="about-stat-card reveal-up">
+        <span class="about-stat-num">10+</span>
+        <span class="about-stat-label">Projets livrés</span>
+      </div>
+      <div class="about-stat-card accent-card reveal-up">
+        <span class="about-stat-num">4</span>
+        <span class="about-stat-label">Clients actifs</span>
+      </div>
+      <div class="about-stat-card reveal-up">
+        <span class="about-stat-num">2026</span>
+        <span class="about-stat-label">Fondée</span>
+      </div>
+      <div class="about-stat-card reveal-up">
+        <span class="about-stat-num">3</span>
+        <span class="about-stat-label">Expertises</span>
+      </div>
+    </div>
+  </div>
 
-      <a href="https://chatbot-ia-1z24.onrender.com" target="_blank" class="card card-dark">
-        <div class="card-preview">
+  <!-- ══════════ DATA ══════════ -->
+  <section class="section section-alt" id="data">
+    <p class="section-label reveal-left">03 — Analytics</p>
+    <h2 class="section-title reveal-up">Data & Analytics</h2>
+    <p class="section-sub reveal-up">Analyses de données, dashboards interactifs et visualisations à impact.</p>
+
+    <div class="projects-grid">
+
+      <a href="https://chatbot-ia-1z24.onrender.com" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview">
           <iframe src="https://chatbot-ia-1z24.onrender.com" loading="lazy" title="Chatbot IA"></iframe>
         </div>
-        <div class="card-body">
-          <span class="card-cat">IA · NLP</span>
-          <h3>Chatbot IA</h3>
-          <p>Application de chatbot basée sur l'intelligence artificielle. Interface conversationnelle déployée sur Render.</p>
-          <span class="card-link">chatbot-ia-1z24.onrender.com →</span>
+        <div class="proj-body">
+          <span class="proj-cat">IA · NLP</span>
+          <h3 class="proj-title">Chatbot IA</h3>
+          <p class="proj-desc">Application de chatbot basée sur l'intelligence artificielle. Interface conversationnelle déployée sur Render.</p>
+          <span class="proj-url">chatbot-ia-1z24.onrender.com</span>
         </div>
       </a>
 
-      <a href="https://github.com/jcalixte24/spotify-analytics" target="_blank" class="card card-dark">
-        <div class="card-preview" style="background: linear-gradient(135deg,#0a0a0a,#1db954); display:flex; align-items:center; justify-content:center;">
-          <span style="font-family:Arial;font-size:0.78rem;letter-spacing:0.1em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Voir sur GitHub</span>
+      <a href="https://github.com/jcalixte24/spotify-analytics" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview proj-preview-img" style="background: linear-gradient(135deg, #050e08 0%, #0d3318 50%, #1db954 100%);">
+          <span>GitHub →</span>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Musique · Visualisation</span>
-          <h3>Spotify Analytics</h3>
-          <p>Dashboard des hits mondiaux 1980–2022. Exploration par genres, géographie, timeline et top 50. Stack : HTML, JS, Python, ApexCharts.</p>
-          <span class="card-link">Voir sur GitHub →</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/jcalixte24/projet-web-analytics-1" target="_blank" class="card card-dark">
-        <div class="card-preview" style="background: linear-gradient(135deg,#1a237e,#7986cb); display:flex; align-items:center; justify-content:center;">
-          <span style="font-family:Arial;font-size:0.78rem;letter-spacing:0.1em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Voir sur GitHub</span>
-        </div>
-        <div class="card-body">
-          <span class="card-cat">RH · Économie</span>
-          <h3>Analyse des Salaires — France</h3>
-          <p>Dashboard interactif des salaires segmentés par âge, genre, métier, région, diplôme et taille d'entreprise. Stack : HTML, JS, Python, pandas.</p>
-          <span class="card-link">Voir sur GitHub →</span>
+        <div class="proj-body">
+          <span class="proj-cat">Musique · Visualisation</span>
+          <h3 class="proj-title">Spotify Analytics</h3>
+          <p class="proj-desc">Dashboard des hits mondiaux 1980–2022. Genres, géographie, timeline, top 50. Stack : HTML, JS, Python, ApexCharts.</p>
+          <span class="proj-url">github.com/jcalixte24</span>
         </div>
       </a>
 
-      <a href="https://github.com/jcalixte24/Git-PBI" target="_blank" class="card card-dark">
-        <div class="card-preview" style="background: linear-gradient(135deg,#1a0a00,#f2c94c); display:flex; align-items:center; justify-content:center;">
-          <span style="font-family:Arial;font-size:0.78rem;letter-spacing:0.1em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Voir sur GitHub</span>
+      <a href="https://github.com/jcalixte24/projet-web-analytics-1" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview proj-preview-img" style="background: linear-gradient(135deg, #06071a 0%, #1a1f6e 50%, #5c6bc0 100%);">
+          <span>GitHub →</span>
         </div>
-        <div class="card-body">
-          <span class="card-cat">Power BI</span>
-          <h3>Dashboard Power BI</h3>
-          <p>Rapport interactif développé sur Microsoft Power BI. Visualisation de données métier avec indicateurs clés et filtres dynamiques.</p>
-          <span class="card-link">Voir sur GitHub →</span>
+        <div class="proj-body">
+          <span class="proj-cat">RH · Économie</span>
+          <h3 class="proj-title">Salaires France</h3>
+          <p class="proj-desc">Dashboard interactif des salaires segmentés par âge, genre, métier, région, diplôme et taille d'entreprise.</p>
+          <span class="proj-url">github.com/jcalixte24</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/jcalixte24/Git-PBI" target="_blank" class="proj-card reveal-up">
+        <div class="proj-preview proj-preview-img" style="background: linear-gradient(135deg, #0f0800 0%, #3d2000 50%, #e6a817 100%);">
+          <span>GitHub →</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-cat">Power BI</span>
+          <h3 class="proj-title">Dashboard Power BI</h3>
+          <p class="proj-desc">Rapport interactif développé sur Microsoft Power BI. Indicateurs clés et filtres dynamiques sur données métier.</p>
+          <span class="proj-url">github.com/jcalixte24</span>
         </div>
       </a>
 
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="contact-block" style="max-width:500px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap:1.2rem;">
-      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem); font-weight:normal;">Un projet en tête ?</h2>
-      <p style="font-family:Arial,sans-serif; font-size:0.95rem; color:var(--grey);">On transforme vos idées en produits qui fonctionnent.</p>
-      <a href="mailto:japhetndri15@gmail.com" class="btn-primary">Travaillons ensemble</a>
+  <!-- ══════════ CONTACT ══════════ -->
+  <section class="contact-section" id="contact">
+    <div class="contact-sphere"></div>
+    <p class="contact-eyebrow reveal-up">Travaillons ensemble</p>
+    <h2 class="contact-title reveal-up">Un projet<br>en <em>tête ?</em></h2>
+    <div class="contact-actions reveal-up">
+      <a href="https://jcalixte24.github.io/c-t-m/#contact" target="_blank" class="btn-gold">Démarrer un projet</a>
+      <a href="mailto:japhetndri15@gmail.com" class="btn-outline">japhetndri15@gmail.com</a>
+    </div>
+    <div class="contact-details reveal-up">
+      <div class="contact-detail-item">
+        <span class="contact-detail-label">Localisation</span>
+        <span class="contact-detail-val">Abidjan, Côte d'Ivoire</span>
+      </div>
+      <div class="contact-detail-item">
+        <span class="contact-detail-label">Services</span>
+        <span class="contact-detail-val">Web · Data · Produit</span>
+      </div>
+      <div class="contact-detail-item">
+        <span class="contact-detail-label">Disponibilité</span>
+        <span class="contact-detail-val">Ouvert aux projets</span>
+      </div>
     </div>
   </section>
 
   <footer class="footer">
-    © 2026 CTM — Creative Talent Management · Abidjan
+    <span class="footer-logo">CTM</span>
+    <span class="footer-copy">© 2026 Creative Talent Management — Abidjan</span>
   </footer>
 
+  <!-- ══════════ GSAP ══════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ── CURSOR ── */
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    gsap.ticker.add(() => {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      gsap.set(dot,  { x: mx, y: my });
+      gsap.set(ring, { x: rx, y: ry });
+    });
+
+    /* ── HERO TITLE LINES ── */
+    const lines = document.querySelectorAll('.hero-title .line-inner');
+    gsap.to(lines, {
+      y: 0,
+      duration: 1.1,
+      ease: 'power4.out',
+      stagger: 0.14,
+      delay: 0.4
+    });
+
+    /* ── HERO OTHER ELEMENTS ── */
+    gsap.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.9, delay: 1.0, ease: 'power3.out' });
+    gsap.to('.hero-sub',     { opacity: 1, duration: 0.9, delay: 1.3, ease: 'power3.out' });
+    gsap.to('.hero-stats',   { opacity: 1, duration: 0.9, delay: 1.5, ease: 'power3.out' });
+    gsap.to('.hero-scroll',  { opacity: 1, duration: 0.9, delay: 1.7, ease: 'power3.out' });
+
+    /* ── HERO SPHERE PARALLAX ── */
+    gsap.to('.hero-sphere', {
+      y: 150, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+    });
+
+    /* ── STAT COUNTERS ── */
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = +el.dataset.count;
+      gsap.to({ val: 0 }, {
+        val: target,
+        duration: 2,
+        delay: 1.6,
+        ease: 'power2.out',
+        onUpdate() { el.textContent = Math.round(this.targets()[0].val) + (target >= 10 ? '+' : ''); }
+      });
+    });
+
+    /* ── GENERIC SCROLL REVEALS ── */
+    gsap.utils.toArray('.reveal-up').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 55 },
+        { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 86%', once: true }
+        }
+      );
+    });
+
+    gsap.utils.toArray('.reveal-left').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, x: -35 },
+        { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        }
+      );
+    });
+
+    /* ── STAGGER CARDS BY GRID ── */
+    document.querySelectorAll('.projects-grid').forEach(grid => {
+      const cards = grid.querySelectorAll('.proj-card');
+      gsap.fromTo(cards,
+        { opacity: 0, y: 70 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out',
+          stagger: 0.1,
+          scrollTrigger: { trigger: grid, start: 'top 82%', once: true }
+        }
+      );
+    });
+
+    /* ── FEATURED CARD ── */
+    gsap.fromTo('.featured-card',
+      { opacity: 0, y: 60 },
+      { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: '.featured-card', start: 'top 82%', once: true }
+      }
+    );
+
+    /* ── ABOUT STRIP NUMS ── */
+    gsap.utils.toArray('.about-stat-num').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        }
+      );
+    });
+
+    /* ── CONTACT TITLE PARALLAX ── */
+    gsap.to('.contact-sphere', {
+      scale: 1.3, ease: 'none',
+      scrollTrigger: {
+        trigger: '.contact-section',
+        start: 'top bottom', end: 'bottom top',
+        scrub: 1.5
+      }
+    });
+
+    /* ── MARQUEE pause on hover ── */
+    const track = document.querySelector('.marquee-track');
+    track.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+    track.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+  </script>
 </body>
 </html>
