@@ -1025,6 +1025,22 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
 /* recentrage photo Cassandra (voir le visage) */
 .tc[data-cat="leadership"] .tc-ph img{object-position:center 36%}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== CONTACT FORM REDESIGN ===== */
+.form-who{display:flex;align-items:center;gap:14px;margin-bottom:24px;flex-wrap:wrap}
+.form-who-lbl{font-family:var(--lbl);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);flex-shrink:0}
+.form-roles{display:flex;gap:8px;flex-wrap:wrap}
+.role-btn{font-family:var(--lbl);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--line2);border-radius:999px;background:transparent;color:var(--dim);cursor:pointer;transition:all .25s}
+.role-btn:hover{border-color:var(--fire);color:var(--fire)}
+.role-btn.on{border-color:var(--rouge);background:var(--rouge);color:#fff}
+.fi-group{display:flex;flex-direction:column;gap:6px}
+.fi-lbl{font-family:var(--lbl);font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.contact-kpis{display:flex;align-items:center;gap:24px;margin-top:44px;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ckpi{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:44px}
+.ckpi-v{font-family:var(--disp);font-size:2rem;font-weight:800;color:var(--rouge);line-height:1;letter-spacing:-.02em}
+.ckpi-l{font-family:var(--lbl);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);text-align:center}
+.ckpi-sep{width:1px;height:36px;background:var(--line2)}
+.contact-pull{margin-top:32px;padding:18px 22px;border-left:3px solid var(--gold);background:rgba(253,199,88,.08);font-family:var(--disp);font-size:.98rem;line-height:1.6;color:var(--dim)}
 </style>
 </head>
 <body>
@@ -1272,9 +1288,12 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
 
 <!-- ══════════ CONTACT ══════════ -->
 <section class="sec" id="contact">
+  <div class="sec-photo"></div>
   <div class="inner" style="padding-top:140px;padding-bottom:140px">
     <div class="etag rv up" data-fr="Nous contacter" data-en="Get in touch">Nous contacter</div>
     <div class="contact-grid">
+
+      <!-- Colonne gauche -->
       <div>
         <h2 class="contact-h rv up d1">TRAVAILLONS<br/><em>ENSEMBLE</em></h2>
         <p class="contact-intro rv up d2" data-fr="Talent, marque ou partenaire ? Parlons de votre projet." data-en="Talent, brand or partner? Let's talk about your project.">Talent, marque ou partenaire ? Parlons de votre projet.</p>
@@ -1282,19 +1301,53 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
           <div class="ci-row"><div class="ci-dot"></div><div><div class="ci-lbl">Email</div><a class="ci-val" href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a></div></div>
           <div class="ci-row"><div class="ci-dot"></div><div><div class="ci-lbl" data-fr="Basé à" data-en="Based in">Basé à</div><span class="ci-val">Abidjan, Côte d'Ivoire</span></div></div>
         </div>
+        <div class="contact-kpis rv up d4">
+          <div class="ckpi"><div class="ckpi-v">4</div><div class="ckpi-l" data-fr="Talents" data-en="Talents">Talents</div></div>
+          <div class="ckpi-sep"></div>
+          <div class="ckpi"><div class="ckpi-v">3</div><div class="ckpi-l" data-fr="Domaines" data-en="Domains">Domaines</div></div>
+          <div class="ckpi-sep"></div>
+          <div class="ckpi"><div class="ckpi-v">CI</div><div class="ckpi-l" data-fr="→ Monde" data-en="→ World">→ Monde</div></div>
+        </div>
+        <blockquote class="contact-pull rv up d5" data-fr="&ldquo;Chaque conversation peut être le début d'une grande collaboration.&rdquo;" data-en="&ldquo;Every conversation can be the start of a great collaboration.&rdquo;">&ldquo;Chaque conversation peut être le début d'une grande collaboration.&rdquo;</blockquote>
       </div>
+
+      <!-- Colonne droite — formulaire -->
       <div class="rv right d2">
-        <div class="form">
-          <input class="fi" type="text" data-pfr="Votre nom" data-pen="Your name" placeholder="Votre nom"/>
-          <input class="fi" type="email" data-pfr="Votre email" data-pen="Your email" placeholder="Votre email"/>
-          <input class="fi" type="text" data-pfr="Objet" data-pen="Subject" placeholder="Objet"/>
-          <textarea class="fi" data-pfr="Votre message..." data-pen="Your message..." placeholder="Votre message..."></textarea>
-          <button class="fsend">
+
+        <!-- Sélecteur de profil -->
+        <div class="form-who rv up d1">
+          <span class="form-who-lbl" data-fr="Vous êtes :" data-en="You are:">Vous êtes :</span>
+          <div class="form-roles">
+            <button type="button" class="role-btn on" onclick="setRole(this,'talent')" data-fr="Un talent" data-en="A talent">Un talent</button>
+            <button type="button" class="role-btn" onclick="setRole(this,'marque')" data-fr="Une marque" data-en="A brand">Une marque</button>
+            <button type="button" class="role-btn" onclick="setRole(this,'partenaire')" data-fr="Un partenaire" data-en="A partner">Un partenaire</button>
+          </div>
+        </div>
+
+        <div class="form" id="ctmForm">
+          <div class="fi-group">
+            <label class="fi-lbl" data-fr="Nom complet" data-en="Full name">Nom complet</label>
+            <input class="fi" type="text" id="fi-nom" data-pfr="Ex : Kouamé Assi, Awa Diallo…" data-pen="E.g. John Smith, Awa Diallo…" placeholder="Ex : Kouamé Assi, Awa Diallo…"/>
+          </div>
+          <div class="fi-group">
+            <label class="fi-lbl" data-fr="Adresse email" data-en="Email address">Adresse email</label>
+            <input class="fi" type="email" id="fi-email" data-pfr="votre@email.com" data-pen="your@email.com" placeholder="votre@email.com"/>
+          </div>
+          <div class="fi-group">
+            <label class="fi-lbl" id="fi-objet-lbl" data-fr="Votre demande" data-en="Your request">Votre demande</label>
+            <input class="fi" type="text" id="fi-objet" data-pfr="Ex : Je cherche un management pour développer ma carrière…" data-pen="E.g. I'm looking for management to develop my career…" placeholder="Ex : Je cherche un management pour développer ma carrière…"/>
+          </div>
+          <div class="fi-group">
+            <label class="fi-lbl" data-fr="Message" data-en="Message">Message</label>
+            <textarea class="fi" id="fi-msg" data-pfr="Décrivez votre vision, vos objectifs, le contexte de votre projet…" data-pen="Describe your vision, goals, project context…" placeholder="Décrivez votre vision, vos objectifs, le contexte de votre projet…"></textarea>
+          </div>
+          <button class="fsend" onclick="sendForm(this)">
             <div class="fsend-dash"></div>
             <span data-fr="Envoyer le message" data-en="Send message">Envoyer le message</span>
           </button>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1397,7 +1450,7 @@ const LINKS={
     ['Services proposés','https://talent-ci-form.netlify.app/'],
     ['LinkedIn','https://www.linkedin.com/in/illman-tour%C3%A9-973a52bb'],
     ['Instagram','https://www.instagram.com/_sir_heal']]},
-  japhet:{contact:'https://talent-ci-form.netlify.app/#jc',links:[['Portfolio','portfolio.html'],['Services proposés','tarifs-jcn.html'],['LinkedIn','https://fr.linkedin.com/in/japhet-calixte-n%E2%80%99dri-0b73832a0']]},
+  japhet:{contact:'https://talent-ci-form.netlify.app/#jc',links:[['Portfolio','https://creative-talent-management.netlify.app/portfolio'],['Services proposés','tarifs-jcn.html'],['LinkedIn','https://fr.linkedin.com/in/japhet-calixte-n%E2%80%99dri-0b73832a0']]},
   inaice:{contact:'https://talent-ci-form.netlify.app/#yo',links:[
     ['Site internet','https://chef-inaice.netlify.app/'],
     ['LinkedIn','https://www.linkedin.com/in/inaice-lago'],
@@ -1467,6 +1520,35 @@ document.querySelectorAll('.exp-card[onclick]').forEach(function(c){c.addEventLi
     sec.insertBefore(d, sec.firstChild);
   }
 })();
+
+/* ── CONTACT ROLE SELECTOR ── */
+function setRole(btn, role){
+  document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const lang=document.documentElement.lang||'fr';
+  const ph={
+    talent:{fr:'Ex : Je cherche un management pour développer ma carrière…',en:'E.g. Looking for management to develop my career…'},
+    marque:{fr:'Ex : Besoin d'un talent pour mon projet ou événement…',en:'E.g. Need a talent for my project or event…'},
+    partenaire:{fr:'Ex : Collaboration, médias, investissement, partenariat…',en:'E.g. Collaboration, media, investment, partnership…'}
+  };
+  const obj=document.getElementById('fi-objet');
+  if(obj&&ph[role]) obj.placeholder=ph[role][lang]||ph[role].fr;
+}
+function sendForm(btn){
+  const nom=document.getElementById('fi-nom').value.trim();
+  const email=document.getElementById('fi-email').value.trim();
+  const msg=document.getElementById('fi-msg').value.trim();
+  if(!nom||!email||!msg){
+    btn.classList.add('shake');
+    setTimeout(()=>btn.classList.remove('shake'),600);
+    return;
+  }
+  const role=document.querySelector('.role-btn.on');
+  const roleLabel=role?role.textContent:'—';
+  const objet=document.getElementById('fi-objet').value.trim()||'—';
+  const body=`Profil : ${roleLabel}%0ANom : ${nom}%0AEmail : ${email}%0ADemande : ${objet}%0AMessage : ${msg}`;
+  window.location.href=`mailto:contact@ctm-africa.com?subject=CTM — ${encodeURIComponent(objet||roleLabel)}&body=${body}`;
+}
 </script>
 </body>
 </html>
