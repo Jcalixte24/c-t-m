@@ -1041,9 +1041,36 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
 .ckpi-l{font-family:var(--lbl);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);text-align:center}
 .ckpi-sep{width:1px;height:36px;background:var(--line2)}
 .contact-pull{margin-top:32px;padding:18px 22px;border-left:3px solid var(--gold);background:rgba(253,199,88,.08);font-family:var(--disp);font-size:.98rem;line-height:1.6;color:var(--dim)}
+
+/* ===== SPLASH SCREEN ===== */
+#splash{position:fixed;inset:0;z-index:9999;background:var(--ink,#1A1209);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .8s cubic-bezier(.4,0,.2,1),visibility .8s}
+#splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+.sp-logo{display:flex;align-items:center;gap:14px;animation:spIn .9s cubic-bezier(.16,1,.3,1) both}
+.sp-icon{width:44px;height:44px}
+.sp-wordmark{display:flex;flex-direction:column}
+.sp-ct{font-family:var(--disp);font-size:1.6rem;letter-spacing:.1em;color:#fff;line-height:1}
+.sp-m{font-family:var(--lbl);font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:2px}
+.sp-tag{font-family:var(--lbl);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rouge,#8B1E3F);animation:spIn .9s .18s cubic-bezier(.16,1,.3,1) both}
+.sp-bar{width:60px;height:2px;background:var(--rouge,#8B1E3F);animation:spBar 1.4s .3s cubic-bezier(.16,1,.3,1) both}
+@keyframes spIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes spBar{from{width:0}to{width:60px}}
 </style>
 </head>
 <body>
+<div id="splash" role="status" aria-label="Chargement">
+  <div class="sp-logo">
+    <svg class="sp-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="22" r="20" stroke="#8B1E3F" stroke-width="2"/>
+      <path d="M14 22 Q18 14 22 22 Q26 30 30 22" stroke="#8B1E3F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="sp-wordmark">
+      <div class="sp-ct">Creative Talent</div>
+      <div class="sp-m">Management</div>
+    </div>
+  </div>
+  <div class="sp-tag">From CIV to the world</div>
+  <div class="sp-bar"></div>
+</div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
@@ -1224,7 +1251,8 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
         <div class="tc-info">
           <div class="tc-name">Illman Touré <span style="color:var(--mid)">(Sir Heal)</span></div>
           <div class="tc-sub" data-fr="Compositeur &amp; Sound Designer" data-en="Composer &amp; Sound Designer">Compositeur &amp; Sound Designer</div>
-          <a class="tc-lnk" href="https://sir-heal.lovable.app/" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="tc-ldash"></div><span data-fr="Site internet" data-en="Website">Site internet</span></a>
+          <a class="tc-lnk" href="https://sir-heal.lovable.app/" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="tc-ldash"></div><span data-fr="Portfolio" data-en="Portfolio">Portfolio</span></a>
+          <a class="tc-lnk" href="https://talent-ci-form.netlify.app/" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="tc-ldash"></div><span data-fr="Services proposés" data-en="Services">Services proposés</span></a>
           <a class="tc-lnk" href="https://talent-ci-form.netlify.app/" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="tc-ldash"></div><span data-fr="Contacter" data-en="Contact">Contacter</span></a>
           <a class="tc-cta" onclick="event.stopPropagation();openM('illman')"><div class="tc-cdash"></div><span data-fr="Découvrir" data-en="Explore">Découvrir</span></a>
         </div>
@@ -1235,6 +1263,8 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
         <div class="tc-info">
           <div class="tc-name">Japhet C. N'DRI <span style="color:var(--mid)">(JCN)</span></div>
           <div class="tc-sub" data-fr="Développeur Web/IA &amp; Data Analyst" data-en="Web/AI Developer &amp; Data Analyst">Développeur Web/IA &amp; Data Analyst</div>
+          <a class="tc-lnk" href="https://creative-talent-management.netlify.app/portfolio" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="tc-ldash"></div><span data-fr="Portfolio" data-en="Portfolio">Portfolio</span></a>
+          <a class="tc-lnk" href="tarifs-jcn.html" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="tc-ldash"></div><span data-fr="Services proposés" data-en="Services">Services proposés</span></a>
           <a class="tc-lnk" href="https://talent-ci-form.netlify.app/#jc" target="_blank" rel="noopener" onclick="event.stopPropagation()"><div class="tc-ldash"></div><span data-fr="Contacter" data-en="Contact">Contacter</span></a>
           <a class="tc-cta" onclick="event.stopPropagation();openM('japhet')"><div class="tc-cdash"></div><span data-fr="Découvrir" data-en="Explore">Découvrir</span></a>
         </div>
@@ -1549,6 +1579,15 @@ function sendForm(btn){
   const body=`Profil : ${roleLabel}%0ANom : ${nom}%0AEmail : ${email}%0ADemande : ${objet}%0AMessage : ${msg}`;
   window.location.href=`mailto:contact@ctm-africa.com?subject=CTM — ${encodeURIComponent(objet||roleLabel)}&body=${body}`;
 }
+
+/* ── SPLASH SCREEN ── */
+(function(){
+  var sp = document.getElementById('splash');
+  if(!sp) return;
+  window.addEventListener('load', function(){
+    setTimeout(function(){ sp.classList.add('hide'); }, 1400);
+  });
+})();
 </script>
 </body>
 </html>
