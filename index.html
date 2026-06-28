@@ -484,6 +484,10 @@ body{background:var(--paper);color:var(--ink);font-family:var(--ui),sans-serif;f
 .ml-dom{font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:var(--fire);margin-bottom:3px}
 .ml-name{font-family:var(--disp);font-size:1.5rem;letter-spacing:.04em;margin-bottom:9px}
 .ml-bio{font-size:.79rem;line-height:1.8;color:var(--dim);margin-bottom:20px}
+.ml-seg{margin:0 0 14px}
+.ml-seg:last-child{margin-bottom:0}
+.ml-seg-l{font-family:var(--lbl);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rouge);margin-bottom:3px}
+.ml-seg-t{margin:0}
 .ml-links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .ml-links:empty{display:none}
 .ml-link{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;cursor:none;
@@ -1114,7 +1118,7 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
       <img class="ml-ph" id="mp" src="" alt=""/>
       <div class="ml-dom" id="md"></div>
       <div class="ml-name" id="mn"></div>
-      <p class="ml-bio" id="mb"></p>
+      <div class="ml-bio" id="mb"></div>
       <div class="ml-links" id="mlinks"></div>
       <a class="ml-contact" id="mcontact" href="#" target="_blank" rel="noopener">
         <span data-fr="Contacter" data-en="Contact">Contacter</span><span class="ml-arr">&#8594;</span>
@@ -1319,7 +1323,8 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
         <h2 class="why-h rv up d1" data-fr="POURQUOI<br/><em>NOUS ?</em>" data-en="WHY<br/><em>US?</em>">POURQUOI<br/><em>NOUS ?</em></h2>
       </div>
       <div class="why-items rv up d1">
-        <p class="wi-b" style="font-size:1rem;line-height:1.85;color:rgba(255,255,255,.85);" data-fr="From Côte d'Ivoire to the world. Creative Talent Management est née d'une conviction profonde : le talent ivoirien n'a pas de frontières, mais il exige une structure d'exception pour rayonner. Nous agissons comme le partenaire stratégique qui comble le fossé entre le potentiel local et le marché international. En alignant une protection stricte des intérêts et une gestion rigoureuse, nous ne connectons pas seulement des compétences : nous sécurisons les actifs de nos créateurs et bâtissons les carrières durables qui redéfinissent notre écosystème à l'échelle globale." data-en="From Côte d'Ivoire to the world. Creative Talent Management was born from a deep conviction: Ivorian talent knows no borders, but it demands an exceptional structure to shine. We act as the strategic partner bridging the gap between local potential and the international market. By aligning strict interest protection with rigorous management, we don't just connect skills — we secure our creators' assets and build lasting careers that redefine our ecosystem on a global scale.">From Côte d'Ivoire to the world. Creative Talent Management est née d'une conviction profonde : le talent ivoirien n'a pas de frontières, mais il exige une structure d'exception pour rayonner. Nous agissons comme le partenaire stratégique qui comble le fossé entre le potentiel local et le marché international. En alignant une protection stricte des intérêts et une gestion rigoureuse, nous ne connectons pas seulement des compétences : nous sécurisons les actifs de nos créateurs et bâtissons les carrières durables qui redéfinissent notre écosystème à l'échelle globale.</p>
+        <p class="wi-slogan" style="font-family:var(--disp);font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.25;font-style:italic;color:var(--gold);margin:0 0 24px;letter-spacing:.005em;" data-fr="&laquo;&nbsp;From Côte d'Ivoire to the world.&nbsp;&raquo;" data-en="&ldquo;From Côte d'Ivoire to the world.&rdquo;">&laquo;&nbsp;From Côte d'Ivoire to the world.&nbsp;&raquo;</p>
+        <p class="wi-b" style="font-size:1rem;line-height:1.85;color:rgba(255,255,255,.85);" data-fr="Creative Talent Management est née d'une conviction profonde : le talent ivoirien n'a pas de frontières, mais il exige une structure d'exception pour rayonner. Nous agissons comme le partenaire stratégique qui comble le fossé entre le potentiel local et le marché international. En alignant une protection stricte des intérêts et une gestion rigoureuse, nous ne connectons pas seulement des compétences : nous sécurisons les actifs de nos créateurs et bâtissons les carrières durables qui redéfinissent notre écosystème à l'échelle globale." data-en="Creative Talent Management was born from a deep conviction: Ivorian talent knows no borders, but it demands an exceptional structure to shine. We act as the strategic partner bridging the gap between local potential and the international market. By aligning strict interest protection with rigorous management, we don't just connect skills — we secure our creators' assets and build lasting careers that redefine our ecosystem on a global scale.">Creative Talent Management est née d'une conviction profonde : le talent ivoirien n'a pas de frontières, mais il exige une structure d'exception pour rayonner. Nous agissons comme le partenaire stratégique qui comble le fossé entre le potentiel local et le marché international. En alignant une protection stricte des intérêts et une gestion rigoureuse, nous ne connectons pas seulement des compétences : nous sécurisons les actifs de nos créateurs et bâtissons les carrières durables qui redéfinissent notre écosystème à l'échelle globale.</p>
       </div>
     </div>
     
@@ -1342,13 +1347,6 @@ footer{flex-direction:column;align-items:stretch;gap:18px;padding:34px 64px}
         <div class="clist rv up d3">
           <div class="ci-row"><div class="ci-dot"></div><div><div class="ci-lbl">Email</div><a class="ci-val" href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a></div></div>
           <div class="ci-row"><div class="ci-dot"></div><div><div class="ci-lbl" data-fr="Basé à" data-en="Based in">Basé à</div><span class="ci-val">Abidjan, Côte d'Ivoire</span></div></div>
-        </div>
-        <div class="contact-kpis rv up d4">
-          <div class="ckpi"><div class="ckpi-v">4</div><div class="ckpi-l" data-fr="Talents" data-en="Talents">Talents</div></div>
-          <div class="ckpi-sep"></div>
-          <div class="ckpi"><div class="ckpi-v">3</div><div class="ckpi-l" data-fr="Domaines" data-en="Domains">Domaines</div></div>
-          <div class="ckpi-sep"></div>
-          <div class="ckpi"><div class="ckpi-v">CI</div><div class="ckpi-l" data-fr="→ Monde" data-en="→ World">→ Monde</div></div>
         </div>
         <blockquote class="contact-pull rv up d5" data-fr="&ldquo;Chaque conversation peut être le début d'une grande collaboration.&rdquo;" data-en="&ldquo;Every conversation can be the start of a great collaboration.&rdquo;">&ldquo;Chaque conversation peut être le début d'une grande collaboration.&rdquo;</blockquote>
       </div>
@@ -1503,12 +1501,27 @@ const LINKS={
   cassandra:{contact:'mailto:creativetalentm@gmail.com',links:[
     ['Site internet','cassandra.html'],['LinkedIn','https://www.linkedin.com/in/cassandra-tour%C3%A9-1a4444137']]}
 };
+/* Découpe la bio "Profil : … Expertise : … Impact International : …" en blocs distincts (FR + EN) */
+function structuredBio(text){
+  if(!text) return '';
+  var re=/(Profil|Profile|Expertise|Impact International|International Impact)\s*:\s*/g;
+  var segs=[],m,curLabel=null,curStart=0;
+  while((m=re.exec(text))){
+    if(curLabel!==null) segs.push([curLabel, text.slice(curStart, m.index)]);
+    curLabel=m[1]; curStart=re.lastIndex;
+  }
+  if(curLabel!==null) segs.push([curLabel, text.slice(curStart)]);
+  if(!segs.length) return '<p class="ml-seg-t">'+text+'</p>';
+  return segs.map(function(s){
+    return '<div class="ml-seg"><div class="ml-seg-l">'+s[0]+'</div><p class="ml-seg-t">'+s[1].trim()+'</p></div>';
+  }).join('');
+}
 function fillM(k){
   const t=TD[k];
   document.getElementById('mp').src=t.img;
   document.getElementById('md').textContent=lang==='fr'?t.dfr:t.den;
   document.getElementById('mn').textContent=t.name;
-  document.getElementById('mb').textContent=lang==='fr'?t.bfr:t.ben;
+  document.getElementById('mb').innerHTML=structuredBio(lang==='fr'?t.bfr:t.ben);
   const L=LINKS[k]||{links:[]};
   const box=document.getElementById('mlinks');box.innerHTML='';
   (L.links||[]).forEach(([label,url])=>{
