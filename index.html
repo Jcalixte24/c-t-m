@@ -860,12 +860,16 @@ a,button,.tc,.exp-card,.tc-cta,.tc-lnk,.lbtn,.fsend,.cta-card,[onclick]{cursor:p
 .tcar-dot.on{background:var(--rouge);transform:scale(1.45)}
 /* mobile : empilé */
 @media(max-width:640px){
-  .tgrid{height:auto}
-  .tc{grid-template-columns:1fr;grid-template-rows:clamp(220px,62vw,330px) auto}
-  .tc-info{padding:22px 20px 54px}
+  /* sur mobile les cartes sont position:absolute → le parent doit avoir une hauteur explicite */
+  .tgrid{height:clamp(520px,145vw,640px);border-radius:8px}
+  .tc{grid-template-columns:1fr;grid-template-rows:clamp(210px,55vw,290px) 1fr}
+  .tc-ph{height:100%}
+  .tc-info{padding:20px 18px 44px;justify-content:flex-start}
   .tc-info::after{display:none}
   .tc-ph::after{display:none}
   .tcar-nav{display:none}
+  .tc-name{font-size:clamp(1.4rem,6vw,1.9rem)}
+  .tc-acts{margin-top:18px}
 }
 
 /* reveals adoucis (sans flou) */
