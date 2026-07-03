@@ -864,13 +864,14 @@ a,button,.tc,.exp-card,.tc-cta,.tc-lnk,.lbtn,.fsend,.cta-card,[onclick]{cursor:p
 /* mobile : empilé */
 @media(max-width:640px){
   /* sur mobile les cartes sont position:absolute → le parent doit avoir une hauteur explicite */
-  .tgrid{height:clamp(520px,145vw,640px);border-radius:8px}
-  .tc{grid-template-columns:1fr;grid-template-rows:62% 38%}
+  .tgrid{height:clamp(524px,148vw,648px);border-radius:8px}
+  .tc{grid-template-columns:1fr;grid-template-rows:58% 42%}
   .tc-ph{height:100%}
-  .tc-info{padding:20px 18px 44px;justify-content:flex-start}
+  .tc-info{padding:18px 18px 22px;justify-content:center}
   .tc-info::after{display:none}
   .tc-ph::after{display:none}
   .tcar-nav{display:none}
+  .tc-counter{display:none!important}
   .tc-name{font-size:clamp(1.4rem,6vw,1.9rem)}
   .tc-acts{margin-top:18px}
 }
