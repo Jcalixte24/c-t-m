@@ -755,9 +755,11 @@ a,button,.tc,.exp-card,.tc-cta,.tc-lnk,.lbtn,.fsend,.cta-card,[onclick]{cursor:p
 /* ══════════ CARROUSEL MONO-TALENT ══════════ */
 .tcar{position:relative}
 .tgrid{
-  position:relative;
+  display:block;position:relative;
   height:clamp(460px,52vw,540px);
   border-radius:10px;overflow:hidden;
+  overflow-x:hidden;overflow-y:hidden;
+  scroll-snap-type:none;
   box-shadow:0 8px 48px rgba(28,20,16,.13);
 }
 /* toutes les cartes : empilées, position absolue */
@@ -769,6 +771,7 @@ a,button,.tc,.exp-card,.tc-cta,.tc-lnk,.lbtn,.fsend,.cta-card,[onclick]{cursor:p
   pointer-events:none;will-change:opacity,transform;
   background:var(--paper);cursor:default;
   border:none;border-radius:0;
+  scroll-snap-align:none;flex:none;
 }
 /* photo : pleine hauteur */
 .tc-ph{
@@ -807,7 +810,7 @@ a,button,.tc,.exp-card,.tc-cta,.tc-lnk,.lbtn,.fsend,.cta-card,[onclick]{cursor:p
 .tc-tag{
   font-family:var(--lbl);font-size:.54rem;letter-spacing:.22em;
   text-transform:uppercase;color:var(--rouge);
-  margin-bottom:16px;display:block;
+  margin-bottom:16px;display:block;position:static;
 }
 /* nom talent */
 .tc-name{
@@ -1674,6 +1677,7 @@ function goToCat(cat){filterRoster(cat);var r=document.getElementById('roster');
   var car=document.querySelector('.tcar');
   var grid=document.querySelector('.tgrid');
   if(!car||!grid)return;
+  grid.scrollLeft=0;
   var idx=0,down=false,sx=0,moved=false,paused=false,animating=false;
   var CATS={icc:'Industries Culturelles & Créatives',tech:'Tech & IA',gastro:'Gastronomie & Événementiel'};
   var CATS_EN={icc:'Cultural & Creative Industries',tech:'Tech & AI',gastro:'Gastronomy & Events'};
@@ -1683,16 +1687,24 @@ function goToCat(cat){filterRoster(cat);var r=document.getElementById('roster');
   /* ── injection one-shot d'un tag catégorie + compteur sur chaque carte ── */
   function enrichCards(){
     grid.querySelectorAll('.tc').forEach(function(c,n){
-      if(!c.querySelector('.tc-tag')){
-        var tag=document.createElement('div');tag.className='tc-tag';
-        tag.setAttribute('data-fr',CATS[c.dataset.cat]||'');
-        tag.setAttribute('data-en',CATS_EN[c.dataset.cat]||'');
-        tag.textContent=CATS[c.dataset.cat]||'';
-        var info=c.querySelector('.tc-info');
-        if(info)info.insertBefore(tag,info.firstChild);
+      /* supprimer les éléments résiduels de l'ancien carrousel */
+      ['tc-grad','tc-tint','tc-bar'].forEach(function(cls){
+        var el=c.querySelector('.'+cls);if(el&&el.parentNode)el.parentNode.removeChild(el);
+      });
+      /* déplacer tc-tag de tc-ph vers tc-info si nécessaire */
+      var info=c.querySelector('.tc-info');
+      var tag=c.querySelector('.tc-tag');
+      if(tag&&info&&tag.parentNode!==info){
+        tag.parentNode.removeChild(tag);
+        info.insertBefore(tag,info.firstChild);
+      } else if(!tag&&info){
+        var newTag=document.createElement('div');newTag.className='tc-tag';
+        newTag.setAttribute('data-fr',CATS[c.dataset.cat]||'');
+        newTag.setAttribute('data-en',CATS_EN[c.dataset.cat]||'');
+        newTag.textContent=CATS[c.dataset.cat]||'';
+        info.insertBefore(newTag,info.firstChild);
       }
       /* numéro déco en fond */
-      var info=c.querySelector('.tc-info');
       if(info&&!info.dataset.n)info.dataset.n=String(n+1).padStart(2,'0');
       /* wrapper actions si pas encore fait */
       if(!c.querySelector('.tc-acts')){
