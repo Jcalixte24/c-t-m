@@ -1836,12 +1836,20 @@ function goToCat(cat){filterRoster(cat);var r=document.getElementById('roster');
   grid.addEventListener('click',function(e){if(moved)e.stopPropagation();},true);
 
   /* ── auto-avance ── */
+  /* ne pas défiler quand une fiche/overlay est ouverte (sinon la carte change
+     derrière la modale et l'utilisateur retombe sur une autre à la fermeture) */
+  function overlayOpen(){
+    return ['modal','legal','soon'].some(function(id){
+      var el=document.getElementById(id);
+      return el&&el.classList.contains('open');
+    });
+  }
   if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
     car.addEventListener('pointerenter',function(){paused=true;});
     car.addEventListener('pointerleave',function(){paused=false;});
     car.addEventListener('touchstart',function(){paused=true;},{passive:true});
     setInterval(function(){
-      if(paused||down||animating)return;
+      if(paused||down||animating||overlayOpen())return;
       var cs=vis();if(cs.length<2)return;
       goTo(idx>=cs.length-1?0:idx+1,'next');
     },4500);
