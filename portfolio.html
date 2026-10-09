@@ -174,12 +174,15 @@ section[id]{scroll-margin-top:56px}
 .glow{position:absolute;right:-10%;top:-22%;width:min(60vw,760px);height:min(60vw,760px);border-radius:50%;filter:blur(110px);opacity:.32;background:radial-gradient(circle,rgba(var(--acc-rgb),.6),transparent 65%);animation:drift 20s ease-in-out infinite alternate}
 @keyframes drift{to{transform:translate(-6%,10%) scale(1.1)}}
 #net{position:absolute;inset:0;width:100%;height:100%;opacity:.85}
-.hero-in{position:relative;z-index:5;padding-top:clamp(112px,15vh,148px)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,80px);align-items:center;padding-bottom:clamp(40px,6vw,72px)}
+.hero-in{position:relative;z-index:5;padding-top:clamp(104px,14vh,136px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;gap:26px;padding-bottom:clamp(40px,6vw,72px)}
+.hero-grid>.rise{width:min(800px,100%)}
+.hero-c{display:flex;flex-direction:column;align-items:center;width:100%}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .hero-grid>*{min-width:0}
 .rise{opacity:0;transform:translateY(16px)}
 .ready .rise{opacity:1;transform:none;transition:opacity .8s var(--ease) calc(.4s + var(--i)*.1s),transform .8s var(--ease) calc(.4s + var(--i)*.1s)}
-.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:28px;font:400 .8rem/1.4 var(--mono);color:var(--muted)}
+.eyebrow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-bottom:0;font:400 .86rem/1.4 var(--mono);color:var(--muted)}
 .eyebrow .who{color:var(--txt)}.eyebrow .sep{color:var(--dim)}.eyebrow #role{color:var(--acc)}
 .h1{font-size:clamp(1.9rem,3.7vw,3.5rem);line-height:1.12;margin-bottom:24px}
 .h1 .ln>span{transform:translateY(115%)}
@@ -193,7 +196,7 @@ section[id]{scroll-margin-top:56px}
 .metrics dt{font:400 .74rem/1.3 var(--mono);color:var(--muted);margin-top:10px}
 
 /* Éditeur (hero) */
-.ide{border:1px solid var(--line2);border-radius:8px;background:rgba(var(--panel-rgb),.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 40px 80px -40px #000;overflow:hidden;font:400 .8rem/1.75 var(--mono)}
+.ide{\1font:400 .9rem/1.75 var(--mono)}
 .ide-bar{display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);background:rgba(var(--card-rgb),.9)}
 .ide-bar i{width:9px;height:9px;border-radius:50%;flex:none}
 .ide-bar i:nth-child(1){background:#ff5f57}.ide-bar i:nth-child(2){background:#febc2e}.ide-bar i:nth-child(3){background:#28c840}
@@ -437,17 +440,9 @@ a.card:hover .url::after{transform:translateX(5px)}
     </div>
     <div class="wrap hero-in">
       <div class="hero-grid">
-        <div>
+        <div class="hero-c">
           <p class="eyebrow rise" style="--i:0" aria-label="Japhet Calixte, développeur web, data analyste et créateur d'applications"><span class="who">Japhet Calixte</span><span class="sep">/</span><span id="role">développeur web</span><span class="caret" aria-hidden="true"></span></p>
-          <h1 class="h1">
-            <span class="ln" style="--i:0"><span>Chaque projet mérite</span></span>
-            <span class="ln" style="--i:1"><span>une exécution <em>parfaite.</em></span></span>
-          </h1>
-          <p class="lead rise" style="--i:3">Sites web, applications mobiles, dashboards data et produits digitaux — conçus à Abidjan pour des organisations ambitieuses.</p>
-          <div class="ctas rise" style="--i:4">
-            <a class="btn solid" href="#projets">Voir les projets <svg class="ar" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            <a class="btn ghost" href="#contact">Me contacter <svg class="ar" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
+          <h1 class="sr">Portfolio de Japhet Calixte — développeur web, data analyst et créateur d'applications à Abidjan</h1>
         </div>
         <div class="rise" style="--i:3">
           <div class="ide" role="img" aria-label="Extrait de code décrivant Japhet Calixte : développeur web et data analyst basé à Abidjan, ouvert aux projets">
