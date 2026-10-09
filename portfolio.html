@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#060A12">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23060A12'/%3E%3Cpath d='M12 10l-6 6 6 6M20 10l6 6-6 6' fill='none' stroke='%233DF5B0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#05080F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2305080F'/%3E%3Cpath d='M12 10l-6 6 6 6M20 10l6 6-6 6' fill='none' stroke='%234D7CFF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
 <title>Portfolio — Japhet Calixte &amp; CTM | Dev, data et apps à Abidjan</title>
 <meta name="description" content="Portfolio de Japhet Calixte, développeur web et data analyst, et de Creative Talent Management : sites, apps mobiles, dashboards data et produits digitaux à Abidjan.">
@@ -27,7 +27,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800&family=Open+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"Portfolio — Japhet Calixte & Creative Talent Management","url":"https://creative-talent-management.netlify.app/portfolio.html","inLanguage":"fr","about":{"@type":"Person","name":"Japhet Calixte","jobTitle":"Développeur web & Data analyst","address":{"@type":"PostalAddress","addressLocality":"Abidjan","addressCountry":"CI"},"sameAs":["https://github.com/Jcalixte24"]},"publisher":{"@type":"Organization","name":"Creative Talent Management","url":"https://creative-talent-management.netlify.app/"}}
@@ -44,256 +44,229 @@
   --light:#E9EEFB;--deep:#1B3FA6;--deep-rgb:27,63,166;--encre:#070B16;--encre-rgb:7,11,22;
   --b1:#1B3FA6;--b2:#1B5E8A;--b3:#3B2F8A;--b4:#2D4A7A;
   --line:rgba(var(--line-rgb),.16);--line2:rgba(var(--line-rgb),.3);
-  --disp:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --body:'Open Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --r:16px;--ease:cubic-bezier(.16,1,.3,1);
+  --disp:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --r:6px;--ease:cubic-bezier(.16,1,.3,1);
   color-scheme:dark;
 }
 html[data-theme="braise"]{--ink:#0D0908;--ink-rgb:13,9,8;--ink2:#120C0A;--panel:#150E0C;--panel-rgb:21,14,12;--card:#1E1412;--card-rgb:30,20,18;--card-end:#150E0C;--foot:#090605;--line-rgb:255,170,140;--txt:#F7EEE9;--txt-rgb:247,238,233;--muted:#BBA79E;--dim:#7A645B;--acc:#FF6A3D;--acc-rgb:255,106,61;--acc-hi:#FF9470;--acc2:#FFB86B;--acc2-rgb:255,184,107;--light:#F6ECE4;--deep:#8A2A10;--deep-rgb:138,42,16;--encre:#140A07;--encre-rgb:20,10,7;--b1:#8A2A10;--b2:#7A4A12;--b3:#6B1F3A;--b4:#5C3A12}
 html[data-theme="violet"]{--ink:#0A0814;--ink-rgb:10,8,20;--ink2:#0E0B1C;--panel:#110E22;--panel-rgb:17,14,34;--card:#181433;--card-rgb:24,20,51;--card-end:#110E22;--foot:#07050F;--line-rgb:170,150,255;--txt:#F0ECFF;--txt-rgb:240,236,255;--muted:#A89FCF;--dim:#6C6396;--acc:#9D7CFF;--acc-rgb:157,124,255;--acc-hi:#BDA6FF;--acc2:#FF7CC8;--acc2-rgb:255,124,200;--light:#EFEBFB;--deep:#4527B8;--deep-rgb:69,39,184;--encre:#0C0820;--encre-rgb:12,8,32;--b1:#3B2F8A;--b2:#6B1F5A;--b3:#1B3FA6;--b4:#4527B8}
 html[data-theme="graphite"]{--ink:#0A0A0B;--ink-rgb:10,10,11;--ink2:#0E0E10;--panel:#111113;--panel-rgb:17,17,19;--card:#17171A;--card-rgb:23,23,26;--card-end:#111113;--foot:#070708;--line-rgb:200,200,215;--txt:#F2F2F4;--txt-rgb:242,242,244;--muted:#A0A0AB;--dim:#6B6B76;--acc:#F2F2F4;--acc-rgb:242,242,244;--acc-hi:#FFFFFF;--acc2:#FF5B5B;--acc2-rgb:255,91,91;--light:#EDEDEF;--deep:#1A1A1F;--deep-rgb:26,26,31;--encre:#0A0A0B;--encre-rgb:10,10,11;--b1:#2A2A33;--b2:#3A2A2A;--b3:#2A3A3A;--b4:#33332A}
 html[data-theme="emeraude"]{--ink:#060A12;--ink-rgb:6,10,18;--ink2:#070C16;--panel:#0A111E;--panel-rgb:10,17,30;--card:#0F192B;--card-rgb:15,25,43;--card-end:#0B1424;--foot:#04070D;--line-rgb:120,160,220;--txt:#E7EEFB;--txt-rgb:231,238,251;--muted:#92A5C6;--dim:#5E7396;--acc:#3DF5B0;--acc-rgb:61,245,176;--acc-hi:#7dffd0;--acc2:#5B8CFF;--acc2-rgb:91,140,255;--light:#EAF0FA;--deep:#14307A;--deep-rgb:20,48,122;--encre:#0B1220;--encre-rgb:11,18,32;--b1:#17406B;--b2:#0F4A4A;--b3:#2A1F66;--b4:#4A3A12}
-.theme{display:grid;place-items:center;width:44px;height:44px}
-.theme i{width:22px;height:22px;border-radius:50%;background:conic-gradient(from 200deg,var(--acc),var(--acc2),var(--acc));box-shadow:0 0 0 2px var(--ink),0 0 0 3px var(--line2);transition:transform .5s var(--ease)}
-.theme:hover i{transform:rotate(180deg) scale(1.12)}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--ink);color:var(--txt);font:400 1rem/1.65 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{background:var(--ink);color:var(--txt);font:400 1rem/1.65 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 body.lock{overflow:hidden}
 a{color:inherit;text-decoration:none}
 img,svg{display:block;max-width:100%}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-kbd{font:500 .66rem/1 var(--mono)}
-:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+kbd{font:500 .7rem/1 var(--mono)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:2px}
 section[id]{scroll-margin-top:56px}
-.skip{position:absolute;left:-999px;top:8px;z-index:20000;background:var(--acc);color:var(--ink);padding:10px 16px;border-radius:8px;font-weight:700}
+.skip{position:absolute;left:-999px;top:8px;z-index:20000;background:var(--acc);color:var(--ink);padding:10px 16px;border-radius:2px;font-weight:600}
 .skip:focus{left:8px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-body::after{content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .offscreen *,.offscreen *::before,.offscreen *::after{animation-play-state:paused!important}
 .pr{color:var(--acc)}.ok{color:var(--acc)}.k{color:var(--acc2)}.s{color:var(--acc)}.n{color:var(--amb)}.p{color:var(--txt)}.c{color:var(--dim)}.v{color:#FFD58A}
 
-/* ───────── Splash : séquence de boot ───────── */
-#splash{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;transition:visibility 0s 1.6s}
-#splash .half{position:absolute;left:0;right:0;height:50.3%;background:var(--ink);transition:transform 1.1s cubic-bezier(.76,0,.24,1) .45s}
+/* Splash : séquence de démarrage */
+#splash{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;transition:visibility 0s 1.4s}
+#splash .half{position:absolute;left:0;right:0;height:50.3%;background:var(--ink);transition:transform 1s cubic-bezier(.76,0,.24,1) .35s}
 #splash .t{top:0}#splash .b{bottom:0}
 #splash.out{visibility:hidden;pointer-events:none}
 #splash.out .t{transform:translateY(-101%)}
 #splash.out .b{transform:translateY(101%)}
-.sp-c{position:relative;z-index:2;width:min(88vw,470px);transition:opacity .45s,transform .45s}
-#splash.out .sp-c{opacity:0;transform:scale(.95)}
-.sp-term{font:500 .8rem/1.95 var(--mono);color:var(--muted)}
-.sp-term .l{display:block;white-space:nowrap;clip-path:inset(0 100% 0 0);animation:ty .6s steps(38) forwards;animation-delay:var(--d)}
-.sp-term b{color:var(--amb);font-weight:700}
-.sp-bar{height:3px;margin-top:14px;border-radius:3px;background:var(--line);overflow:hidden}
-.sp-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));animation:fillb 1.7s .15s cubic-bezier(.3,.7,.2,1) forwards}
-.sp-name{margin-top:28px;font:800 clamp(1.9rem,7vw,2.8rem)/1 var(--disp);letter-spacing:.14em;opacity:0;animation:spup .8s 1.25s var(--ease) forwards}
+.sp-c{position:relative;z-index:2;width:min(88vw,460px);transition:opacity .4s,transform .4s}
+#splash.out .sp-c{opacity:0;transform:scale(.97)}
+.sp-term{font:400 .8rem/1.95 var(--mono);color:var(--muted)}
+.sp-term .l{display:block;white-space:nowrap;clip-path:inset(0 100% 0 0);animation:ty .5s steps(38) forwards;animation-delay:var(--d)}
+.sp-term b{color:var(--amb);font-weight:500}
+.sp-bar{height:2px;margin-top:14px;background:var(--line);overflow:hidden}
+.sp-bar i{display:block;height:100%;width:0;background:var(--acc);animation:fillb 1.4s .1s cubic-bezier(.3,.7,.2,1) forwards}
+.sp-name{margin-top:26px;font:600 1.25rem/1 var(--disp);letter-spacing:.22em;opacity:0;animation:spup .7s 1s var(--ease) forwards}
 .sp-name span{color:var(--acc)}
 @keyframes ty{to{clip-path:inset(0 0 0 0)}}
 @keyframes fillb{to{width:100%}}
-@keyframes spup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes spup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes caretb{50%{opacity:0}}
 .caret{display:inline-block;width:.55em;height:1.05em;margin-left:3px;vertical-align:-.18em;background:var(--acc);animation:caretb 1s steps(2) infinite}
 
-/* ───────── Progression + curseur ───────── */
-.progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:700;background:linear-gradient(90deg,var(--acc2),var(--acc));transform:scaleX(0);transform-origin:0 50%}
-.ring,.dot{position:fixed;left:0;top:0;pointer-events:none;z-index:9500;display:none}
-html.has-cursor .ring,html.has-cursor .dot{display:block}
-.dot{width:6px;height:6px;margin:-3px;border-radius:50%;background:var(--acc)}
-.ring{width:38px;height:38px;margin:-19px}
-.ring i{position:absolute;inset:0;border:1px solid rgba(var(--acc-rgb),.6);border-radius:50%;transition:transform .35s var(--ease),background .3s,border-color .3s}
-.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 .5rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--acc);opacity:0;transition:opacity .25s}
-.ring.big i{transform:scale(1.7);background:rgba(var(--acc-rgb),.08);border-color:var(--acc)}
-.ring.lab i{transform:scale(2.2);background:rgba(var(--ink-rgb),.65);border-color:var(--acc)}
-.ring.lab b{opacity:1}
+/* Progression */
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;z-index:700;background:var(--acc);transform:scaleX(0);transform-origin:0 50%}
 
-/* ───────── Navigation ───────── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:600;border-bottom:1px solid transparent;transition:background .35s,border-color .35s}
-.nav.solid{background:rgba(var(--ink-rgb),.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
-.nav-in{max-width:1280px;margin:0 auto;padding:0 clamp(16px,4vw,48px);height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:12px;font:800 1.05rem/1 var(--disp);letter-spacing:.3em;color:var(--txt);min-height:44px}
-.brand .mk{display:grid;place-items:center;width:30px;height:26px;border:1px solid var(--acc);border-radius:7px;font:700 .72rem/1 var(--mono);letter-spacing:0;color:var(--acc);flex:none}
-.brand small{font:500 .62rem/1 var(--mono);letter-spacing:.1em;color:var(--muted);padding-left:12px;border-left:1px solid var(--line)}
-.nav-r{display:flex;align-items:center;gap:clamp(12px,2vw,26px)}
-.links{display:flex;align-items:center;gap:clamp(14px,2vw,28px)}
-.links a:not(.pillbtn){font:600 .68rem/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:12px 0;position:relative;transition:color .25s}
-.links a:not(.pillbtn)::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:0 50%;transition:transform .4s var(--ease)}
-.links a:not(.pillbtn):hover,.links a.active{color:var(--txt)}
-.links a:not(.pillbtn):hover::after,.links a.active::after{transform:scaleX(1)}
-.pillbtn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid rgba(var(--acc-rgb),.55);border-radius:99px;color:var(--acc);font:700 .66rem/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;transition:background .3s,color .3s}
-.pillbtn:hover{background:var(--acc);color:var(--ink)}
-.cmd{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 12px 0 14px;border:1px solid var(--line2);border-radius:10px;font:500 .72rem/1 var(--mono);color:var(--muted);transition:color .25s,border-color .25s}
+/* Navigation */
+.nav{position:fixed;top:0;left:0;right:0;z-index:600;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+.nav.solid{background:rgba(var(--ink-rgb),.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,40px);height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font:600 .95rem/1 var(--disp);letter-spacing:.16em;min-height:44px}
+.brand .mk{display:grid;place-items:center;height:26px;padding:0 8px;border:1px solid var(--acc);border-radius:2px;font:500 .7rem/1 var(--mono);letter-spacing:0;color:var(--acc);flex:none}
+.brand small{font:400 .66rem/1 var(--mono);letter-spacing:.06em;color:var(--muted);padding-left:12px;border-left:1px solid var(--line)}
+.nav-r{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px)}
+.links{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px)}
+.links a{font:500 .84rem/1 var(--body);color:var(--muted);padding:12px 0;position:relative;transition:color .25s}
+.links a:not(.cta)::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:var(--acc);transform:scaleX(0);transform-origin:0 50%;transition:transform .4s var(--ease)}
+.links a:hover,.links a.active{color:var(--txt)}
+.links a:not(.cta):hover::after,.links a.active::after{transform:scaleX(1)}
+.links .cta{border:1px solid var(--line2);padding:11px 16px;border-radius:2px;color:var(--txt);transition:border-color .25s,background .25s,color .25s}
+.links .cta:hover{border-color:var(--acc);background:var(--acc);color:var(--ink)}
+.theme{display:grid;place-items:center;width:44px;height:44px}
+.theme i{width:18px;height:18px;border-radius:50%;background:conic-gradient(from 200deg,var(--acc),var(--acc2),var(--acc));box-shadow:0 0 0 2px var(--ink),0 0 0 3px var(--line2);transition:transform .5s var(--ease)}
+.theme:hover i{transform:rotate(180deg)}
+.cmd{display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:0 10px 0 12px;border:1px solid var(--line2);border-radius:2px;font:400 .76rem/1 var(--mono);color:var(--muted);transition:color .25s,border-color .25s}
 .cmd:hover{color:var(--txt);border-color:var(--acc)}
-.cmd kbd{padding:5px 7px;border:1px solid var(--line2);border-radius:6px;color:var(--acc)}
+.cmd kbd{padding:4px 6px;border:1px solid var(--line2);border-radius:2px;color:var(--acc)}
 .burger{display:none;width:44px;height:44px;flex-direction:column;align-items:center;justify-content:center;gap:5px}
-.burger span{display:block;width:24px;height:2px;background:var(--txt)}
+.burger span{display:block;width:22px;height:2px;background:var(--txt)}
 .mob{position:fixed;inset:0;z-index:800;background:var(--ink);transform:translateX(100%);transition:transform .45s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:88px 28px 40px;visibility:hidden}
 .mob.open{transform:none;visibility:visible}
-.mob a{display:block;font:800 clamp(1.5rem,6.5vw,2rem)/1.1 var(--disp);letter-spacing:-.01em;padding:1rem 0;border-bottom:1px solid var(--line)}
-.mob a small{font:500 .7rem/1 var(--mono);color:var(--acc);margin-left:10px;letter-spacing:.04em}
+.mob a{display:flex;align-items:baseline;justify-content:space-between;font:500 clamp(1.3rem,5.5vw,1.7rem)/1.2 var(--disp);letter-spacing:-.01em;padding:1.05rem 0;border-bottom:1px solid var(--line)}
+.mob a small{font:400 .72rem/1 var(--mono);color:var(--acc);letter-spacing:.04em}
 .mob a:hover{color:var(--acc)}
-.mob-x{position:absolute;top:12px;right:14px;width:48px;height:48px;border-radius:50%;background:var(--acc);color:var(--ink);font-size:1.5rem;line-height:1;transition:transform .25s}
-.mob-x:hover{transform:rotate(90deg)}
+.mob-x{position:absolute;top:12px;right:14px;width:48px;height:48px;border:1px solid var(--line2);border-radius:2px;color:var(--txt);font-size:1.5rem;line-height:1}
 
-/* ───────── Rail : graphe de commits ───────── */
-.rail{position:fixed;right:clamp(14px,2vw,30px);top:50%;transform:translateY(-50%);height:min(48vh,380px);width:22px;z-index:400;display:none}
+/* Rail : graphe de commits */
+.rail{position:fixed;right:clamp(14px,2vw,28px);top:50%;transform:translateY(-50%);height:min(44vh,340px);width:22px;z-index:400;display:none}
 .rail::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line2)}
-.rail a{position:absolute;left:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:var(--ink);border:2px solid var(--line2);transition:background .3s,border-color .3s,transform .3s}
-.rail a.on{background:var(--acc);border-color:var(--acc);transform:scale(1.2)}
-.rail a span{position:absolute;right:22px;top:50%;transform:translate(8px,-50%);opacity:0;white-space:nowrap;font:500 .62rem/1 var(--mono);color:var(--acc);background:rgba(var(--ink-rgb),.92);border:1px solid var(--line2);padding:6px 9px;border-radius:6px;transition:opacity .25s,transform .35s var(--ease);pointer-events:none}
+.rail a{position:absolute;left:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--ink);border:1.5px solid var(--line2);transition:background .3s,border-color .3s}
+.rail a.on{background:var(--acc);border-color:var(--acc)}
+.rail a span{position:absolute;right:20px;top:50%;transform:translate(8px,-50%);opacity:0;white-space:nowrap;font:400 .64rem/1 var(--mono);color:var(--acc);background:rgba(var(--ink-rgb),.94);border:1px solid var(--line2);padding:6px 9px;border-radius:2px;transition:opacity .25s,transform .35s var(--ease);pointer-events:none}
 .rail a:hover span{opacity:1;transform:translate(0,-50%)}
-.head{position:absolute;left:50%;top:0;width:15px;height:15px;margin:-7.5px 0 0 -7.5px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 5px rgba(var(--acc-rgb),.16),0 0 22px var(--acc);pointer-events:none}
-.head u{position:absolute;right:24px;top:50%;transform:translateY(-50%);font:700 .56rem/1 var(--mono);letter-spacing:.1em;color:var(--ink);background:var(--acc);padding:4px 6px;border-radius:4px;text-decoration:none}
-@media(min-width:1100px){.rail{display:block}}
+.head{position:absolute;left:50%;top:0;width:13px;height:13px;margin:-6.5px 0 0 -6.5px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(var(--acc-rgb),.18);pointer-events:none}
+.head u{position:absolute;right:22px;top:50%;transform:translateY(-50%);font:600 .56rem/1 var(--mono);letter-spacing:.1em;color:var(--ink);background:var(--acc);padding:4px 6px;border-radius:2px;text-decoration:none}
+@media(min-width:1180px){.rail{display:block}}
 
-/* ───────── Titres & reveals ───────── */
-.wrap{max-width:1280px;margin:0 auto;position:relative}
-.sec{position:relative;padding:clamp(72px,11vw,150px) clamp(16px,4vw,48px)}
-.cue{display:inline-flex;align-items:center;gap:12px;font:500 .74rem/1 var(--mono);letter-spacing:.04em;color:var(--acc)}
-.cue::before{content:"//";color:var(--muted)}
-.cue b{display:inline-grid;place-items:center;min-width:34px;height:24px;padding:0 8px;border:1px solid var(--acc);border-radius:6px;font-weight:700}
-.cue::after{content:"";width:46px;height:1px;background:linear-gradient(90deg,var(--acc),transparent)}
-.ttl,.h1{font-family:var(--disp);font-weight:800;letter-spacing:-.02em}
-.ttl{font-size:clamp(2rem,5vw,4rem);line-height:1.05;margin:18px 0 14px}
+/* Structure commune */
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,40px);position:relative}
+.sec{position:relative;padding:clamp(64px,9vw,120px) 0}
+.sec.alt{background:var(--panel)}
+.sh{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:clamp(16px,4vw,64px);padding-top:26px;border-top:1px solid var(--line2);margin-bottom:clamp(32px,4.5vw,60px)}
+.cue{font:400 .76rem/1.5 var(--mono);color:var(--muted);letter-spacing:.02em}
+.cue b{color:var(--acc);font-weight:500;margin-right:6px}
+.cue b::after{content:" /";color:var(--dim)}
+.ttl,.h1{font-family:var(--disp);font-weight:600;letter-spacing:-.028em}
+.ttl{font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.1;margin:0 0 16px}
+.ttl em,.h1 em{font-style:normal;color:var(--acc)}
 .ln{display:block;overflow:hidden;padding-bottom:.14em;margin-bottom:-.14em}
-.ln>span{display:inline-block;transform:translateY(115%);transition:transform 1.05s var(--ease)}
+.ln>span{display:inline-block;transform:translateY(115%);transition:transform 1s var(--ease)}
 .ttl.on .ln>span{transform:none}
-.ttl .ln:nth-child(2)>span{transition-delay:.1s}.ttl .ln:nth-child(3)>span{transition-delay:.2s}
-em{font-style:italic;font-weight:700}
-.h1 em,.ttl em,.bill h3 em{background:linear-gradient(90deg,var(--acc),var(--acc2),var(--acc));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--acc);animation:shine 6s linear infinite;padding-right:.06em}
-@keyframes shine{to{background-position:-220% 0}}
-.sub{max-width:58ch;color:var(--muted);font-size:1rem}
-.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.ttl .ln:nth-child(2)>span{transition-delay:.08s}.ttl .ln:nth-child(3)>span{transition-delay:.16s}
+.sub{max-width:60ch;color:var(--muted);font-size:1.02rem}
+.sub kbd{color:var(--acc)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .rv.on{opacity:1;transform:none}
-.sh{position:relative}
-.sh>*{position:relative;z-index:1}
-.sh .deco{position:absolute;right:0;top:0;width:min(34%,380px);aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);display:none;z-index:0}
-@media(min-width:1000px){.sh .deco{display:block}.sh .ttl,.sh .sub{max-width:62%}}
-
-/* ───────── Hero : univers data & dev ───────── */
-.hero{position:relative;min-height:max(680px,100vh);min-height:max(680px,100svh);display:flex;align-items:center;overflow:hidden;background:var(--ink)}
-.scene{position:absolute;inset:0;z-index:0;overflow:hidden}
-.px{pointer-events:none;will-change:transform}
-.grid-bg{position:absolute;inset:-8% -4%;background-image:linear-gradient(rgba(var(--line-rgb),.075) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--line-rgb),.075) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(75% 75% at 62% 42%,#000 25%,transparent 100%);mask-image:radial-gradient(75% 75% at 62% 42%,#000 25%,transparent 100%)}
-.glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
-.glow.g1{width:min(60vw,720px);height:min(60vw,720px);right:-12%;top:-18%;background:radial-gradient(circle,rgba(var(--acc-rgb),.5),transparent 65%);animation:drift 18s ease-in-out infinite alternate}
-.glow.g2{width:min(55vw,640px);height:min(55vw,640px);left:-14%;bottom:-24%;background:radial-gradient(circle,rgba(var(--acc2-rgb),.5),transparent 65%);animation:drift 22s ease-in-out infinite alternate-reverse}
-@keyframes drift{to{transform:translate(6%,8%) scale(1.12)}}
-.scan{position:absolute;left:0;right:0;top:-140px;height:140px;background:linear-gradient(transparent,rgba(var(--acc-rgb),.07),transparent);animation:scan 9s linear infinite}
-@keyframes scan{to{transform:translateY(calc(100vh + 280px))}}
-#net{position:absolute;inset:0;width:100%;height:100%}
-.glyphs{position:absolute;inset:0;overflow:hidden}
-.gl{position:absolute;font-family:var(--mono);white-space:nowrap;opacity:0;animation:gl var(--t) linear infinite;animation-delay:var(--dl)}
-@keyframes gl{0%{transform:translateY(26px);opacity:0}15%{opacity:.55}85%{opacity:.55}100%{transform:translateY(-34vh);opacity:0}}
-.rip{position:absolute;z-index:4;width:20px;height:20px;margin:-10px 0 0 -10px;border:1.5px solid var(--acc);border-radius:50%;pointer-events:none;animation:rip 1.4s ease-out forwards}
-@keyframes rip{from{transform:scale(1);opacity:.9}to{transform:scale(11);opacity:0}}
-.hero-in{position:relative;z-index:5;width:100%;max-width:1280px;margin:0 auto;padding:clamp(110px,16vh,150px) clamp(16px,4vw,48px) clamp(60px,9vh,100px)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,64px);align-items:center}
-.hero-grid>*{min-width:0}
-.rise{opacity:0;transform:translateY(24px)}
-.ready .rise{opacity:1;transform:none;transition:opacity .9s var(--ease) calc(.5s + var(--i)*.12s),transform .9s var(--ease) calc(.5s + var(--i)*.12s)}
-.h1{font-size:clamp(2.4rem,5.3vw,5.4rem);line-height:1.02;margin:22px 0 22px;letter-spacing:-.025em}
-.h1 .ln>span{transform:translateY(115%)}
-.ready .h1 .ln>span{transform:none;transition:transform 1.2s var(--ease) calc(.25s + var(--i)*.14s)}
-.roles{font:600 clamp(1rem,1.7vw,1.3rem)/1.5 var(--disp);color:var(--txt);min-height:1.5em;margin-bottom:30px}
-.roles .who{color:var(--muted);font-weight:500}
-.roles #role{color:var(--acc);font-family:var(--mono);font-weight:500}
-.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:44px}
-.btn{display:inline-flex;align-items:center;gap:12px;min-height:50px;padding:0 28px;border-radius:99px;font:700 .72rem/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;transition:transform .35s var(--ease),background .3s,color .3s,border-color .3s,box-shadow .3s}
-.btn.solid{background:var(--acc);color:var(--ink);box-shadow:0 10px 34px -10px rgba(var(--acc-rgb),.7)}
-.btn.solid:hover{background:var(--acc-hi)}
-.btn.ghost{border:1px solid var(--line2);color:var(--txt)}
+.btn{display:inline-flex;align-items:center;gap:14px;min-height:48px;padding:0 24px;border:1px solid var(--acc);border-radius:2px;font:500 .78rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s}
+.btn.solid{background:var(--acc);color:var(--ink)}
+.btn.solid:hover{background:var(--acc-hi);border-color:var(--acc-hi)}
+.btn.ghost{border-color:var(--line2);color:var(--txt)}
 .btn.ghost:hover{border-color:var(--acc);color:var(--acc)}
 .btn .ar{transition:transform .35s var(--ease)}
-.btn:hover .ar{transform:translateX(5px)}
-.hstats{display:flex;flex-wrap:wrap;gap:clamp(22px,4vw,56px)}
-.hstats div{display:flex;flex-direction:column-reverse}
-.hstats dd,.num{font:800 clamp(1.8rem,3.4vw,2.8rem)/1 var(--disp);color:var(--txt);font-variant-numeric:tabular-nums}
-.hstats dt{font:500 .64rem/1.2 var(--mono);letter-spacing:.06em;color:var(--muted);margin-top:8px}
-.scroll-cue{position:absolute;z-index:6;right:clamp(16px,4vw,48px);bottom:34px;display:flex;flex-direction:column;align-items:center;gap:12px;font:500 .6rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
-.scroll-cue span{writing-mode:vertical-rl}
-.scroll-cue i{width:1px;height:64px;background:linear-gradient(var(--acc),transparent);animation:cue 2.2s ease-in-out infinite;transform-origin:top}
-@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.btn:hover .ar{transform:translateX(4px)}
 
-/* Fenêtre d'éditeur (hero) */
-.ide{border:1px solid var(--line2);border-radius:14px;background:rgba(var(--panel-rgb),.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 40px 90px -40px #000,0 0 70px -24px rgba(var(--acc-rgb),.35);overflow:hidden;font:500 .8rem/1.7 var(--mono)}
-.ide-bar,.win-bar{display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);background:rgba(var(--card-rgb),.92)}
-.ide-bar i,.win-bar i{width:10px;height:10px;border-radius:50%;flex:none}
-.ide-bar i:nth-child(1),.win-bar i:nth-child(1){background:#ff5f57}.ide-bar i:nth-child(2),.win-bar i:nth-child(2){background:#febc2e}.ide-bar i:nth-child(3),.win-bar i:nth-child(3){background:#28c840}
+/* Hero */
+.hero{position:relative;overflow:hidden;background:var(--ink)}
+.scene{position:absolute;inset:0;z-index:0;overflow:hidden}
+.px{pointer-events:none;will-change:transform}
+.grid-bg{position:absolute;inset:-8% -4%;background-image:linear-gradient(rgba(var(--line-rgb),.06) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--line-rgb),.06) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(70% 80% at 70% 35%,#000 20%,transparent 100%);mask-image:radial-gradient(70% 80% at 70% 35%,#000 20%,transparent 100%)}
+.glow{position:absolute;right:-10%;top:-22%;width:min(60vw,760px);height:min(60vw,760px);border-radius:50%;filter:blur(110px);opacity:.32;background:radial-gradient(circle,rgba(var(--acc-rgb),.6),transparent 65%);animation:drift 20s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-6%,10%) scale(1.1)}}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.85}
+.hero-in{position:relative;z-index:5;padding-top:clamp(112px,15vh,148px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,80px);align-items:center;padding-bottom:clamp(40px,6vw,72px)}
+.hero-grid>*{min-width:0}
+.rise{opacity:0;transform:translateY(16px)}
+.ready .rise{opacity:1;transform:none;transition:opacity .8s var(--ease) calc(.4s + var(--i)*.1s),transform .8s var(--ease) calc(.4s + var(--i)*.1s)}
+.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:28px;font:400 .8rem/1.4 var(--mono);color:var(--muted)}
+.eyebrow .who{color:var(--txt)}.eyebrow .sep{color:var(--dim)}.eyebrow #role{color:var(--acc)}
+.h1{font-size:clamp(2.3rem,4.5vw,4.3rem);line-height:1.06;margin-bottom:26px}
+.h1 .ln>span{transform:translateY(115%)}
+.ready .h1 .ln>span{transform:none;transition:transform 1.1s var(--ease) calc(.2s + var(--i)*.12s)}
+.lead{max-width:48ch;color:var(--muted);font-size:1.1rem;margin-bottom:34px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line2)}
+.metrics>div{display:flex;flex-direction:column-reverse;padding:22px 0 28px clamp(14px,2vw,28px);border-right:1px solid var(--line)}
+.metrics>div:first-child{padding-left:0}.metrics>div:last-child{border-right:0}
+.metrics dd,.num{font:300 clamp(2rem,3.6vw,3rem)/1 var(--disp);letter-spacing:-.02em;color:var(--txt)}
+.metrics dt{font:400 .74rem/1.3 var(--mono);color:var(--muted);margin-top:10px}
+
+/* Éditeur (hero) */
+.ide{border:1px solid var(--line2);border-radius:8px;background:rgba(var(--panel-rgb),.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 40px 80px -40px #000;overflow:hidden;font:400 .8rem/1.75 var(--mono)}
+.ide-bar{display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);background:rgba(var(--card-rgb),.9)}
+.ide-bar i{width:9px;height:9px;border-radius:50%;flex:none}
+.ide-bar i:nth-child(1){background:#ff5f57}.ide-bar i:nth-child(2){background:#febc2e}.ide-bar i:nth-child(3){background:#28c840}
 .ide-bar span{margin-left:10px;color:var(--muted);font-size:.72rem}
-.ide-bar em,.win-bar em{margin-left:auto;font-style:normal;font-weight:500;color:var(--acc);font-size:.66rem;white-space:nowrap}
-.code{padding:16px 16px 14px;counter-reset:l;white-space:pre-wrap;overflow-wrap:anywhere;min-height:calc(7*1.7em + 30px);margin:0;font:inherit}
+.ide-bar em{margin-left:auto;font-style:normal;color:var(--acc);font-size:.68rem;white-space:nowrap}
+.code{padding:16px 16px 14px;counter-reset:l;white-space:pre-wrap;overflow-wrap:anywhere;min-height:calc(7*1.75em + 30px);margin:0;font:inherit}
 .cl{display:block;position:relative;padding-left:3.2ch}
 .cl::before{counter-increment:l;content:counter(l);position:absolute;left:0;color:var(--dim);font-size:.72rem}
-.term{border-top:1px solid var(--line);padding:12px 16px 14px;background:rgba(var(--ink-rgb),.72);min-height:calc(4*1.7em + 26px);white-space:pre-wrap;margin:0;font:inherit;color:var(--muted)}
-.term .tl{display:block}
+.term{border-top:1px solid var(--line);padding:12px 16px 14px;background:rgba(var(--ink-rgb),.6);min-height:calc(4*1.75em + 26px);white-space:pre-wrap;margin:0;font:inherit;color:var(--muted)}
 
-/* ───────── Ticker (stack & projets) ───────── */
-.mq{background:var(--panel);border-block:1px solid var(--line);overflow:hidden;padding:20px 0;display:grid;gap:12px}
-.mq-row{display:flex;width:max-content;animation:mq 50s linear infinite}
-.mq-row.rev{animation-direction:reverse;animation-duration:62s}
+/* Bandeau stack */
+.mq{background:var(--panel);border-block:1px solid var(--line);overflow:hidden;padding:15px 0}
+.mq-row{display:flex;width:max-content;animation:mq 60s linear infinite}
 .mq:hover .mq-row{animation-play-state:paused}
-.mq-row span{display:inline-flex;align-items:center;gap:34px;padding-right:34px;white-space:nowrap}
-.mq-row.tech span{font:500 clamp(.95rem,1.8vw,1.25rem)/1 var(--mono);color:var(--muted)}
-.mq-row.tech span::after{content:"/";color:var(--acc)}
-.mq-row.proj span{font:800 clamp(1.4rem,3.2vw,2.5rem)/1 var(--disp);letter-spacing:-.01em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(var(--txt-rgb),.3)}
-.mq-row.proj span:nth-child(3n){color:var(--acc);-webkit-text-stroke:0}
-.mq-row.proj span::after{content:"";width:9px;height:9px;border-radius:2px;background:var(--acc2);flex:none;transform:rotate(45deg)}
+.mq-row span{display:inline-flex;align-items:center;gap:30px;padding-right:30px;white-space:nowrap;font:400 .82rem/1 var(--mono);color:var(--muted)}
+.mq-row span::after{content:"/";color:var(--acc)}
 @keyframes mq{to{transform:translateX(-50%)}}
 
-/* ───────── Filtres ───────── */
-.filters{margin-top:clamp(30px,4vw,48px);display:grid;gap:12px}
-.frow{display:flex;flex-wrap:wrap;gap:8px}
-.chip{display:inline-flex;align-items:center;gap:9px;min-height:44px;padding:0 16px;border:1px solid var(--line2);border-radius:99px;font:600 .66rem/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .25s,border-color .25s,background .25s}
-.chip b{font:500 .68rem/1 var(--mono);color:var(--acc);letter-spacing:0}
-.chip:hover{color:var(--txt);border-color:var(--acc)}
-.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:var(--ink)}
-.chip[aria-pressed=true] b{color:var(--ink)}
-.frow.sub .chip{min-height:40px;font-size:.6rem;border-style:dashed}
-.fcount{font:500 .72rem/1 var(--mono);color:var(--muted)}
-.fcount::before{content:"> ";color:var(--acc)}
+/* Site personnel */
+.feat{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);align-items:start}
+.feat>*{min-width:0}
+.feat-i h3{font:600 clamp(1.5rem,2.4vw,2rem)/1.15 var(--disp);letter-spacing:-.02em;margin-bottom:14px}
+.feat-i>p{color:var(--muted);max-width:46ch}
+.facts{margin:26px 0 30px;border-top:1px solid var(--line)}
+.facts div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.facts dt{font:400 .74rem/1.7 var(--mono);color:var(--muted)}
+.browser{border:1px solid var(--line2);border-radius:8px;overflow:hidden;background:var(--ink2);box-shadow:0 40px 70px -40px #000}
+.browser .bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;background:rgba(var(--card-rgb),.95);border-bottom:1px solid var(--line)}
+.browser .bar i{width:8px;height:8px;border-radius:50%;background:rgba(var(--txt-rgb),.2)}
+.browser .bar i:first-child{background:#ff5f57}.browser .bar i:nth-child(2){background:#febc2e}
+.browser .bar span{margin-left:10px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:400 .66rem/1 var(--mono);color:var(--muted);background:rgba(var(--txt-rgb),.06);padding:7px 12px;border-radius:2px}
 
-/* ───────── Cartes ───────── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:clamp(16px,2vw,26px);margin-top:clamp(24px,3vw,40px)}
+/* Projets : filtres + grille */
+.fbar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px;border-bottom:1px solid var(--line)}
+.tabs{display:flex;flex-wrap:wrap;gap:0 30px}
+.tab{position:relative;padding:14px 0;min-height:44px;font:500 .82rem/1 var(--mono);color:var(--muted);transition:color .25s}
+.tab sup{margin-left:6px;font:400 .66rem/1 var(--mono);color:var(--dim);vertical-align:top}
+.tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:0 50%;transition:transform .4s var(--ease)}
+.tab:hover{color:var(--txt)}
+.tab[aria-pressed=true]{color:var(--txt)}.tab[aria-pressed=true]::after{transform:scaleX(1)}
+.fcount{padding-bottom:14px;font:400 .74rem/1 var(--mono);color:var(--muted)}
+.subtabs{display:flex;flex-wrap:wrap;align-items:center;gap:4px 22px;padding:10px 0 14px}
+.subtabs>span{font:400 .72rem/1 var(--mono);color:var(--dim)}
+.stab{min-height:36px;font:400 .76rem/1 var(--mono);color:var(--muted);border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.stab:hover{color:var(--txt)}
+.stab[aria-pressed=true]{color:var(--acc);border-bottom-color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));border-left:1px solid var(--line)}
 .grid>*{min-width:0}
-.grp{grid-column:1/-1;display:flex;align-items:baseline;gap:14px;margin-top:clamp(14px,2.4vw,30px);padding-bottom:12px;border-bottom:1px solid var(--line);font:800 clamp(1.1rem,2vw,1.5rem)/1.2 var(--disp);letter-spacing:-.01em}
-.grp:first-child{margin-top:0}
-.grp small{font:500 .72rem/1 var(--mono);color:var(--acc);letter-spacing:.04em}
-.cw{perspective:1000px}
-.cw.rv.out{opacity:0;transform:scale(.94);transition-duration:.25s}
-.card{display:flex;flex-direction:column;height:100%;position:relative;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--card),var(--card-end));overflow:hidden;transform-style:preserve-3d;will-change:transform;transition:border-color .35s,box-shadow .45s,transform .6s var(--ease)}
-.card.tilt{transition:border-color .35s,box-shadow .45s,transform .12s linear}
-.card::before{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(var(--acc-rgb),.16),transparent 46%)}
-.card:hover::before{opacity:1}
-.card:hover,.card:focus-visible{border-color:rgba(var(--acc-rgb),.5);box-shadow:0 30px 70px -28px rgba(0,0,0,.85),0 0 0 1px rgba(var(--acc-rgb),.1)}
-.media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink);isolation:isolate}
-.media .art,.deco .art{position:absolute;inset:0;background:radial-gradient(120% 90% at 20% 8%,var(--b,var(--b1)),transparent 62%),linear-gradient(135deg,var(--a,var(--card)),var(--ink2))}
+.grp{grid-column:1/-1;display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:26px 24px 14px;background:rgba(var(--card-rgb),.4);border-right:1px solid var(--line);border-bottom:1px solid var(--line);font:600 1.15rem/1.2 var(--disp);letter-spacing:-.01em}
+.grp small{font:400 .74rem/1 var(--mono);color:var(--muted);letter-spacing:.02em}
+.cw{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cw.rv.out{opacity:0;transform:scale(.97);transition-duration:.22s}
+.card{display:flex;flex-direction:column;height:100%;position:relative;transition:background .3s}
+a.card:hover,a.card:focus-visible{background:rgba(var(--acc-rgb),.05)}
+.media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink);isolation:isolate;border-bottom:1px solid var(--line)}
+.media .art{position:absolute;inset:0;--a:var(--card);background:radial-gradient(120% 90% at 20% 8%,var(--b,var(--b1)),transparent 62%),linear-gradient(135deg,var(--a),var(--ink2))}
 .art svg{width:100%;height:100%}
 .media iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;pointer-events:none;opacity:0;transition:opacity .9s;background:#fff}
 .media.loaded iframe{opacity:1}
-.media::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(var(--ink-rgb),.72))}
-.pill,.ty{position:absolute;top:12px;z-index:3;font:500 .62rem/1 var(--mono);letter-spacing:.04em;padding:7px 10px;border-radius:7px;background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line2)}
-.pill{left:12px;color:var(--txt)}
-.ty{right:12px;color:var(--acc)}
-.go{position:absolute;right:12px;bottom:12px;z-index:3;font:700 .6rem/1 var(--disp);letter-spacing:.16em;text-transform:uppercase;padding:9px 13px;border-radius:99px;background:var(--acc);color:var(--ink);opacity:0;transform:translateY(10px);transition:opacity .3s,transform .45s var(--ease)}
-.card:hover .go,.card:focus-visible .go{opacity:1;transform:none}
-@media(hover:none){.go{display:none}}
-.body{display:flex;flex-direction:column;gap:8px;padding:18px 20px 20px;flex:1}
-.body h3{font:700 1.12rem/1.25 var(--disp);letter-spacing:-.01em}
-.body p{color:var(--muted);font-size:.9rem;line-height:1.65;flex:1}
-.url{display:flex;align-items:center;gap:9px;margin-top:6px;font:500 .72rem/1.3 var(--mono);color:var(--acc);overflow-wrap:anywhere}
-.url::after{content:"→";margin-left:auto;transition:transform .3s var(--ease)}
-.card:hover .url::after{transform:translateX(6px)}
-.led{width:8px;height:8px;border-radius:50%;flex:none;background:var(--c)}
-.led.live{--c:var(--acc);animation:ping2 2s ease-out infinite}.led.repo{--c:var(--acc2)}.led.wip{--c:var(--amb);animation:ping3 1.6s ease-out infinite}
+.media::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,transparent 60%,rgba(var(--ink-rgb),.55));transition:opacity .4s}
+.card:hover .media::after{opacity:0}
+.body{display:flex;flex-direction:column;gap:10px;padding:20px 22px 22px;flex:1}
+.meta{display:flex;align-items:center;justify-content:space-between;gap:10px;font:400 .68rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.meta .ty{color:var(--acc)}
+.body h3{font:600 1.2rem/1.25 var(--disp);letter-spacing:-.015em}
+.body p{color:var(--muted);font-size:.92rem;line-height:1.65;flex:1}
+.url{display:flex;align-items:center;gap:10px;margin-top:6px;padding-top:14px;border-top:1px solid var(--line);font:400 .74rem/1.3 var(--mono);color:var(--txt);overflow-wrap:anywhere}
+.url::after{content:"→";margin-left:auto;color:var(--acc);transition:transform .3s var(--ease)}
+a.card:hover .url::after{transform:translateX(5px)}
+.led{width:7px;height:7px;border-radius:50%;flex:none;background:var(--c)}
+.led.live{--c:var(--acc)}.led.repo{--c:var(--acc2)}.led.wip{--c:var(--amb)}
 .card.soon{cursor:default}
 .soon .url::after{content:none}
-@keyframes ping2{0%{box-shadow:0 0 0 0 rgba(var(--acc-rgb),.6)}100%{box-shadow:0 0 0 9px rgba(var(--acc-rgb),0)}}
-@keyframes ping3{0%{box-shadow:0 0 0 0 rgba(255,193,77,.7)}100%{box-shadow:0 0 0 9px rgba(255,193,77,0)}}
 
-/* ───────── Illustrations animées (SVG) ───────── */
+/* Illustrations animées (SVG) */
 .bar{transform-box:fill-box;transform-origin:50% 100%;animation:grow 6s ease-out infinite both;animation-delay:calc(var(--i)*.1s)}
 .hbar{transform-box:fill-box;transform-origin:0 50%;animation:growx 6s ease-out infinite both;animation-delay:calc(var(--i)*.16s)}
 .cline{transform-box:fill-box;transform-origin:0 50%;animation:growx 6s ease-out infinite both;animation-delay:calc(var(--i)*.2s)}
@@ -313,100 +286,75 @@ em{font-style:italic;font-weight:700}
 @keyframes bump{0%,86%,100%{transform:scale(1)}92%{transform:scale(1.3)}}
 @keyframes bub{0%,8%{opacity:0;transform:translateY(10px)}20%,86%{opacity:1;transform:none}96%,100%{opacity:0}}
 @keyframes dot3{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
-@keyframes beat{0%,100%{transform:scale(1)}30%{transform:scale(1.22)}}
+@keyframes beat{0%,100%{transform:scale(1)}30%{transform:scale(1.18)}}
 
-/* ───────── Vitrine navigateur (portfolio perso) ───────── */
-.feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(24px,4vw,64px);align-items:center;margin-top:clamp(36px,5vw,64px)}
-.feat-i h3{font:800 clamp(1.8rem,3vw,2.6rem)/1.1 var(--disp);letter-spacing:-.02em;margin:18px 0 14px}
-.feat-i p{color:var(--muted);margin-bottom:24px;max-width:46ch}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-.tags span{font:500 .68rem/1 var(--mono);padding:8px 12px;border:1px solid var(--line2);border-radius:7px;color:var(--acc)}
-.browser{border:1px solid var(--line2);border-radius:14px;overflow:hidden;background:var(--ink2);box-shadow:0 40px 80px -36px #000;transition:transform .6s var(--ease)}
-.browser .bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;background:rgba(var(--card-rgb),.95);border-bottom:1px solid var(--line)}
-.browser .bar i{width:9px;height:9px;border-radius:50%;background:rgba(var(--txt-rgb),.2)}
-.browser .bar i:first-child{background:#ff5f57}.browser .bar i:nth-child(2){background:#febc2e}
-.browser .bar span{margin-left:10px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 .64rem/1 var(--mono);color:var(--muted);background:rgba(var(--txt-rgb),.06);padding:7px 12px;border-radius:99px}
-.feat .browser{transform:rotate(1.2deg)}
-.feat:hover .browser{transform:rotate(0)}
-
-/* ───────── À propos (respiration claire) ───────── */
-.about{background:var(--light);color:var(--encre);padding:clamp(72px,10vw,140px) clamp(16px,4vw,48px);position:relative;overflow:hidden}
-.about::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(var(--deep-rgb),.06) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--deep-rgb),.06) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(70% 80% at 100% 0%,#000,transparent);mask-image:radial-gradient(70% 80% at 100% 0%,#000,transparent)}
-.about-in{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
-.about-in>*{min-width:0}
-.about .cue{color:var(--deep)}.about .cue::before{color:rgba(var(--encre-rgb),.5)}.about .cue b{border-color:var(--deep)}.about .cue::after{background:linear-gradient(90deg,var(--deep),transparent)}
-.about .ttl em{background:none;-webkit-text-fill-color:currentColor;color:var(--deep);animation:none}
+/* À propos (respiration claire) */
+.about{background:var(--light);color:var(--encre);padding:clamp(64px,9vw,120px) 0}
+.about .sh{border-top-color:rgba(var(--encre-rgb),.25)}
+.about .cue{color:rgba(var(--encre-rgb),.6)}.about .cue b{color:var(--deep)}.about .cue b::after{color:rgba(var(--encre-rgb),.4)}
+.about .ttl em{color:var(--deep)}
 .about .sub{color:rgba(var(--encre-rgb),.72)}
-.badge{width:clamp(110px,14vw,170px);height:auto;margin-bottom:26px;animation:spin 26s linear infinite}
-.badge text{font:700 11px var(--mono);letter-spacing:1.4px;fill:var(--deep);text-transform:uppercase}
-@keyframes spin{to{transform:rotate(360deg)}}
-.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.stat{border:1px solid rgba(var(--encre-rgb),.14);border-radius:var(--r);padding:clamp(18px,2.4vw,30px);background:rgba(255,255,255,.55)}
-.stat.dark{background:var(--encre);border-color:var(--encre);color:var(--txt)}
-.stat .num{display:block;color:inherit;font-size:clamp(2rem,4.4vw,3.4rem)}
-.stat span.l{display:block;margin-top:8px;font:500 .66rem/1.3 var(--mono);letter-spacing:.04em;opacity:.65}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(var(--encre-rgb),.18)}
+.stat{padding:26px 0 8px clamp(14px,2vw,28px);border-right:1px solid rgba(var(--encre-rgb),.14);display:flex;flex-direction:column-reverse}
+.stat:first-child{padding-left:0}.stat:last-child{border-right:0}
+.stat .num{color:var(--encre);font-size:clamp(2.2rem,4.4vw,3.6rem)}
+.stat .l{margin-top:10px;font:400 .74rem/1.3 var(--mono);color:rgba(var(--encre-rgb),.62)}
 
-/* ───────── Contact ───────── */
-.contact{position:relative;overflow:hidden;text-align:center;padding:clamp(96px,14vw,190px) clamp(16px,4vw,48px)}
-.rings{position:absolute;inset:0;pointer-events:none}
-.rings i{--s:min(120vw,1100px);position:absolute;left:50%;top:50%;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);border:1px solid rgba(var(--acc-rgb),.28);border-radius:50%;animation:ringx 8s ease-out infinite;animation-delay:calc(var(--k)*-2s)}
-@keyframes ringx{0%{transform:scale(.18);opacity:0}15%{opacity:1}100%{transform:scale(1);opacity:0}}
-.contact .cue{justify-content:center}
-.contact .ttl{font-size:clamp(2.6rem,9vw,7.4rem);line-height:1;margin:26px 0 38px}
-.contact .ln{text-align:center}
-.outline{color:transparent;-webkit-text-stroke:1.5px rgba(var(--txt-rgb),.6)}
-.acts{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;position:relative}
-.mag{transition:transform .35s var(--ease),background .3s,color .3s,border-color .3s}
-.det{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(24px,5vw,72px);margin-top:clamp(48px,6vw,80px);padding-top:36px;border-top:1px solid var(--line);position:relative}
-.det div{text-align:center}
-.det dt{font:500 .64rem/1 var(--mono);letter-spacing:.06em;color:var(--muted);margin-bottom:8px}
-.det dd{font:600 .92rem/1.4 var(--disp)}
-.live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--acc);margin-right:8px;animation:ping2 1.8s ease-out infinite}
-.foot{border-top:1px solid var(--line);background:var(--foot);padding:28px clamp(16px,4vw,48px)}
-.foot-in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
-.foot .brand{font-size:.9rem}
-.foot p,.foot a{font:500 .68rem/1.4 var(--mono);letter-spacing:.04em;color:var(--muted)}
-.foot nav{display:flex;flex-wrap:wrap;gap:6px 22px}
-.foot a{padding:12px 0}
+/* Contact */
+.contact{padding:clamp(64px,9vw,120px) 0 clamp(72px,10vw,130px)}
+.cgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,80px);align-items:start;margin-left:calc(200px + clamp(16px,4vw,64px))}
+.cgrid>*{min-width:0}
+.mail{display:inline-block;font:500 clamp(1.3rem,2.6vw,2.1rem)/1.2 var(--disp);letter-spacing:-.02em;border-bottom:1px solid var(--acc);padding-bottom:6px;margin-bottom:22px;overflow-wrap:anywhere;transition:color .25s}
+.mail:hover{color:var(--acc)}
+.cgrid .sub{margin-bottom:28px}
+.det{border-top:1px solid var(--line)}
+.det div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.94rem}
+.det dt{font:400 .74rem/1.7 var(--mono);color:var(--muted)}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--acc);margin-right:9px;vertical-align:1px}
+.foot{border-top:1px solid var(--line);background:var(--foot);padding:26px 0}
+.foot-in{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,40px);display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justify-content:space-between}
+.foot p,.foot a{font:400 .72rem/1.4 var(--mono);color:var(--muted)}
+.foot nav{display:flex;flex-wrap:wrap;gap:4px 22px}
+.foot nav a{padding:12px 0}
 .foot a:hover{color:var(--acc)}
+.foot .brand{font-size:.85rem}
 
-/* ───────── Palette de commandes ───────── */
-.pal{position:fixed;inset:0;z-index:9700;display:grid;place-items:start center;padding:14vh 16px 16px;background:rgba(var(--ink-rgb),.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.pal-box{width:min(620px,100%);border:1px solid var(--line2);border-radius:16px;background:var(--panel);box-shadow:0 50px 100px -30px #000,0 0 60px -20px rgba(var(--acc-rgb),.3);overflow:hidden}
+/* Palette de commandes */
+.pal{position:fixed;inset:0;z-index:9700;display:grid;place-items:start center;padding:14vh 16px 16px;background:rgba(var(--ink-rgb),.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.pal-box{width:min(620px,100%);border:1px solid var(--line2);border-radius:8px;background:var(--panel);box-shadow:0 50px 100px -30px #000;overflow:hidden}
 .pal-in{display:flex;align-items:center;gap:12px;padding:0 18px;border-bottom:1px solid var(--line)}
-.pal-in .pr{font:700 1rem/1 var(--mono)}
-.pal-in input{flex:1;min-width:0;height:56px;background:none;border:0;outline:0;color:var(--txt);font:500 1rem/1 var(--mono)}
+.pal-in .pr{font:500 1rem/1 var(--mono)}
+.pal-in input{flex:1;min-width:0;height:54px;background:none;border:0;outline:0;color:var(--txt);font:400 .98rem/1 var(--mono)}
 .pal-in input::placeholder{color:var(--dim)}
 .pal-list{list-style:none;max-height:min(46vh,360px);overflow-y:auto;padding:8px}
-.pal-list li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:10px;font:500 .82rem/1.3 var(--mono);color:var(--muted);cursor:pointer}
-.pal-list li small{color:var(--dim);font-size:.66rem}
-.pal-list li[aria-selected=true]{background:rgba(var(--acc-rgb),.1);color:var(--txt)}
+.pal-list li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:4px;font:400 .82rem/1.3 var(--mono);color:var(--muted);cursor:pointer}
+.pal-list li small{color:var(--dim);font-size:.68rem}
+.pal-list li[aria-selected=true]{background:rgba(var(--acc-rgb),.12);color:var(--txt)}
 .pal-list li[aria-selected=true] small{color:var(--acc)}
-.pal-empty{padding:18px;color:var(--muted);font:500 .8rem var(--mono)}
-.pal-foot{display:flex;gap:16px;padding:10px 18px;border-top:1px solid var(--line);font:500 .64rem/1 var(--mono);color:var(--dim)}
+.pal-empty{padding:18px;color:var(--muted);font:400 .8rem var(--mono)}
+.pal-foot{display:flex;gap:16px;padding:10px 18px;border-top:1px solid var(--line);font:400 .66rem/1 var(--mono);color:var(--dim)}
 .pal-foot kbd{color:var(--acc);margin-right:4px}
 
-/* ───────── Responsive ───────── */
+/* Responsive */
 @media(max-width:1024px){
-  .hero-grid{grid-template-columns:minmax(0,1fr)}
-  .ide{max-width:560px}
-  .feat,.about-in,.win-in{grid-template-columns:minmax(0,1fr)}
-  .feat .browser{transform:none}
+  .hero-grid,.feat{grid-template-columns:minmax(0,1fr)}
+  .ide{max-width:600px}
+  .cgrid{grid-template-columns:minmax(0,1fr);margin-left:0}
 }
 @media(max-width:920px){
-  .links{display:none}.burger{display:flex}.cmd .lbl{display:none}.cmd{padding:0 10px}
-  .brand small{display:none}
+  .links{display:none}.burger{display:flex}.cmd .lbl{display:none}.brand small{display:none}
 }
-@media(max-width:640px){
-  .roles{min-height:3em}
-  .scroll-cue{display:none}
-  .btn{padding:0 22px;min-height:48px}
-  .stats{gap:12px}
-  .cd{gap:6px}
-  .win-bar .tabs b:nth-child(2){display:none}
-  .ide{font-size:.74rem}
+@media(max-width:760px){
+  .sh{grid-template-columns:minmax(0,1fr);gap:12px}
+  .metrics,.stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metrics>div:nth-child(2),.stat:nth-child(2){border-right:0}
+  .metrics>div:nth-child(3),.stat:nth-child(3){padding-left:0}
+  .metrics>div:nth-child(n+3),.stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .stat:nth-child(n+3){border-top-color:rgba(var(--encre-rgb),.14)}
+  .fcount{width:100%;padding:0 0 12px}
+  .tabs{gap:0 22px}
 }
-@media(max-width:400px){.brand{letter-spacing:.2em;font-size:.95rem}.nav-in{gap:8px}.nav-r{gap:6px}.cmd kbd{display:none}}
+@media(max-width:480px){.btn{padding:0 18px;width:100%;justify-content:space-between}.ctas{width:100%}.nav-in{gap:8px}.nav-r{gap:2px}.cmd kbd{display:none}.cmd{padding:0 12px}.det div,.facts div{grid-template-columns:90px minmax(0,1fr)}}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
   .rv,.rise,.ln>span{opacity:1!important;transform:none!important}
@@ -422,9 +370,9 @@ em{font-style:italic;font-weight:700}
   <div class="sp-c">
     <div class="sp-term" aria-hidden="true">
       <span class="l" style="--d:.1s"><span class="pr">$</span> boot ctm-portfolio --env=abidjan</span>
-      <span class="l" style="--d:.75s"><span class="ok">✔</span> projets chargés <b>21/21</b></span>
-      <span class="l" style="--d:1.1s"><span class="ok">✔</span> design compilé</span>
-      <span class="l" style="--d:1.45s"><span class="ok">✔</span> prêt<span class="caret"></span></span>
+      <span class="l" style="--d:.65s"><span class="ok">✔</span> projets chargés <b>20/20</b></span>
+      <span class="l" style="--d:.95s"><span class="ok">✔</span> design compilé</span>
+      <span class="l" style="--d:1.25s"><span class="ok">✔</span> prêt<span class="caret"></span></span>
       <div class="sp-bar"><i></i></div>
     </div>
     <p class="sp-name" aria-hidden="true">JCN<span>/</span>CTM</p>
@@ -432,7 +380,6 @@ em{font-style:italic;font-weight:700}
 </div>
 
 <div class="progress" id="progress" aria-hidden="true"></div>
-<div class="ring" id="ring" aria-hidden="true"><i></i><b></b></div><div class="dot" id="dot" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
   <div class="nav-in">
@@ -442,7 +389,7 @@ em{font-style:italic;font-weight:700}
         <a href="#perso">Site perso</a>
         <a href="#projets">Projets</a>
         <a href="#about">À propos</a>
-        <a class="pillbtn" href="#contact">Contact</a>
+        <a class="cta" href="#contact">Contact</a>
       </nav>
       <button class="theme" id="theme" type="button" aria-label="Changer le thème de couleurs" title="Changer de thème"><i></i></button>
       <button class="cmd" id="cmdk" type="button" aria-label="Ouvrir la palette de commandes" aria-haspopup="dialog"><span class="lbl">Chercher</span><kbd id="kbd">Ctrl K</kbd></button>
@@ -483,61 +430,60 @@ em{font-style:italic;font-weight:700}
   <section class="hero" id="hero" aria-label="Introduction">
     <div class="scene" aria-hidden="true">
       <div class="grid-bg px" data-d=".15"></div>
-      <div class="glow g1"></div><div class="glow g2"></div>
-      <div class="scan"></div>
+      <div class="glow"></div>
       <canvas id="net"></canvas>
-      <div class="glyphs px" data-d=".5" id="glyphs"></div>
     </div>
-
-    <div class="hero-in" id="heroIn">
+    <div class="wrap hero-in">
       <div class="hero-grid">
         <div>
-          <p class="cue rise" style="--i:0" id="heroCue"><span class="ct">portfolio · japhet calixte · abidjan</span></p>
+          <p class="eyebrow rise" style="--i:0" aria-label="Japhet Calixte, développeur web, data analyste et créateur d'applications"><span class="who">Japhet Calixte</span><span class="sep">/</span><span id="role">développeur web</span><span class="caret" aria-hidden="true"></span></p>
           <h1 class="h1">
             <span class="ln" style="--i:0"><span>Chaque projet</span></span>
             <span class="ln" style="--i:1"><span>mérite une</span></span>
-            <span class="ln" style="--i:2"><span>exécution</span></span>
-            <span class="ln" style="--i:3"><span><em>parfaite.</em></span></span>
+            <span class="ln" style="--i:2"><span>exécution <em>parfaite.</em></span></span>
           </h1>
-          <p class="roles rise" style="--i:3" aria-label="Japhet Calixte, développeur web, data analyst et créateur d'applications"><span class="who">Japhet Calixte → </span><span id="role">développeur web</span><span class="caret" aria-hidden="true"></span></p>
+          <p class="lead rise" style="--i:3">Sites web, applications mobiles, dashboards data et produits digitaux — conçus à Abidjan pour des organisations ambitieuses.</p>
           <div class="ctas rise" style="--i:4">
-            <a class="btn solid mag" href="#projets" data-cur="Voir">Voir les projets <span class="ar">→</span></a>
-            <a class="btn ghost mag" href="#contact" data-cur="Écrire">Me contacter</a>
+            <a class="btn solid" href="#projets">Voir les projets <span class="ar">→</span></a>
+            <a class="btn ghost" href="#contact">Me contacter</a>
           </div>
-          <dl class="hstats rise" style="--i:5">
-            <div><dt>projets_livrés</dt><dd class="num" data-count="21" data-suffix="+">21+</dd></div>
-            <div><dt>clients_actifs</dt><dd class="num" data-count="8">8</dd></div>
-            <div><dt>expertises</dt><dd class="num" data-count="4">4</dd></div>
-          </dl>
         </div>
         <div class="rise" style="--i:3">
-          <div class="ide" id="ide" role="img" aria-label="Extrait de code décrivant Japhet Calixte : développeur web et data analyst basé à Abidjan, ouvert aux projets">
+          <div class="ide" role="img" aria-label="Extrait de code décrivant Japhet Calixte : développeur web et data analyst basé à Abidjan, ouvert aux projets">
             <div class="ide-bar" aria-hidden="true"><i></i><i></i><i></i><span>japhet.js</span><em>● live</em></div>
             <pre class="code" id="code" aria-hidden="true"></pre>
             <pre class="term" id="term" aria-hidden="true"></pre>
           </div>
         </div>
       </div>
+      <dl class="metrics rise" style="--i:5">
+        <div><dt>projets livrés</dt><dd class="num" data-count="21" data-suffix="+">21+</dd></div>
+        <div><dt>clients actifs</dt><dd class="num" data-count="8">8</dd></div>
+        <div><dt>expertises</dt><dd class="num" data-count="4">4</dd></div>
+        <div><dt>année de création</dt><dd class="num" data-count="2026">2026</dd></div>
+      </dl>
     </div>
-    <a class="scroll-cue" href="#perso" aria-label="Défiler vers la suite"><span>scroll</span><i></i></a>
   </section>
 
   <div class="mq" id="mq" aria-hidden="true"></div>
 
   <!-- Site personnel -->
-  <section class="sec" id="perso" aria-labelledby="t-perso" style="background:var(--panel)">
+  <section class="sec alt" id="perso" aria-labelledby="t-perso">
     <div class="wrap">
       <header class="sh">
-        <p class="cue rv"><b>01</b><span class="ct">site personnel</span></p>
-        <h2 class="ttl" id="t-perso"><span class="ln"><span>Mon <em>univers,</em></span></span><span class="ln"><span>en ligne.</span></span></h2>
+        <p class="cue rv"><b>01</b>site personnel</p>
+        <div><h2 class="ttl" id="t-perso"><span class="ln"><span>Mon <em>univers,</em></span></span><span class="ln"><span>en ligne.</span></span></h2></div>
       </header>
       <div class="feat">
         <div class="feat-i rv">
-          <p class="cue"><span class="ct">portfolio · data · développement</span></p>
           <h3>JCN — Japhet Calixte</h3>
-          <p>Portfolio personnel de Japhet Calixte, Data Analyst Junior et développeur web. Compétences, projets et réalisations techniques — de la data visualisation au développement web full-stack.</p>
-          <div class="tags"><span>data</span><span>web full-stack</span><span>dashboards</span></div>
-          <a class="btn solid mag" href="https://jcn-portfolio.vercel.app" target="_blank" rel="noopener" data-cur="Visiter">Visiter le site <span class="ar">→</span></a>
+          <p>Portfolio personnel de Japhet Calixte, Data Analyst Junior et développeur web : compétences, projets et réalisations techniques.</p>
+          <dl class="facts">
+            <div><dt>profil</dt><dd>Data analyst junior, développeur web</dd></div>
+            <div><dt>domaines</dt><dd>Data visualisation, développement web full-stack</dd></div>
+            <div><dt>base</dt><dd>Abidjan, Côte d'Ivoire</dd></div>
+          </dl>
+          <a class="btn solid" href="https://jcn-portfolio.vercel.app" target="_blank" rel="noopener">Visiter le site <span class="ar">→</span></a>
         </div>
         <div class="browser rv">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>jcn-portfolio.vercel.app</span></div>
@@ -551,122 +497,123 @@ em{font-style:italic;font-weight:700}
   <section class="sec" id="projets" aria-labelledby="t-projets">
     <div class="wrap">
       <header class="sh">
-        <p class="cue rv"><b>02</b><span class="ct">projets</span></p>
-        <h2 class="ttl" id="t-projets"><span class="ln"><span>Tous les projets,</span></span><span class="ln"><span><em>classés</em> par catégorie.</span></span></h2>
-        <p class="sub rv">Filtrez par type ou par secteur — ou ouvrez la palette de commandes avec <kbd style="color:var(--acc)">Ctrl&nbsp;K</kbd>.</p>
-        <div class="deco rv" data-art="graph" data-v="1" aria-hidden="true"></div>
+        <p class="cue rv"><b>02</b>projets</p>
+        <div>
+          <h2 class="ttl" id="t-projets"><span class="ln"><span>Tous les projets,</span></span><span class="ln"><span><em>classés</em> par catégorie.</span></span></h2>
+          <p class="sub rv">Filtrez par type ou par secteur, ou ouvrez la palette de commandes avec <kbd>Ctrl&nbsp;K</kbd>.</p>
+        </div>
       </header>
 
-      <div class="filters rv" id="filters" role="group" aria-label="Filtrer les projets"></div>
+      <div id="filters" role="group" aria-label="Filtrer les projets"></div>
 
       <div class="grid" id="pgrid">
 
         <h3 class="grp" data-type="site">Sites web <small></small></h3>
 
-        <div class="cw rv" data-type="site" data-sub="Éducation"><a class="card" href="https://groupescolairelemiri.com" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://groupescolairelemiri.com" data-art="bars" data-v="1"><span class="pill">Éducation</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Groupe Scolaire Le Miri</h3><p>Site institutionnel pour une école K-12 à Bingerville. Inscriptions en ligne, portails parents, enseignants et administration.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>groupescolairelemiri.com</span></div>
+        <div class="cw rv" data-type="site" data-sub="Éducation"><a class="card" href="https://groupescolairelemiri.com" target="_blank" rel="noopener">
+          <div class="media" data-live="https://groupescolairelemiri.com" data-art="bars" data-v="1"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Éducation</span></div><h3>Groupe Scolaire Le Miri</h3><p>Site institutionnel pour une école K-12 à Bingerville. Inscriptions en ligne, portails parents, enseignants et administration.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>groupescolairelemiri.com</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="site" data-sub="Éducation"><a class="card" href="https://collegesleselitestoumodi.ci" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://collegesleselitestoumodi.ci" data-art="hbars" data-v="1"><span class="pill">Éducation</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Collège Les Élites</h3><p>Site institutionnel d'un collège privé du primaire au lycée avec internat, à Toumodi. Inscriptions, présentation pédagogique et vie scolaire.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>collegesleselitestoumodi.ci</span></div>
+        <div class="cw rv" data-type="site" data-sub="Éducation"><a class="card" href="https://collegesleselitestoumodi.ci" target="_blank" rel="noopener">
+          <div class="media" data-live="https://collegesleselitestoumodi.ci" data-art="hbars" data-v="1"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Éducation</span></div><h3>Collège Les Élites</h3><p>Site institutionnel d'un collège privé du primaire au lycée avec internat, à Toumodi. Inscriptions, présentation pédagogique et vie scolaire.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>collegesleselitestoumodi.ci</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="site" data-sub="Culture &amp; patrimoine"><a class="card" href="https://sir-heal.lovable.app" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://sir-heal.lovable.app" data-art="graph" data-v="3"><span class="pill">Culture &amp; patrimoine</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Sir Heal</h3><p>Site portfolio d'un créateur audiovisuel : courts et longs-métrages, publicités et branding, présentés dans une vitrine claire et rapide.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>sir-heal.lovable.app</span></div>
+        <div class="cw rv" data-type="site" data-sub="Culture &amp; patrimoine"><a class="card" href="https://sir-heal.lovable.app" target="_blank" rel="noopener">
+          <div class="media" data-live="https://sir-heal.lovable.app" data-art="graph" data-v="3"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Culture &amp; patrimoine</span></div><h3>Sir Heal</h3><p>Site portfolio d'un créateur audiovisuel : courts et longs-métrages, publicités et branding, présentés dans une vitrine claire et rapide.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>sir-heal.lovable.app</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="site" data-sub="Culture &amp; patrimoine"><a class="card" href="https://jcalixte24.github.io/kadjokro/" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://jcalixte24.github.io/kadjokro/" data-art="route" data-v="4"><span class="pill">Culture &amp; patrimoine</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Village de Kadjokro</h3><p>Site vitrine du village de Kadjokro à Toumodi — histoire, patrimoine et vie communautaire mis en valeur pour rayonner au-delà de la région.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/kadjokro</span></div>
+        <div class="cw rv" data-type="site" data-sub="Culture &amp; patrimoine"><a class="card" href="https://jcalixte24.github.io/kadjokro/" target="_blank" rel="noopener">
+          <div class="media" data-live="https://jcalixte24.github.io/kadjokro/" data-art="route" data-v="4"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Culture &amp; patrimoine</span></div><h3>Village de Kadjokro</h3><p>Site vitrine du village de Kadjokro à Toumodi — histoire, patrimoine et vie communautaire mis en valeur pour rayonner au-delà de la région.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/kadjokro</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="site" data-sub="Événementiel"><a class="card" href="https://jcalixte24.github.io/abidjan-syphony/" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://jcalixte24.github.io/abidjan-syphony/" data-art="code" data-v="3"><span class="pill">Événementiel</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Abidjan Symphony</h3><p>Site événementiel immersif en pur HTML/CSS/JS : animations, compte à rebours en direct et inscriptions envoyées par WhatsApp.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/abidjan-syphony</span></div>
+        <div class="cw rv" data-type="site" data-sub="Événementiel"><a class="card" href="https://jcalixte24.github.io/abidjan-syphony/" target="_blank" rel="noopener">
+          <div class="media" data-live="https://jcalixte24.github.io/abidjan-syphony/" data-art="code" data-v="3"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Événementiel</span></div><h3>Abidjan Symphony</h3><p>Site événementiel immersif en pur HTML/CSS/JS : animations, compte à rebours en direct et inscriptions envoyées par WhatsApp.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/abidjan-syphony</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="site" data-sub="Pros &amp; indépendants"><a class="card" href="https://creative-talent-management.netlify.app/cassandra" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="cassandra.html" data-art="hbars" data-v="2"><span class="pill">Pros &amp; indépendants</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Cassandra Touré — Consulting</h3><p>Site pro d'une consultante stratégique. Gestion de projet, coaching, insertion professionnelle et développement culturel.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>creative-talent-management.netlify.app/cassandra</span></div>
+        <div class="cw rv" data-type="site" data-sub="Pros &amp; indépendants"><a class="card" href="https://creative-talent-management.netlify.app/cassandra" target="_blank" rel="noopener">
+          <div class="media" data-live="cassandra.html" data-art="hbars" data-v="2"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Pros &amp; indépendants</span></div><h3>Cassandra Touré — Consulting</h3><p>Site pro d'une consultante stratégique. Gestion de projet, coaching, insertion professionnelle et développement culturel.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>creative-talent-management.netlify.app/cassandra</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="site" data-sub="Pros &amp; indépendants"><a class="card" href="https://jcalixte24.github.io/site-coaching/" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://jcalixte24.github.io/site-coaching/" data-art="chat" data-v="2"><span class="pill">Pros &amp; indépendants</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Cassandra Touré — Talents &amp; Coaching</h3><p>Coaching express 100&nbsp;% WhatsApp pour les jeunes (7 packs) et acquisition de talents pour les entreprises, avec formulaires envoyés par WhatsApp et paiement Mobile Money / Wave.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/site-coaching</span></div>
+        <div class="cw rv" data-type="site" data-sub="Pros &amp; indépendants"><a class="card" href="https://jcalixte24.github.io/site-coaching/" target="_blank" rel="noopener">
+          <div class="media" data-live="https://jcalixte24.github.io/site-coaching/" data-art="chat" data-v="2"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Pros &amp; indépendants</span></div><h3>Cassandra Touré — Talents &amp; Coaching</h3><p>Coaching express 100&nbsp;% WhatsApp pour les jeunes (7 packs) et acquisition de talents pour les entreprises, avec formulaires envoyés par WhatsApp et paiement Mobile Money / Wave.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/site-coaching</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="site" data-sub="Pros &amp; indépendants"><a class="card" href="https://chef-inaice.netlify.app" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://chef-inaice.netlify.app" data-art="heart" data-v="4"><span class="pill">Pros &amp; indépendants</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Chef Inaice</h3><p>Vitrine digitale pour un chef cuisinier. Présentation du parcours, des spécialités et des prestations culinaires.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>chef-inaice.netlify.app</span></div>
+        <div class="cw rv" data-type="site" data-sub="Pros &amp; indépendants"><a class="card" href="https://chef-inaice.netlify.app" target="_blank" rel="noopener">
+          <div class="media" data-live="https://chef-inaice.netlify.app" data-art="heart" data-v="4"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Pros &amp; indépendants</span></div><h3>Chef Inaice</h3><p>Vitrine digitale pour un chef cuisinier. Présentation du parcours, des spécialités et des prestations culinaires.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>chef-inaice.netlify.app</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="site" data-sub="Pros &amp; indépendants"><a class="card" href="https://jcalixte24.github.io/ksr-avocat/static_site/" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://jcalixte24.github.io/ksr-avocat/static_site/" data-art="hbars" data-v="3"><span class="pill">Pros &amp; indépendants</span><span class="ty">WEB</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>KSR Avocats</h3><p>Site vitrine d'un cabinet d'avocats à Caen. Présentation des domaines d'expertise, prise de rendez-vous et contact client.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/ksr-avocat</span></div>
+        <div class="cw rv" data-type="site" data-sub="Pros &amp; indépendants"><a class="card" href="https://jcalixte24.github.io/ksr-avocat/static_site/" target="_blank" rel="noopener">
+          <div class="media" data-live="https://jcalixte24.github.io/ksr-avocat/static_site/" data-art="hbars" data-v="3"></div>
+          <div class="body"><div class="meta"><span class="ty">Web</span><span>Pros &amp; indépendants</span></div><h3>KSR Avocats</h3><p>Site vitrine d'un cabinet d'avocats à Caen. Présentation des domaines d'expertise, prise de rendez-vous et contact client.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/ksr-avocat</span></div>
         </a></div>
 
         <h3 class="grp" data-type="app">Apps mobiles <small></small></h3>
 
-        <div class="cw rv" data-type="app" data-sub="Mobilité &amp; navigation"><a class="card" href="https://jcalixte24.github.io/poisson-/" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://jcalixte24.github.io/poisson-/" data-art="route" data-v="1"><span class="pill">Mobilité &amp; navigation</span><span class="ty">APP</span><span class="go">Ouvrir ↗</span></div>
-          <div class="body"><h3>BabiTransport</h3><p>Planificateur de transport pour Abidjan : meilleur itinéraire entre bus SOTRA, bateaux lagunaires et taxis, avec plus de 2000 gares et arrêts cartographiés.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/poisson-</span></div>
+        <div class="cw rv" data-type="app" data-sub="Mobilité &amp; navigation"><a class="card" href="https://jcalixte24.github.io/poisson-/" target="_blank" rel="noopener">
+          <div class="media" data-live="https://jcalixte24.github.io/poisson-/" data-art="route" data-v="1"></div>
+          <div class="body"><div class="meta"><span class="ty">App</span><span>Mobilité &amp; navigation</span></div><h3>BabiTransport</h3><p>Planificateur de transport pour Abidjan : meilleur itinéraire entre bus SOTRA, bateaux lagunaires et taxis, avec plus de 2000 gares et arrêts cartographiés.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>jcalixte24.github.io/poisson-</span></div>
         </a></div>
 
         <div class="cw rv" data-type="app" data-sub="Mobilité &amp; navigation"><div class="card soon">
-          <div class="media" data-art="route" data-v="2"><span class="pill">Mobilité &amp; navigation</span><span class="ty">APP</span></div>
-          <div class="body"><h3>TrajetCI</h3><p>App de navigation GPS type Waze pour la Côte d'Ivoire : cartes Mapbox, itinéraires, feux et radars OpenStreetMap, guidage vocal en français et signalements communautaires en temps réel.</p><span class="url"><i class="led wip" role="img" aria-label="en cours"></i>React Native · bientôt disponible</span></div>
+          <div class="media" data-art="route" data-v="2"></div>
+          <div class="body"><div class="meta"><span class="ty">App</span><span>Mobilité &amp; navigation</span></div><h3>TrajetCI</h3><p>App de navigation GPS type Waze pour la Côte d'Ivoire : cartes Mapbox, itinéraires, feux et radars OpenStreetMap, guidage vocal en français et signalements communautaires en temps réel.</p><span class="url"><i class="led wip" role="img" aria-label="en cours"></i>React Native · bientôt disponible</span></div>
         </div></div>
 
-        <div class="cw rv" data-type="app" data-sub="Commerce &amp; services"><a class="card" href="https://github.com/Jcalixte24/projet-vente" target="_blank" rel="noopener" data-cur="Code">
-          <div class="media" data-art="phone" data-v="3"><span class="pill">Commerce &amp; services</span><span class="ty">APP</span><span class="go">GitHub ↗</span></div>
-          <div class="body"><h3>App e-commerce CI</h3><p>Application mobile Flutter pour le marché ivoirien : parcours acheteur complet et dashboard vendeur, avec paiements locaux Wave, Orange Money et MTN.</p><span class="url"><i class="led repo" role="img" aria-label="code source"></i>github.com/Jcalixte24/projet-vente</span></div>
+        <div class="cw rv" data-type="app" data-sub="Commerce &amp; services"><a class="card" href="https://github.com/Jcalixte24/projet-vente" target="_blank" rel="noopener">
+          <div class="media" data-art="phone" data-v="3"></div>
+          <div class="body"><div class="meta"><span class="ty">App</span><span>Commerce &amp; services</span></div><h3>App e-commerce CI</h3><p>Application mobile Flutter pour le marché ivoirien : parcours acheteur complet et dashboard vendeur, avec paiements locaux Wave, Orange Money et MTN.</p><span class="url"><i class="led repo" role="img" aria-label="code source"></i>github.com/Jcalixte24/projet-vente</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="app" data-sub="Commerce &amp; services"><a class="card" href="https://github.com/Jcalixte24/sbs" target="_blank" rel="noopener" data-cur="Code">
-          <div class="media" data-art="heart" data-v="4"><span class="pill">Commerce &amp; services</span><span class="ty">APP</span><span class="go">GitHub ↗</span></div>
-          <div class="body"><h3>Nounou CI</h3><p>Plateforme de mise en relation entre familles et nounous à Abidjan. Backend Node.js / Prisma, interface en cours de développement.</p><span class="url"><i class="led wip" role="img" aria-label="en cours"></i>github.com/Jcalixte24/sbs</span></div>
+        <div class="cw rv" data-type="app" data-sub="Commerce &amp; services"><a class="card" href="https://github.com/Jcalixte24/sbs" target="_blank" rel="noopener">
+          <div class="media" data-art="heart" data-v="4"></div>
+          <div class="body"><div class="meta"><span class="ty">App</span><span>Commerce &amp; services</span></div><h3>Nounou CI</h3><p>Plateforme de mise en relation entre familles et nounous à Abidjan. Backend Node.js / Prisma, interface en cours de développement.</p><span class="url"><i class="led wip" role="img" aria-label="en cours"></i>github.com/Jcalixte24/sbs</span></div>
         </a></div>
 
         <h3 class="grp" data-type="data">Data &amp; IA <small></small></h3>
 
-        <div class="cw rv" data-type="data" data-sub="IA"><a class="card" href="https://chatbot-ia-1z24.onrender.com" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-art="chat" data-v="3"><span class="pill">IA</span><span class="ty">DATA</span><span class="go">Ouvrir ↗</span></div>
-          <div class="body"><h3>Chatbot IA</h3><p>Application de chatbot basée sur l'intelligence artificielle. Interface conversationnelle déployée sur Render (premier chargement un peu long).</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>chatbot-ia-1z24.onrender.com</span></div>
+        <div class="cw rv" data-type="data" data-sub="IA"><a class="card" href="https://chatbot-ia-1z24.onrender.com" target="_blank" rel="noopener">
+          <div class="media" data-art="chat" data-v="3"></div>
+          <div class="body"><div class="meta"><span class="ty">Data</span><span>IA</span></div><h3>Chatbot IA</h3><p>Application de chatbot basée sur l'intelligence artificielle. Interface conversationnelle déployée sur Render (premier chargement un peu long).</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>chatbot-ia-1z24.onrender.com</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="data" data-sub="Dataviz &amp; BI"><a class="card" href="https://github.com/jcalixte24/spotify-analytics" target="_blank" rel="noopener" data-cur="Code">
-          <div class="media" data-art="bars" data-v="2"><span class="pill">Dataviz &amp; BI</span><span class="ty">DATA</span><span class="go">GitHub ↗</span></div>
-          <div class="body"><h3>Spotify Analytics</h3><p>Dashboard de data viz sur des données de streaming 1980–2022 : genres, géographie, timeline, top 50. Stack : HTML, JS, Python, ApexCharts.</p><span class="url"><i class="led repo" role="img" aria-label="code source"></i>github.com/Jcalixte24/spotify-analytics</span></div>
+        <div class="cw rv" data-type="data" data-sub="Dataviz &amp; BI"><a class="card" href="https://github.com/jcalixte24/spotify-analytics" target="_blank" rel="noopener">
+          <div class="media" data-art="bars" data-v="2"></div>
+          <div class="body"><div class="meta"><span class="ty">Data</span><span>Dataviz &amp; BI</span></div><h3>Spotify Analytics</h3><p>Dashboard de data viz sur des données de streaming 1980–2022 : genres, géographie, timeline, top 50. Stack : HTML, JS, Python, ApexCharts.</p><span class="url"><i class="led repo" role="img" aria-label="code source"></i>github.com/Jcalixte24/spotify-analytics</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="data" data-sub="Dataviz &amp; BI"><a class="card" href="https://github.com/jcalixte24/projet-web-analytics-1" target="_blank" rel="noopener" data-cur="Code">
-          <div class="media" data-art="hbars" data-v="3"><span class="pill">Dataviz &amp; BI</span><span class="ty">DATA</span><span class="go">GitHub ↗</span></div>
-          <div class="body"><h3>Salaires France</h3><p>Dashboard interactif des salaires segmentés par âge, genre, métier, région, diplôme et taille d'entreprise.</p><span class="url"><i class="led repo" role="img" aria-label="code source"></i>github.com/Jcalixte24/projet-web-analytics-1</span></div>
+        <div class="cw rv" data-type="data" data-sub="Dataviz &amp; BI"><a class="card" href="https://github.com/jcalixte24/projet-web-analytics-1" target="_blank" rel="noopener">
+          <div class="media" data-art="hbars" data-v="3"></div>
+          <div class="body"><div class="meta"><span class="ty">Data</span><span>Dataviz &amp; BI</span></div><h3>Salaires France</h3><p>Dashboard interactif des salaires segmentés par âge, genre, métier, région, diplôme et taille d'entreprise.</p><span class="url"><i class="led repo" role="img" aria-label="code source"></i>github.com/Jcalixte24/projet-web-analytics-1</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="data" data-sub="Dataviz &amp; BI"><a class="card" href="https://github.com/jcalixte24/Git-PBI" target="_blank" rel="noopener" data-cur="Code">
-          <div class="media" data-art="bars" data-v="4"><span class="pill">Dataviz &amp; BI</span><span class="ty">DATA</span><span class="go">GitHub ↗</span></div>
-          <div class="body"><h3>Dashboard Power BI</h3><p>Rapport interactif développé sur Microsoft Power BI. Indicateurs clés et filtres dynamiques sur données métier.</p><span class="url"><i class="led repo" role="img" aria-label="code source"></i>github.com/Jcalixte24/Git-PBI</span></div>
+        <div class="cw rv" data-type="data" data-sub="Dataviz &amp; BI"><a class="card" href="https://github.com/jcalixte24/Git-PBI" target="_blank" rel="noopener">
+          <div class="media" data-art="bars" data-v="4"></div>
+          <div class="body"><div class="meta"><span class="ty">Data</span><span>Dataviz &amp; BI</span></div><h3>Dashboard Power BI</h3><p>Rapport interactif développé sur Microsoft Power BI. Indicateurs clés et filtres dynamiques sur données métier.</p><span class="url"><i class="led repo" role="img" aria-label="code source"></i>github.com/Jcalixte24/Git-PBI</span></div>
         </a></div>
 
         <h3 class="grp" data-type="produit">Produits CTM <small></small></h3>
 
-        <div class="cw rv" data-type="produit" data-sub="Agence &amp; recrutement"><a class="card" href="index.html" data-cur="Voir">
-          <div class="media" data-live="index.html" data-art="code" data-v="1"><span class="pill">Agence &amp; recrutement</span><span class="ty">PRODUIT</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>CTM Agency</h3><p>Site vitrine de l'agence — mise en relation de talents créatifs avec des opportunités professionnelles à Abidjan.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>creative-talent-management.netlify.app</span></div>
+        <div class="cw rv" data-type="produit" data-sub="Agence &amp; recrutement"><a class="card" href="index.html">
+          <div class="media" data-live="index.html" data-art="code" data-v="1"></div>
+          <div class="body"><div class="meta"><span class="ty">Produit</span><span>Agence &amp; recrutement</span></div><h3>CTM Agency</h3><p>Site vitrine de l'agence — mise en relation de talents créatifs avec des opportunités professionnelles à Abidjan.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>creative-talent-management.netlify.app</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="produit" data-sub="Agence &amp; recrutement"><a class="card" href="https://talent-ci-form.vercel.app" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://talent-ci-form.vercel.app" data-art="hbars" data-v="2"><span class="pill">Agence &amp; recrutement</span><span class="ty">PRODUIT</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>Talents CI</h3><p>Plateforme de formulaires pour agence de recrutement. Collecte et gestion des candidatures en ligne.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>talent-ci-form.vercel.app</span></div>
+        <div class="cw rv" data-type="produit" data-sub="Agence &amp; recrutement"><a class="card" href="https://talent-ci-form.vercel.app" target="_blank" rel="noopener">
+          <div class="media" data-live="https://talent-ci-form.vercel.app" data-art="hbars" data-v="2"></div>
+          <div class="body"><div class="meta"><span class="ty">Produit</span><span>Agence &amp; recrutement</span></div><h3>Talents CI</h3><p>Plateforme de formulaires pour agence de recrutement. Collecte et gestion des candidatures en ligne.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>talent-ci-form.vercel.app</span></div>
         </a></div>
 
-        <div class="cw rv" data-type="produit" data-sub="Média &amp; culture"><a class="card" href="https://charts-ci.vercel.app" target="_blank" rel="noopener" data-cur="Voir">
-          <div class="media" data-live="https://charts-ci.vercel.app" data-art="bars" data-v="3"><span class="pill">Média &amp; culture</span><span class="ty">PRODUIT</span><span class="go">Visiter ↗</span></div>
-          <div class="body"><h3>CI Charts</h3><p>Classements non officiels de Côte d'Ivoire agrégés en temps réel depuis plusieurs plateformes, consolidés dans un tableau de bord unique.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>charts-ci.vercel.app</span></div>
+        <div class="cw rv" data-type="produit" data-sub="Média &amp; culture"><a class="card" href="https://charts-ci.vercel.app" target="_blank" rel="noopener">
+          <div class="media" data-live="https://charts-ci.vercel.app" data-art="bars" data-v="3"></div>
+          <div class="body"><div class="meta"><span class="ty">Produit</span><span>Média &amp; culture</span></div><h3>CI Charts</h3><p>Classements non officiels de Côte d'Ivoire agrégés en temps réel depuis plusieurs plateformes, consolidés dans un tableau de bord unique.</p><span class="url"><i class="led live" role="img" aria-label="en ligne"></i>charts-ci.vercel.app</span></div>
         </a></div>
 
       </div>
@@ -675,42 +622,45 @@ em{font-style:italic;font-weight:700}
 
   <!-- À propos -->
   <section class="about" id="about" aria-labelledby="t-about">
-    <div class="wrap about-in">
-      <div>
-        <svg class="badge rv" viewBox="0 0 200 200" aria-hidden="true">
-          <defs><path id="circ" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
-          <text><textPath href="#circ" textLength="486" lengthAdjust="spacing">Creative Talent Management · Abidjan · Côte d'Ivoire · </textPath></text>
-          <rect x="68" y="76" width="64" height="48" rx="12" fill="#0B1220"/>
-          <path d="M92 90l-12 10 12 10M108 90l12 10-12 10" fill="none" stroke="var(--acc)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <p class="cue rv"><b>CTM</b><span class="ct">creative talent management</span></p>
-        <h2 class="ttl" id="t-about"><span class="ln"><span>Une agence de</span></span><span class="ln"><span>talent créatif</span></span><span class="ln"><span>à <em>Abidjan.</em></span></span></h2>
-        <p class="sub rv">Nous concevons des expériences digitales pour des professionnels ambitieux — du site institutionnel à l'app mobile, en passant par les produits SaaS et les dashboards data. Chaque projet est traité comme une œuvre à part entière.</p>
-      </div>
-      <div class="stats">
-        <div class="stat rv"><b class="num" data-count="21" data-suffix="+">21+</b><span class="l">projets_livrés</span></div>
-        <div class="stat dark rv"><b class="num" data-count="8">8</b><span class="l">clients_actifs</span></div>
-        <div class="stat rv"><b class="num" data-count="2026">2026</b><span class="l">année_de_création</span></div>
-        <div class="stat rv"><b class="num" data-count="4">4</b><span class="l">expertises</span></div>
-      </div>
+    <div class="wrap">
+      <header class="sh">
+        <p class="cue rv"><b>03</b>à propos</p>
+        <div>
+          <h2 class="ttl" id="t-about"><span class="ln"><span>Une agence de talent créatif</span></span><span class="ln"><span>à <em>Abidjan.</em></span></span></h2>
+          <p class="sub rv">Nous concevons des expériences digitales pour des professionnels ambitieux — du site institutionnel à l'app mobile, en passant par les produits SaaS et les dashboards data. Chaque projet est traité comme une œuvre à part entière.</p>
+        </div>
+      </header>
+      <dl class="stats">
+        <div class="stat"><dt class="l">projets livrés</dt><dd class="num" data-count="21" data-suffix="+">21+</dd></div>
+        <div class="stat"><dt class="l">clients actifs</dt><dd class="num" data-count="8">8</dd></div>
+        <div class="stat"><dt class="l">expertises</dt><dd class="num" data-count="4">4</dd></div>
+        <div class="stat"><dt class="l">année de création</dt><dd class="num" data-count="2026">2026</dd></div>
+      </dl>
     </div>
   </section>
 
   <!-- Contact -->
   <section class="contact" id="contact" aria-labelledby="t-contact">
-    <div class="rings" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i></div>
     <div class="wrap">
-      <p class="cue rv"><b>03</b><span class="ct">travaillons ensemble</span></p>
-      <h2 class="ttl" id="t-contact"><span class="ln"><span class="outline">Un projet</span></span><span class="ln"><span>en <em>tête ?</em></span></span></h2>
-      <div class="acts rv">
-        <a class="btn solid mag" href="index.html#contact" data-cur="Écrire">Démarrer un projet <span class="ar">→</span></a>
-        <a class="btn ghost mag" href="mailto:japhetndri15@gmail.com" data-cur="Mail">japhetndri15@gmail.com</a>
+      <header class="sh">
+        <p class="cue rv"><b>04</b>contact</p>
+        <div><h2 class="ttl" id="t-contact"><span class="ln"><span>Un projet en tête ?</span></span><span class="ln"><span><em>Parlons-en.</em></span></span></h2></div>
+      </header>
+      <div class="cgrid">
+        <div class="rv">
+          <a class="mail" href="mailto:japhetndri15@gmail.com">japhetndri15@gmail.com</a>
+          <p class="sub">Décrivez votre besoin : site, application, dashboard ou produit digital.</p>
+          <div class="ctas">
+            <a class="btn solid" href="index.html#contact">Démarrer un projet <span class="ar">→</span></a>
+            <a class="btn ghost" href="https://github.com/Jcalixte24" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <dl class="det rv">
+          <div><dt>localisation</dt><dd>Abidjan, Côte d'Ivoire</dd></div>
+          <div><dt>services</dt><dd>Web · Apps · Data · Produit</dd></div>
+          <div><dt>statut</dt><dd><span class="live-dot"></span>Ouvert aux projets</dd></div>
+        </dl>
       </div>
-      <dl class="det rv">
-        <div><dt>localisation</dt><dd>Abidjan, Côte d'Ivoire · 5.36°N 4.01°O</dd></div>
-        <div><dt>services</dt><dd>Web · Apps · Data · Produit</dd></div>
-        <div><dt>statut</dt><dd><span class="live-dot"></span>Ouvert aux projets</dd></div>
-      </dl>
     </div>
   </section>
 
@@ -719,7 +669,7 @@ em{font-style:italic;font-weight:700}
 <footer class="foot">
   <div class="foot-in">
     <a class="brand" href="index.html"><span class="mk">&lt;/&gt;</span>CTM</a>
-    <p>© 2026 Creative Talent Management — Abidjan · <span class="ok">●</span> build ok</p>
+    <p>© 2026 Creative Talent Management — Abidjan</p>
     <nav aria-label="Liens utiles"><a href="index.html">Accueil</a><a href="https://github.com/Jcalixte24" target="_blank" rel="noopener">GitHub</a><a href="mailto:japhetndri15@gmail.com">Contact</a></nav>
   </div>
 </footer>
@@ -730,7 +680,6 @@ em{font-style:italic;font-weight:700}
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const root=document.documentElement;
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const FINE=matchMedia('(hover:hover) and (pointer:fine)').matches;
 const lerp=(a,b,t)=>a+(b-a)*t,clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 const onReady=fn=>root.classList.contains('ready')?fn():addEventListener('siteready',fn,{once:true});
 const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
@@ -739,7 +688,7 @@ const norm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
 const THEMES=[['cobalt','Cobalt'],['braise','Braise'],['violet','Violet'],['graphite','Graphite'],['emeraude','Émeraude']];
 let ACC='77,124,255',ACC2='143,211,255';
 const themeBtn=$('#theme');
-function curTheme(){return root.getAttribute('data-theme')||'cobalt'}
+const curTheme=()=>root.getAttribute('data-theme')||'cobalt';
 function readTheme(){
   const cs=getComputedStyle(root);
   ACC=cs.getPropertyValue('--acc-rgb').trim()||ACC;ACC2=cs.getPropertyValue('--acc2-rgb').trim()||ACC2;
@@ -759,8 +708,8 @@ setTheme(curTheme(),false);
 const splash=$('#splash'),t0=performance.now();let opened=false,skipS=false;
 function openSite(){
   if(opened)return;opened=true;
-  const wait=skipS?0:Math.max(0,2100-(performance.now()-t0));
-  setTimeout(()=>{splash&&splash.classList.add('out');root.classList.add('ready');dispatchEvent(new Event('siteready'));setTimeout(()=>splash&&splash.remove(),1900)},wait);
+  const wait=skipS?0:Math.max(0,1900-(performance.now()-t0));
+  setTimeout(()=>{splash&&splash.classList.add('out');root.classList.add('ready');dispatchEvent(new Event('siteready'));setTimeout(()=>splash&&splash.remove(),1700)},wait);
 }
 if(RM){splash&&splash.remove();opened=true;root.classList.add('ready');}
 else{addEventListener('load',openSite);setTimeout(openSite,4500);splash&&splash.addEventListener('click',()=>{skipS=true;openSite()})}
@@ -771,7 +720,7 @@ let NW=0,NH=0,nodes=[],packets=[],heroVis=true,pxm=-999,pym=-999;
 function sizeNet(){
   const dpr=Math.min(devicePixelRatio||1,1.5);NW=net.clientWidth;NH=net.clientHeight;
   net.width=NW*dpr;net.height=NH*dpr;nx.setTransform(dpr,0,0,dpr,0,0);
-  nodes=Array.from({length:Math.round(clamp(NW*NH/17000,28,90))},()=>({x:Math.random()*NW,y:Math.random()*NH,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:1+Math.random()*1.8,c:Math.random()<.24}));
+  nodes=Array.from({length:Math.round(clamp(NW*NH/22000,22,70))},()=>({x:Math.random()*NW,y:Math.random()*NH,vx:(Math.random()-.5)*.26,vy:(Math.random()-.5)*.26,r:1+Math.random()*1.5,c:Math.random()<.22}));
   packets=[];
 }
 function drawNet(){
@@ -781,7 +730,7 @@ function drawNet(){
     p.x+=p.vx;p.y+=p.vy;
     if(p.x<-10)p.x=NW+10;else if(p.x>NW+10)p.x=-10;
     if(p.y<-10)p.y=NH+10;else if(p.y>NH+10)p.y=-10;
-    const dx=pxm-p.x,dy=pym-p.y,d2=dx*dx+dy*dy;if(d2<26000&&d2>4){p.x+=dx*.0018;p.y+=dy*.0018}
+    const dx=pxm-p.x,dy=pym-p.y,d2=dx*dx+dy*dy;if(d2<26000&&d2>4){p.x+=dx*.0014;p.y+=dy*.0014}
   }
   nx.lineWidth=1;
   for(let i=0;i<nodes.length;i++){
@@ -789,31 +738,24 @@ function drawNet(){
     for(let j=i+1;j<nodes.length;j++){
       const b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy;
       if(d2<L2){
-        nx.strokeStyle=`rgba(${ACC},${((1-Math.sqrt(d2)/L)*.3).toFixed(3)})`;
+        nx.strokeStyle=`rgba(${ACC},${((1-Math.sqrt(d2)/L)*.26).toFixed(3)})`;
         nx.beginPath();nx.moveTo(a.x,a.y);nx.lineTo(b.x,b.y);nx.stroke();
-        if(packets.length<14&&Math.random()<.00022)packets.push({a,b,t:0,s:.012+Math.random()*.014});
+        if(packets.length<10&&Math.random()<.0002)packets.push({a,b,t:0,s:.012+Math.random()*.012});
       }
     }
     const mx2=pxm-a.x,my2=pym-a.y,m2=mx2*mx2+my2*my2;
-    if(m2<22000){nx.strokeStyle=`rgba(${ACC2},${((1-m2/22000)*.7).toFixed(3)})`;nx.beginPath();nx.moveTo(a.x,a.y);nx.lineTo(pxm,pym);nx.stroke()}
+    if(m2<22000){nx.strokeStyle=`rgba(${ACC2},${((1-m2/22000)*.6).toFixed(3)})`;nx.beginPath();nx.moveTo(a.x,a.y);nx.lineTo(pxm,pym);nx.stroke()}
   }
-  for(const p of nodes){nx.fillStyle=p.c?`rgba(${ACC2},.95)`:`rgba(${ACC},.9)`;nx.beginPath();nx.arc(p.x,p.y,p.r,0,6.283);nx.fill()}
+  for(const p of nodes){nx.fillStyle=p.c?`rgba(${ACC2},.9)`:`rgba(${ACC},.85)`;nx.beginPath();nx.arc(p.x,p.y,p.r,0,6.283);nx.fill()}
   for(let k=packets.length-1;k>=0;k--){
     const q=packets[k];q.t+=q.s;if(q.t>=1){packets.splice(k,1);continue}
-    nx.shadowBlur=12;nx.shadowColor=`rgb(${ACC})`;nx.fillStyle='#fff';
-    nx.beginPath();nx.arc(lerp(q.a.x,q.b.x,q.t),lerp(q.a.y,q.b.y,q.t),2.2,0,6.283);nx.fill();nx.shadowBlur=0;
+    nx.shadowBlur=10;nx.shadowColor=`rgb(${ACC})`;nx.fillStyle='#fff';
+    nx.beginPath();nx.arc(lerp(q.a.x,q.b.x,q.t),lerp(q.a.y,q.b.y,q.t),2,0,6.283);nx.fill();nx.shadowBlur=0;
   }
 }
 sizeNet();addEventListener('resize',()=>{sizeNet();if(RM)drawNet()});
 if(RM)drawNet();
 if('IntersectionObserver' in window)new IntersectionObserver(es=>{heroVis=es[0].isIntersecting}).observe(hero);
-
-/* Glyphes flottants */
-(function(){
-  const g=$('#glyphs'),T=['{ }','</>','SELECT','git push','async','=>','λ','Σ','0101','npm i','df.head()','[ ]','&&','fn()','JSON','try{}','GET /','∑'];
-  for(let i=0;i<18;i++){const s=document.createElement('span');s.className='gl';s.textContent=T[i%T.length];
-    s.style.cssText=`left:${(Math.random()*94).toFixed(1)}%;top:${(Math.random()*100).toFixed(1)}%;font-size:${(.7+Math.random()*.7).toFixed(2)}rem;--t:${(16+Math.random()*16).toFixed(1)}s;--dl:${(-Math.random()*20).toFixed(1)}s;color:${i%3?'rgba(var(--acc-rgb),.55)':'rgba(var(--acc2-rgb),.6)'}`;g.appendChild(s)}
-})();
 
 /* Éditeur du hero : le code se tape tout seul */
 function typeInto(host,lines,{speed=22,onDone}={}){
@@ -850,14 +792,20 @@ onReady(()=>{
   typeInto(code,CODE,{speed:20,onDone:()=>setTimeout(()=>typeInto(term,TERM,{speed:24,onDone:()=>{const c=document.createElement('span');c.className='caret';term.lastChild.appendChild(c)}}),350)});
 });
 
-/* Ticker : stack puis projets */
+/* Rôles (machine à écrire) */
+onReady(()=>{
+  const el=$('#role');if(!el||RM)return;
+  const roles=['développeur web','data analyst',"créateur d'apps mobiles","bâtisseur de produits digitaux"];
+  let i=0,j=roles[0].length,del=true;
+  (function tick(){const w=roles[i];j+=del?-1:1;el.textContent=w.slice(0,j);let d=del?34:70;
+    if(!del&&j===w.length){d=2000;del=true}else if(del&&j===0){del=false;i=(i+1)%roles.length;d=340}
+    setTimeout(tick,d)})();
+});
+
+/* Bandeau : stack */
 (function(){
-  const rows=[
-    ['tech',['JavaScript','Python','Flutter','React Native','Node.js','Prisma','Firebase','Mapbox','Power BI','Streamlit','HTML/CSS','Git','Netlify','Vercel']],
-    ['proj rev',['Le Miri','Les Élites','Kadjokro','KSR Avocats','Coaching','TrajetCI','BabiTransport','CI Charts','Talents CI']]
-  ];
-  const m=$('#mq');
-  rows.forEach(([c,n])=>{const row=document.createElement('div');row.className='mq-row '+c;const h=n.map(x=>`<span>${x}</span>`).join('');row.innerHTML=h+h;m.appendChild(row)});
+  const n=['JavaScript','Python','Flutter','React Native','Node.js','Prisma','Firebase','Mapbox','Power BI','Streamlit','HTML/CSS','Git','Netlify','Vercel'];
+  const row=document.createElement('div');row.className='mq-row';const h=n.map(x=>`<span>${x}</span>`).join('');row.innerHTML=h+h;$('#mq').appendChild(row);
 })();
 
 /* Illustrations animées */
@@ -865,27 +813,27 @@ let uid=0;
 const MINT='var(--acc)',BLUE='var(--acc2)',AMB='var(--amb)',TXT='var(--txt)';
 const S=(b,x='')=>`<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"${x}>${b}</svg>`;
 const ART={
-  bars(){const id='g'+uid++;let r='';for(let i=0;i<14;i++){const h=34+Math.abs(Math.sin(i*1.9+uid))*96;r+=`<rect class="bar" style="--i:${i}" x="${20+i*20}" y="${(172-h).toFixed(1)}" width="12" height="${h.toFixed(1)}" rx="3" fill="url(#${id})"/>`}
+  bars(){const id='g'+uid++;let r='';for(let i=0;i<14;i++){const h=34+Math.abs(Math.sin(i*1.9+uid))*96;r+=`<rect class="bar" style="--i:${i}" x="${20+i*20}" y="${(172-h).toFixed(1)}" width="12" height="${h.toFixed(1)}" rx="2" fill="url(#${id})"/>`}
     return S(`<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${MINT}"/><stop offset="1" stop-color="${BLUE}" stop-opacity=".22"/></linearGradient></defs><path d="M10 172H310" stroke="rgba(var(--txt-rgb),.2)"/>${r}<path class="draw" pathLength="1" d="M20 126C56 76 82 146 122 96S192 44 232 84 286 34 304 52" fill="none" stroke="${TXT}" stroke-width="2" stroke-linecap="round"/>`)},
-  hbars(){let r='';[210,168,236,140,196,120,176].forEach((v,i)=>{r+=`<rect class="hbar" style="--i:${i}" x="30" y="${24+i*22}" width="${v}" height="11" rx="5.5" fill="${i%2?BLUE:MINT}" fill-opacity="${(.92-i*.07).toFixed(2)}"/>`});
+  hbars(){let r='';[210,168,236,140,196,120,176].forEach((v,i)=>{r+=`<rect class="hbar" style="--i:${i}" x="30" y="${24+i*22}" width="${v}" height="11" rx="2" fill="${i%2?BLUE:MINT}" fill-opacity="${(.92-i*.07).toFixed(2)}"/>`});
     return S(r+`<circle class="ping" cx="276" cy="48" r="5" fill="${TXT}"/>`)},
   route(){const id='r'+uid++;let g='';for(let i=1;i<8;i++)g+=`<path d="M${i*40} 0V200"/>`;for(let i=1;i<5;i++)g+=`<path d="M0 ${i*40}H320"/>`;
     return S(`<g stroke="rgba(var(--txt-rgb),.08)">${g}</g><path id="${id}" class="draw" pathLength="1" d="M28 164C70 154 86 104 128 110S206 160 244 98 286 62 294 40" fill="none" stroke="${MINT}" stroke-width="3" stroke-linecap="round"/><circle cx="28" cy="164" r="6" fill="${TXT}"/><circle class="ping" cx="294" cy="40" r="7" fill="none" stroke="${BLUE}"/><circle cx="294" cy="40" r="5" fill="${BLUE}"/><g><path d="M7 0L-6 -7L-3 0L-6 7Z" fill="${TXT}"/><animateMotion dur="5s" repeatCount="indefinite" rotate="auto"><mpath href="#${id}"/></animateMotion></g>`,' class="smil"')},
-  phone(){let t='';for(let i=0;i<4;i++){const x=116+(i%2)*46,y=62+Math.floor(i/2)*54;t+=`<g class="tile" style="--i:${i}"><rect x="${x}" y="${y}" width="40" height="46" rx="6" fill="rgba(var(--txt-rgb),.1)"/><rect x="${x+6}" y="${y+6}" width="28" height="22" rx="4" fill="${i%2?BLUE:MINT}" opacity=".85"/><rect x="${x+6}" y="${y+33}" width="18" height="4" rx="2" fill="rgba(var(--txt-rgb),.5)"/></g>`}
-    return S(`<rect x="100" y="8" width="120" height="188" rx="16" fill="var(--ink2)" stroke="rgba(var(--txt-rgb),.35)" stroke-width="2"/><rect x="132" y="16" width="56" height="6" rx="3" fill="rgba(var(--txt-rgb),.2)"/><rect x="110" y="32" width="100" height="16" rx="8" fill="rgba(var(--txt-rgb),.1)"/>${t}<circle class="ping" cx="196" cy="168" r="12" fill="none" stroke="${MINT}"/><g class="cart"><circle cx="196" cy="168" r="12" fill="${MINT}"/><path d="M190 164h3l2 8h8l2-6h-13" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`)},
-  chat(){const b=(i,x,y,w,fill,line,lw,lx)=>`<g class="bub" style="--i:${i}"><rect x="${x}" y="${y}" width="${w}" height="34" rx="14" fill="${fill}"/><rect x="${lx}" y="${y+14}" width="${lw}" height="6" rx="3" fill="${line}"/></g>`;
-    return S(b(0,40,26,150,'rgba(var(--txt-rgb),.14)','rgba(var(--txt-rgb),.5)',90,54)+b(1,130,72,150,MINT,'rgba(var(--ink-rgb),.7)',100,146)+b(2,40,118,170,'rgba(var(--txt-rgb),.14)','rgba(var(--txt-rgb),.5)',120,54)+`<g class="bub" style="--i:3"><rect x="40" y="162" width="64" height="26" rx="13" fill="rgba(var(--txt-rgb),.14)"/><circle class="dot3" style="--j:0" cx="58" cy="175" r="3.5" fill="${MINT}"/><circle class="dot3" style="--j:1" cx="72" cy="175" r="3.5" fill="${MINT}"/><circle class="dot3" style="--j:2" cx="86" cy="175" r="3.5" fill="${MINT}"/></g>`)},
+  phone(){let t='';for(let i=0;i<4;i++){const x=116+(i%2)*46,y=62+Math.floor(i/2)*54;t+=`<g class="tile" style="--i:${i}"><rect x="${x}" y="${y}" width="40" height="46" rx="4" fill="rgba(var(--txt-rgb),.1)"/><rect x="${x+6}" y="${y+6}" width="28" height="22" rx="3" fill="${i%2?BLUE:MINT}" opacity=".85"/><rect x="${x+6}" y="${y+33}" width="18" height="4" rx="2" fill="rgba(var(--txt-rgb),.5)"/></g>`}
+    return S(`<rect x="100" y="8" width="120" height="188" rx="14" fill="var(--ink2)" stroke="rgba(var(--txt-rgb),.35)" stroke-width="2"/><rect x="132" y="16" width="56" height="6" rx="3" fill="rgba(var(--txt-rgb),.2)"/><rect x="110" y="32" width="100" height="16" rx="4" fill="rgba(var(--txt-rgb),.1)"/>${t}<circle class="ping" cx="196" cy="168" r="12" fill="none" stroke="${MINT}"/><g class="cart"><circle cx="196" cy="168" r="12" fill="${MINT}"/><path d="M190 164h3l2 8h8l2-6h-13" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`)},
+  chat(){const b=(i,x,y,w,fill,line,lw,lx)=>`<g class="bub" style="--i:${i}"><rect x="${x}" y="${y}" width="${w}" height="34" rx="8" fill="${fill}"/><rect x="${lx}" y="${y+14}" width="${lw}" height="6" rx="3" fill="${line}"/></g>`;
+    return S(b(0,40,26,150,'rgba(var(--txt-rgb),.14)','rgba(var(--txt-rgb),.5)',90,54)+b(1,130,72,150,MINT,'rgba(var(--ink-rgb),.7)',100,146)+b(2,40,118,170,'rgba(var(--txt-rgb),.14)','rgba(var(--txt-rgb),.5)',120,54)+`<g class="bub" style="--i:3"><rect x="40" y="162" width="64" height="26" rx="8" fill="rgba(var(--txt-rgb),.14)"/><circle class="dot3" style="--j:0" cx="58" cy="175" r="3.5" fill="${MINT}"/><circle class="dot3" style="--j:1" cx="72" cy="175" r="3.5" fill="${MINT}"/><circle class="dot3" style="--j:2" cx="86" cy="175" r="3.5" fill="${MINT}"/></g>`)},
   heart(){return S(`<circle cx="110" cy="96" r="22" fill="rgba(var(--txt-rgb),.18)"/><path d="M80 186c0-30 14-46 30-46s30 16 30 46z" fill="rgba(var(--txt-rgb),.18)"/><circle cx="198" cy="118" r="15" fill="rgba(255,193,77,.55)"/><path d="M176 186c0-20 9-32 22-32s22 12 22 32z" fill="rgba(255,193,77,.55)"/><circle class="ping" cx="154" cy="74" r="16" fill="none" stroke="${AMB}"/><g class="heart"><path d="M154 94s-22-12-22-28c0-12 14-16 22-6 8-10 22-6 22 6 0 16-22 28-22 28z" fill="${AMB}"/></g>`)},
   code(){let r='';const rows=[[0,150,MINT],[16,96,BLUE],[16,126,TXT],[32,72,AMB],[32,110,MINT],[16,60,BLUE],[0,132,TXT],[0,84,MINT]];
-    rows.forEach(([ind,w,c],i)=>{r+=`<rect class="cline" style="--i:${i}" x="${40+ind}" y="${34+i*18}" width="${w}" height="8" rx="4" fill="${c}" fill-opacity=".85"/>`});
-    return S(`<rect x="22" y="14" width="276" height="172" rx="12" fill="rgba(var(--ink-rgb),.55)" stroke="rgba(var(--txt-rgb),.18)"/><circle cx="38" cy="26" r="3" fill="#ff5f57"/><circle cx="50" cy="26" r="3" fill="#febc2e"/><circle cx="62" cy="26" r="3" fill="#28c840"/>${r}<rect class="blk" x="${40+96}" y="${34+8*18-2}" width="6" height="12" fill="${MINT}"/>`)},
+    rows.forEach(([ind,w,c],i)=>{r+=`<rect class="cline" style="--i:${i}" x="${40+ind}" y="${34+i*18}" width="${w}" height="8" rx="2" fill="${c}" fill-opacity=".85"/>`});
+    return S(`<rect x="22" y="14" width="276" height="172" rx="8" fill="rgba(var(--ink-rgb),.55)" stroke="rgba(var(--txt-rgb),.18)"/><circle cx="38" cy="26" r="3" fill="#ff5f57"/><circle cx="50" cy="26" r="3" fill="#febc2e"/><circle cx="62" cy="26" r="3" fill="#28c840"/>${r}<rect class="blk" x="${40+96}" y="${34+8*18-2}" width="6" height="12" fill="${MINT}"/>`)},
   graph(){return S(`<path class="draw" pathLength="1" d="M20 130H300" fill="none" stroke="${MINT}" stroke-width="2.5"/><path class="draw" pathLength="1" d="M80 130C104 130 100 76 136 76H206C240 76 232 130 262 130" fill="none" stroke="${BLUE}" stroke-width="2.5"/><path class="draw" pathLength="1" d="M136 130C150 130 150 168 176 168H240" fill="none" stroke="${AMB}" stroke-width="2.5"/>${[[20,130,MINT],[80,130,MINT],[136,76,BLUE],[206,76,BLUE],[262,130,MINT],[300,130,MINT],[176,168,AMB],[240,168,AMB]].map(([x,y,c],i)=>`<circle class="tile" style="--i:${i}" cx="${x}" cy="${y}" r="6" fill="var(--ink)" stroke="${c}" stroke-width="2.5"/>`).join('')}<circle class="ping" cx="300" cy="130" r="7" fill="none" stroke="${MINT}"/>`)}
 };
-$$('[data-art]').forEach(el=>{
+$$('.media[data-art]').forEach(el=>{
   const holder=document.createElement('div');holder.className='art';
   holder.style.setProperty('--b','var(--b'+(el.dataset.v||1)+')');
   holder.innerHTML=ART[el.dataset.art]();
-  if(el.classList.contains('media'))el.prepend(holder);else el.appendChild(holder);
+  el.prepend(holder);
 });
 if(RM)$$('svg.smil').forEach(s=>{try{s.pauseAnimations()}catch(e){}});
 
@@ -908,103 +856,45 @@ if(RM)$$('svg.smil').forEach(s=>{try{s.pauseAnimations()}catch(e){}});
   boxes.forEach(b=>lio.observe(b));
 })();
 
-/* Révélations, compteurs, décodage des labels, navigation active */
-function scramble(el){
-  const full=el.dataset.t||el.textContent;el.dataset.t=full;if(RM){el.textContent=full;return}
-  const ch='abcdefghijklmnopqrstuvwxyz0123456789{}<>/_=;';let f=0;
-  (function step(){el.textContent=[...full].map((c,i)=>i<f||c===' '?c:ch[Math.floor(Math.random()*ch.length)]).join('');f+=.8;if(f<full.length+1)requestAnimationFrame(step);else el.textContent=full})();
-}
+/* Révélations, compteurs, navigation active */
 function count(el){
   const to=+el.dataset.count,suf=el.dataset.suffix||'';
   if(RM){el.textContent=to+suf;return}
   onReady(()=>{const d=1700,s=performance.now();(function f(n){const p=clamp((n-s)/d,0,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e)+suf;if(p<1)requestAnimationFrame(f)})(s)});
 }
-if(!RM){$$('[data-count]').forEach(el=>{el.textContent='0'+(el.dataset.suffix||'')});$$('.cue .ct').forEach(el=>{el.dataset.t=el.textContent})}
-onReady(()=>{const c=$('#heroCue .ct');c&&scramble(c)});
-$$('.grid').forEach(g=>[...g.children].forEach((c,i)=>{if(c.classList.contains('cw'))c.style.transitionDelay=(i%3)*90+'ms'}));
+if(!RM)$$('[data-count]').forEach(el=>{el.textContent='0'+(el.dataset.suffix||'')});
+$$('.grid').forEach(g=>[...g.children].forEach((c,i)=>{if(c.classList.contains('cw'))c.style.transitionDelay=(i%3)*70+'ms'}));
 if('IntersectionObserver' in window){
   const io=new IntersectionObserver(es=>es.forEach(e=>{
     if(!e.isIntersecting)return;const t=e.target;t.classList.add('on');io.unobserve(t);
     if(t.hasAttribute('data-count'))count(t);
-    if(t.classList.contains('cue')){const c=$('.ct',t);c&&scramble(c)}
   }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   $$('.rv,.ttl,[data-count]').forEach(el=>io.observe(el));
   const io2=new IntersectionObserver(es=>es.forEach(e=>{const vis=e.isIntersecting;e.target.classList.toggle('offscreen',!vis);if(!RM)$$('svg.smil',e.target).forEach(s=>{try{vis?s.unpauseAnimations():s.pauseAnimations()}catch(x){}})}),{rootMargin:'120px 0px'});
   $$('main>section,main>div,footer').forEach(s=>io2.observe(s));
-  const links=$$('.links a,.rail a'),secs=['hero','perso','projets','about','contact'];
+  const links=$$('.links a:not(.cta)'),secs=['hero','perso','projets','about','contact'];
   const io3=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const id=e.target.id;links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));$$('.rail a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id))}),{rootMargin:'-45% 0px -50% 0px'});
   secs.forEach(id=>{const s=document.getElementById(id);s&&io3.observe(s)});
 }else{$$('.rv,.ttl').forEach(el=>el.classList.add('on'))}
 
-/* Rôles (machine à écrire) */
-onReady(()=>{
-  const el=$('#role');if(!el||RM)return;
-  const roles=['développeur web','data analyst',"créateur d'apps mobiles","bâtisseur de produits digitaux"];
-  let i=0,j=roles[0].length,del=true;
-  (function tick(){const w=roles[i];j+=del?-1:1;el.textContent=w.slice(0,j);let d=del?34:70;
-    if(!del&&j===w.length){d=1900;del=true}else if(del&&j===0){del=false;i=(i+1)%roles.length;d=340}
-    setTimeout(tick,d)})();
-});
-
-/* Parallaxe, progression, curseur : une seule boucle */
-const nav=$('#nav'),bar=$('#progress'),headEl=$('#head'),heroIn=$('#heroIn'),px=$$('.px[data-d]');
-const ring=$('#ring'),dot=$('#dot'),ringL=$('b',ring);
-let sy=scrollY,mx=0,my=0,tx=0,ty=0,cxp=0,cyp=0,rx=0,ry=0,lastSolid=null;
+/* Progression, repère HEAD, parallaxe discrète : une seule boucle */
+const nav=$('#nav'),bar=$('#progress'),headEl=$('#head'),px=$$('.px[data-d]');
+let sy=scrollY,mx=0,my=0,tx=0,ty=0,lastSolid=null;
 addEventListener('scroll',()=>{sy=scrollY},{passive:true});
-addEventListener('pointermove',e=>{
-  mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;pxm=e.clientX;pym=e.clientY+scrollY;
-  if(FINE&&!RM){cxp=e.clientX;cyp=e.clientY;dot.style.transform=`translate3d(${cxp}px,${cyp}px,0)`;root.classList.add('has-cursor')}
-},{passive:true});
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;pxm=e.clientX;pym=e.clientY+scrollY},{passive:true});
 function frame(){
   const h=innerHeight,max=document.documentElement.scrollHeight-h,p=max>0?clamp(sy/max,0,1):0;
   bar.style.transform=`scaleX(${p.toFixed(4)})`;
   headEl.style.top=(p*100).toFixed(2)+'%';
   const solid=sy>30;if(solid!==lastSolid){nav.classList.toggle('solid',solid);lastSolid=solid}
-  if(sy<h*1.3){
-    if(!RM){
-      tx=lerp(tx,mx,.06);ty=lerp(ty,my,.06);
-      for(const el of px){const d=+el.dataset.d;el.style.transform=`translate3d(${(-tx*d*38).toFixed(2)}px,${(-ty*d*16+sy*(1-d)*.24).toFixed(2)}px,0)`}
-      heroIn.style.transform=`translateY(${(sy*.2).toFixed(1)}px)`;
-      heroIn.style.opacity=clamp(1-sy/(h*.75),0,1).toFixed(3);
-      if(heroVis)drawNet();
-    }
+  if(sy<h*1.3&&!RM){
+    tx=lerp(tx,mx,.06);ty=lerp(ty,my,.06);
+    for(const el of px){const d=+el.dataset.d;el.style.transform=`translate3d(${(-tx*d*30).toFixed(2)}px,${(-ty*d*14+sy*(1-d)*.2).toFixed(2)}px,0)`}
+    if(heroVis)drawNet();
   }
-  if(FINE&&!RM){rx=lerp(rx,cxp,.16);ry=lerp(ry,cyp,.16);ring.style.transform=`translate3d(${rx.toFixed(1)}px,${ry.toFixed(1)}px,0)`}
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-if(FINE&&!RM){
-  document.addEventListener('pointerover',e=>{
-    const lab=e.target.closest('[data-cur]'),big=e.target.closest('a,button,.card,.chip');
-    ring.classList.toggle('lab',!!lab);ring.classList.toggle('big',!!big&&!lab);
-    if(lab)ringL.textContent=lab.dataset.cur;
-  });
-}
-
-/* Clic sur le hero : onde de ping */
-hero.addEventListener('click',e=>{
-  if(RM||e.target.closest('a,button,.ide'))return;
-  const r=hero.getBoundingClientRect(),i=document.createElement('i');i.className='rip';
-  i.style.left=(e.clientX-r.left)+'px';i.style.top=(e.clientY-r.top)+'px';hero.appendChild(i);i.addEventListener('animationend',()=>i.remove());
-});
-
-/* Cartes : inclinaison 3D + halo qui suit le pointeur */
-function bindFx(scope){
-  if(!FINE||RM)return;
-  $$('.card:not(.soon)',scope).forEach(c=>{
-    c.addEventListener('pointermove',e=>{
-      const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
-      c.classList.add('tilt');c.style.setProperty('--mx',(x*100)+'%');c.style.setProperty('--my',(y*100)+'%');
-      c.style.transform=`rotateX(${((.5-y)*8).toFixed(2)}deg) rotateY(${((x-.5)*10).toFixed(2)}deg) translateY(-6px)`;
-    });
-    c.addEventListener('pointerleave',()=>{c.classList.remove('tilt');c.style.transform=''});
-  });
-  $$('.mag',scope).forEach(b=>{
-    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${((e.clientX-r.left-r.width/2)*.2).toFixed(1)}px,${((e.clientY-r.top-r.height/2)*.3).toFixed(1)}px)`});
-    b.addEventListener('pointerleave',()=>{b.style.transform=''});
-  });
-}
-bindFx(document);
 
 /* Filtres : type puis secteur */
 const TYPES=[['all','Tous'],['site','Sites web'],['app','Apps mobiles'],['data','Data & IA'],['produit','Produits']];
@@ -1012,30 +902,29 @@ const items=$$('#pgrid>.cw'),groups=$$('#pgrid>.grp');
 const subsOf=t=>[...new Set(items.filter(i=>i.dataset.type===t).map(i=>i.dataset.sub))];
 let fType='all',fSub='';
 const fbox=$('#filters');
-const row1=document.createElement('div'),row2=document.createElement('div'),fcount=document.createElement('p');
-row1.className='frow';row2.className='frow sub';row2.hidden=true;fcount.className='fcount';fcount.setAttribute('aria-live','polite');
-fbox.append(row1,row2,fcount);
+const fbar=document.createElement('div'),tabs=document.createElement('div'),fcount=document.createElement('p'),subRow=document.createElement('div');
+fbar.className='fbar';tabs.className='tabs';fcount.className='fcount';fcount.setAttribute('aria-live','polite');subRow.className='subtabs';subRow.hidden=true;
+fbar.append(tabs,fcount);fbox.append(fbar,subRow);
 function showItem(el,on){
   clearTimeout(el._t);
   if(on){if(!el.hidden&&!el.classList.contains('out'))return;el.hidden=false;void el.offsetWidth;el.classList.remove('out')}
-  else{if(el.hidden)return;el.classList.add('out');el._t=setTimeout(()=>{el.hidden=true},RM?0:260)}
+  else{if(el.hidden)return;el.classList.add('out');el._t=setTimeout(()=>{el.hidden=true},RM?0:240)}
 }
 function applyFilter(type,sub=''){
   fType=type;fSub=sub;let n=0;
   items.forEach(el=>{const ok=(type==='all'||el.dataset.type===type)&&(!sub||el.dataset.sub===sub);if(ok)n++;showItem(el,ok)});
-  groups.forEach(g=>{const has=items.some(i=>i.dataset.type===g.dataset.type&&(!sub||i.dataset.sub===sub)&&(type==='all'||type===g.dataset.type));g.hidden=!has;
-    $('small',g).textContent=items.filter(i=>i.dataset.type===g.dataset.type&&(!sub||i.dataset.sub===sub)).length+' projets'});
-  renderChips();
-  fcount.textContent=n+' projet'+(n>1?'s':'')+(type!=='all'?' · filtre : '+(TYPES.find(t=>t[0]===type)[1])+(sub?' / '+sub:''):'');
+  groups.forEach(g=>{const c=items.filter(i=>i.dataset.type===g.dataset.type&&(!sub||i.dataset.sub===sub)).length;g.hidden=!(c&&(type==='all'||type===g.dataset.type));$('small',g).textContent=c+' projet'+(c>1?'s':'')});
+  renderTabs();
+  fcount.textContent='> '+n+' projet'+(n>1?'s':'')+(type!=='all'?' · '+TYPES.find(t=>t[0]===type)[1]+(sub?' / '+sub:''):'');
 }
-function renderChips(){
-  row1.innerHTML=TYPES.map(([k,l])=>`<button class="chip" type="button" data-t="${k}" aria-pressed="${fType===k}">${l}<b>${k==='all'?items.length:items.filter(i=>i.dataset.type===k).length}</b></button>`).join('');
+function renderTabs(){
+  tabs.innerHTML=TYPES.map(([k,l])=>`<button class="tab" type="button" data-t="${k}" aria-pressed="${fType===k}">${l}<sup>${k==='all'?items.length:items.filter(i=>i.dataset.type===k).length}</sup></button>`).join('');
   const subs=fType==='all'?[]:subsOf(fType);
-  row2.hidden=subs.length<2;
-  row2.innerHTML=subs.map(s=>`<button class="chip" type="button" data-s="${s.replace(/"/g,'&quot;')}" aria-pressed="${fSub===s}">${s}<b>${items.filter(i=>i.dataset.type===fType&&i.dataset.sub===s).length}</b></button>`).join('');
+  subRow.hidden=subs.length<2;
+  subRow.innerHTML=subs.length<2?'':'<span>secteur :</span>'+subs.map(s=>`<button class="stab" type="button" data-s="${s.replace(/"/g,'&quot;')}" aria-pressed="${fSub===s}">${s}</button>`).join('');
 }
 fbox.addEventListener('click',e=>{
-  const c=e.target.closest('.chip');if(!c)return;
+  const c=e.target.closest('.tab,.stab');if(!c)return;
   if(c.dataset.t!==undefined)applyFilter(c.dataset.t,'');
   else applyFilter(fType,fSub===c.dataset.s?'':c.dataset.s);
 });
