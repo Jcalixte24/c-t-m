@@ -60,9 +60,10 @@ html[data-theme="emeraude"]{--ink:#060A12;--ink-rgb:6,10,18;--ink2:#070C16;--pan
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--ink);color:var(--txt);font:400 1rem/1.65 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 body.lock{overflow:hidden}
-a{color:inherit;text-decoration:none}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
 img,svg{display:block;max-width:100%}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent}
+input{-webkit-appearance:none;appearance:none;border-radius:0}
 kbd{font:500 .7rem/1 var(--mono)}
 :focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:2px}
 section[id]{scroll-margin-top:56px}
@@ -196,7 +197,7 @@ section[id]{scroll-margin-top:56px}
 .metrics dt{font:400 .74rem/1.3 var(--mono);color:var(--muted);margin-top:10px}
 
 /* Éditeur (hero) */
-.ide{\1font:400 .9rem/1.75 var(--mono)}
+.ide{isolation:isolate;border:1px solid var(--line2);border-radius:8px;background:rgba(var(--panel-rgb),.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 40px 80px -40px #000;overflow:hidden;font:400 .9rem/1.75 var(--mono)}
 .ide-bar{display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);background:rgba(var(--card-rgb),.9)}
 .ide-bar i{width:9px;height:9px;border-radius:50%;flex:none}
 .ide-bar i:nth-child(1){background:#ff5f57}.ide-bar i:nth-child(2){background:#febc2e}.ide-bar i:nth-child(3){background:#28c840}
@@ -223,7 +224,7 @@ section[id]{scroll-margin-top:56px}
 .facts{margin:26px 0 30px;border-top:1px solid var(--line)}
 .facts div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.92rem}
 .facts dt{font:400 .74rem/1.7 var(--mono);color:var(--muted)}
-.browser{border:1px solid var(--line2);border-radius:8px;overflow:hidden;background:var(--ink2);box-shadow:0 40px 70px -40px #000}
+.browser{isolation:isolate;-webkit-transform:translateZ(0);transform:translateZ(0);border:1px solid var(--line2);border-radius:8px;overflow:hidden;background:var(--ink2);box-shadow:0 40px 70px -40px #000}
 .browser .bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;background:rgba(var(--card-rgb),.95);border-bottom:1px solid var(--line)}
 .browser .bar i{width:8px;height:8px;border-radius:50%;background:rgba(var(--txt-rgb),.2)}
 .browser .bar i:first-child{background:#ff5f57}.browser .bar i:nth-child(2){background:#febc2e}
@@ -252,6 +253,7 @@ section[id]{scroll-margin-top:56px}
 .card{display:flex;flex-direction:column;height:100%;position:relative;transition:background .3s}
 a.card:hover,a.card:focus-visible{background:rgba(var(--acc-rgb),.05)}
 .media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink);isolation:isolate;border-bottom:1px solid var(--line)}
+@supports not (aspect-ratio:1/1){.media::before{content:"";display:block;padding-top:62.5%}}
 .media .art{position:absolute;inset:0;--a:var(--card);background:radial-gradient(120% 90% at 20% 8%,var(--b,var(--b1)),transparent 62%),linear-gradient(135deg,var(--a),var(--ink2))}
 .art svg{width:100%;height:100%}
 .media iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;pointer-events:none;opacity:0;transition:opacity .9s;background:#fff}
@@ -329,7 +331,7 @@ a.card:hover .url::after{transform:translateX(5px)}
 .pal-box{width:min(620px,100%);border:1px solid var(--line2);border-radius:8px;background:var(--panel);box-shadow:0 50px 100px -30px #000;overflow:hidden}
 .pal-in{display:flex;align-items:center;gap:12px;padding:0 18px;border-bottom:1px solid var(--line)}
 .pal-in .pr{font:500 1rem/1 var(--mono)}
-.pal-in input{flex:1;min-width:0;height:54px;background:none;border:0;outline:0;color:var(--txt);font:400 .98rem/1 var(--mono)}
+.pal-in input{flex:1;min-width:0;height:54px;background:none;border:0;outline:0;color:var(--txt);font:400 16px/1 var(--mono)}
 .pal-in input::placeholder{color:var(--dim)}
 .pal-list{list-style:none;max-height:min(46vh,360px);overflow-y:auto;padding:8px}
 .pal-list li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:4px;font:400 .82rem/1.3 var(--mono);color:var(--muted);cursor:pointer}
@@ -347,7 +349,7 @@ a.card:hover .url::after{transform:translateX(5px)}
   .cgrid{grid-template-columns:minmax(0,1fr);margin-left:0}
 }
 @media(max-width:920px){
-  .links{display:none}.burger{display:flex}.cmd .lbl{display:none}.brand small{display:none}
+  .links{display:none}.burger{display:flex}.cmd .lbl{display:none}.cmd{min-width:44px;min-height:44px;justify-content:center}.brand small{display:none}
 }
 @media(max-width:760px){
   .sh{grid-template-columns:minmax(0,1fr);gap:12px}
@@ -397,7 +399,7 @@ a.card:hover .url::after{transform:translateX(5px)}
         <a class="cta" href="#contact">Contact</a>
       </nav>
       <button class="theme" id="theme" type="button" aria-label="Changer le thème de couleurs" title="Changer de thème"><i></i></button>
-      <button class="cmd" id="cmdk" type="button" aria-label="Ouvrir la palette de commandes" aria-haspopup="dialog"><span class="lbl">Chercher</span><kbd id="kbd">Ctrl K</kbd></button>
+      <button class="cmd" id="cmdk" type="button" aria-label="Ouvrir la palette de commandes" aria-haspopup="dialog"><svg class="ic" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="lbl">Chercher</span><kbd id="kbd">Ctrl K</kbd></button>
       <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -819,7 +821,7 @@ const ART={
   hbars(){let r='';[210,168,236,140,196,120,176].forEach((v,i)=>{r+=`<rect class="hbar" style="--i:${i}" x="30" y="${24+i*22}" width="${v}" height="11" rx="2" fill="${i%2?BLUE:MINT}" fill-opacity="${(.92-i*.07).toFixed(2)}"/>`});
     return S(r+`<circle class="ping" cx="276" cy="48" r="5" fill="${TXT}"/>`)},
   route(){const id='r'+uid++;let g='';for(let i=1;i<8;i++)g+=`<path d="M${i*40} 0V200"/>`;for(let i=1;i<5;i++)g+=`<path d="M0 ${i*40}H320"/>`;
-    return S(`<g stroke="rgba(var(--txt-rgb),.08)">${g}</g><path id="${id}" class="draw" pathLength="1" d="M28 164C70 154 86 104 128 110S206 160 244 98 286 62 294 40" fill="none" stroke="${MINT}" stroke-width="3" stroke-linecap="round"/><circle cx="28" cy="164" r="6" fill="${TXT}"/><circle class="ping" cx="294" cy="40" r="7" fill="none" stroke="${BLUE}"/><circle cx="294" cy="40" r="5" fill="${BLUE}"/><g><path d="M7 0L-6 -7L-3 0L-6 7Z" fill="${TXT}"/><animateMotion dur="5s" repeatCount="indefinite" rotate="auto"><mpath href="#${id}"/></animateMotion></g>`,' class="smil"')},
+    return S(`<g stroke="rgba(var(--txt-rgb),.08)">${g}</g><path id="${id}" class="draw" pathLength="1" d="M28 164C70 154 86 104 128 110S206 160 244 98 286 62 294 40" fill="none" stroke="${MINT}" stroke-width="3" stroke-linecap="round"/><circle cx="28" cy="164" r="6" fill="${TXT}"/><circle class="ping" cx="294" cy="40" r="7" fill="none" stroke="${BLUE}"/><circle cx="294" cy="40" r="5" fill="${BLUE}"/><g><path d="M7 0L-6 -7L-3 0L-6 7Z" fill="${TXT}"/><animateMotion dur="5s" repeatCount="indefinite" rotate="auto"><mpath href="#${id}" xlink:href="#${id}"/></animateMotion></g>`,' class="smil"')},
   phone(){let t='';for(let i=0;i<4;i++){const x=116+(i%2)*46,y=62+Math.floor(i/2)*54;t+=`<g class="tile" style="--i:${i}"><rect x="${x}" y="${y}" width="40" height="46" rx="4" fill="rgba(var(--txt-rgb),.1)"/><rect x="${x+6}" y="${y+6}" width="28" height="22" rx="3" fill="${i%2?BLUE:MINT}" opacity=".85"/><rect x="${x+6}" y="${y+33}" width="18" height="4" rx="2" fill="rgba(var(--txt-rgb),.5)"/></g>`}
     return S(`<rect x="100" y="8" width="120" height="188" rx="14" fill="var(--ink2)" stroke="rgba(var(--txt-rgb),.35)" stroke-width="2"/><rect x="132" y="16" width="56" height="6" rx="3" fill="rgba(var(--txt-rgb),.2)"/><rect x="110" y="32" width="100" height="16" rx="4" fill="rgba(var(--txt-rgb),.1)"/>${t}<circle class="ping" cx="196" cy="168" r="12" fill="none" stroke="${MINT}"/><g class="cart"><circle cx="196" cy="168" r="12" fill="${MINT}"/><path d="M190 164h3l2 8h8l2-6h-13" stroke="var(--ink)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`)},
   chat(){const b=(i,x,y,w,fill,line,lw,lx)=>`<g class="bub" style="--i:${i}"><rect x="${x}" y="${y}" width="${w}" height="34" rx="8" fill="${fill}"/><rect x="${lx}" y="${y+14}" width="${lw}" height="6" rx="3" fill="${line}"/></g>`;
@@ -834,6 +836,7 @@ $$('.media[data-art]').forEach(el=>{
   const holder=document.createElement('div');holder.className='art';
   holder.style.setProperty('--b','var(--b'+(el.dataset.v||1)+')');
   holder.innerHTML=ART[el.dataset.art]();
+  holder.querySelectorAll('[fill*="var("],[stroke*="var("],[stop-color*="var("]').forEach(n=>['fill','stroke','stop-color'].forEach(a=>{const v=n.getAttribute(a);if(v&&v.includes('var(')){n.style.setProperty(a,v);n.removeAttribute(a)}}));
   el.prepend(holder);
 });
 if(RM)$$('svg.smil').forEach(s=>{try{s.pauseAnimations()}catch(e){}});
