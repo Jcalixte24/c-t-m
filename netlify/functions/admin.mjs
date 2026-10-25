@@ -1,7 +1,7 @@
 /* API de l'espace admin (/api/admin/*) : connexion, visites, contenu du portfolio. */
 import {
   HttpError, json, readJson, requireAdmin, adminConfigured, checkPassword, signToken, authStore,
-  loginAllowed, nextFailureRecord, ipKey, visitsStore, contentStore, sanitizeContent,
+  loginAllowed, nextFailureRecord, ipKey, visitsStore, contentStore, mediaStore, sanitizeContent, parseImageDataUrl, MAX_IMAGE_BYTES,
 } from "./_lib.mjs";
 
 const MAX_VISITS = 3000;
@@ -67,6 +67,13 @@ async function deleteVisits(url) {
   return json(200, { deleted });
 }
 
+async function uploadMedia(req) {
+  const body = await readJson(req, Math.ceil(MAX_IMAGE_BYTES * 1.4) + 1024);
+  const image = parseImageDataUrl(body.dataUrl);
+  await mediaStore().set(image.id, image.bytes, { metadata: { type: image.type } });
+  return json(200, { id: image.id });
+}
+
 async function putContent(req) {
   const body = await readJson(req);
   const clean = sanitizeContent(body);
@@ -88,9 +95,10 @@ export default async (req, context) => {
     if (route === "visits" && req.method === "DELETE") return await deleteVisits(url);
     if (route === "content" && req.method === "GET") {
       const stored = await contentStore().get("projects", { type: "json" });
-      return json(200, stored ?? { version: 1, projects: {}, added: [] });
+      return json(200, stored ?? { version: 1, projects: {}, added: [], texts: {} });
     }
     if (route === "content" && req.method === "PUT") return await putContent(req);
+    if (route === "media" && req.method === "POST") return await uploadMedia(req);
 
     throw new HttpError(404, "Route inconnue");
   } catch (err) {

@@ -43,6 +43,7 @@ export class HttpError extends Error {
 
 export const visitsStore = () => getStore({ name: "ctm-visits", consistency: "strong" });
 export const contentStore = () => getStore({ name: "ctm-content", consistency: "strong" });
+export const mediaStore = () => getStore({ name: "ctm-media", consistency: "strong" });
 export const authStore = () => getStore({ name: "ctm-auth", consistency: "strong" });
 
 /* ---------- authentification administrateur ---------- */
@@ -137,6 +138,9 @@ export function safeUrl(value) {
 }
 
 const ID_RE = /^[a-z0-9][a-z0-9-]{0,59}$/;
+export const TEXT_KEY_RE = /^[a-z0-9][a-z0-9-]{0,49}$/;
+export const IMAGE_ID_RE = /^[a-f0-9]{24}\.(jpg|png|webp)$/;
+export const MAX_IMAGE_BYTES = 3 * 1024 * 1024;
 
 function cleanProject(input, { requireId }) {
   if (!input || typeof input !== "object") return null;
@@ -152,13 +156,14 @@ function cleanProject(input, { requireId }) {
   if ("url" in input) out.url = safeUrl(input.url);
   if (input.status === "live" || input.status === "wip") out.status = input.status;
   if (ART_KINDS.includes(input.art)) out.art = input.art;
+  if (typeof input.image === "string" && (input.image === "" || IMAGE_ID_RE.test(input.image))) out.image = input.image;
   if (input.hidden === true) out.hidden = true;
   if (input.preview === true) out.preview = true;
   return out;
 }
 
 export function sanitizeContent(input) {
-  const result = { version: 1, updatedAt: new Date().toISOString(), projects: {}, added: [] };
+  const result = { version: 1, updatedAt: new Date().toISOString(), projects: {}, added: [], texts: {} };
   if (!input || typeof input !== "object") return result;
 
   const projects = input.projects && typeof input.projects === "object" ? input.projects : {};
@@ -166,6 +171,12 @@ export function sanitizeContent(input) {
     if (!ID_RE.test(id)) continue;
     const cleaned = cleanProject(value, { requireId: false });
     if (cleaned && Object.keys(cleaned).length) result.projects[id] = cleaned;
+  }
+
+  const texts = input.texts && typeof input.texts === "object" ? input.texts : {};
+  for (const [key, value] of Object.entries(texts).slice(0, 100)) {
+    const text = cleanStr(value, 600);
+    if (TEXT_KEY_RE.test(key) && text) result.texts[key] = text;
   }
 
   const seen = new Set();
@@ -209,4 +220,25 @@ export function parseUserAgent(ua = "") {
     /Linux/i.test(ua) ? "Linux" : "Autre";
   const version = (/(?:Edg|OPR|Firefox|Chrome|Version)\/(\d+)/.exec(ua) || [])[1] || "";
   return { browser, browserVersion: version, os };
+}
+
+/* ---------- images envoyées depuis l'admin ---------- */
+
+const SIGNATURES = [
+  { type: "image/jpeg", ext: "jpg", test: (b) => b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff },
+  { type: "image/png", ext: "png", test: (b) => b[0] === 0x89 && b[1] === 0x50 && b[2] === 0x4e && b[3] === 0x47 },
+  { type: "image/webp", ext: "webp", test: (b) => b.length > 12 && b.toString("ascii", 0, 4) === "RIFF" && b.toString("ascii", 8, 12) === "WEBP" },
+];
+
+/* Décode une image « data:image/…;base64,… » et vérifie son contenu réel (pas seulement le type annoncé).
+   Le SVG est refusé : il peut contenir du script. */
+export function parseImageDataUrl(dataUrl) {
+  const m = /^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/=]+)$/.exec(typeof dataUrl === "string" ? dataUrl : "");
+  if (!m) throw new HttpError(400, "Image invalide (JPEG, PNG ou WebP uniquement)");
+  const bytes = Buffer.from(m[2], "base64");
+  if (!bytes.length || bytes.length > MAX_IMAGE_BYTES) throw new HttpError(413, "Image trop lourde (3 Mo maximum)");
+  const sig = SIGNATURES.find((x) => x.test(bytes));
+  if (!sig) throw new HttpError(400, "Le contenu du fichier n'est pas une image reconnue");
+  const id = createHash("sha256").update(bytes).digest("hex").slice(0, 24) + "." + sig.ext;
+  return { id, bytes, type: sig.type };
 }

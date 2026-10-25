@@ -146,3 +146,39 @@ test("resolveDay garde le jour du navigateur s'il est proche de l'heure serveur"
   assert.equal(resolveDay("n'importe quoi", now), "2026-10-25");
   assert.equal(resolveDay(undefined, now), "2026-10-25");
 });
+
+import { parseImageDataUrl, IMAGE_ID_RE, MAX_IMAGE_BYTES, HttpError } from "../netlify/functions/_lib.mjs";
+
+const PNG_1PX = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==";
+
+test("sanitizeContent garde les textes valides et ignore les clés ou valeurs vides", () => {
+  const out = sanitizeContent({ texts: { "perso-titre": "  Nouveau titre ", "Mauvaise Clé": "x", vide: "   ", "hero-projets": "25+" } });
+  assert.deepEqual(out.texts, { "perso-titre": "Nouveau titre", "hero-projets": "25+" });
+});
+
+test("sanitizeContent n'accepte que des identifiants d'image générés par le serveur", () => {
+  const ok = "0123456789abcdef01234567.jpg";
+  const out = sanitizeContent({ projects: { a: { image: ok } }, added: [{ id: "b", image: "../../etc/passwd" }, { id: "c", image: "http://evil/x.jpg" }] });
+  assert.equal(out.projects.a.image, ok);
+  assert.equal("image" in out.added[0], false);
+  assert.equal("image" in out.added[1], false);
+  assert.equal(IMAGE_ID_RE.test(ok), true);
+  assert.equal(IMAGE_ID_RE.test("x.jpg"), false);
+});
+
+test("parseImageDataUrl accepte une vraie image et renvoie un identifiant stable", () => {
+  const a = parseImageDataUrl("data:image/png;base64," + PNG_1PX);
+  const b = parseImageDataUrl("data:image/png;base64," + PNG_1PX);
+  assert.equal(a.type, "image/png");
+  assert.equal(a.id, b.id);
+  assert.equal(IMAGE_ID_RE.test(a.id), true);
+});
+
+test("parseImageDataUrl refuse SVG, faux types, texte déguisé et fichiers trop lourds", () => {
+  const svg = Buffer.from("<svg xmlns='http://www.w3.org/2000/svg'><script>alert(1)</script></svg>").toString("base64");
+  const disguised = Buffer.from("<html><script>alert(1)</script></html>").toString("base64");
+  const big = Buffer.concat([Buffer.from([0xff, 0xd8, 0xff]), Buffer.alloc(MAX_IMAGE_BYTES)]).toString("base64");
+  for (const bad of ["data:image/svg+xml;base64," + svg, "data:image/png;base64," + disguised, "data:image/jpeg;base64," + big, "data:text/html;base64," + svg, "n'importe quoi", null]) {
+    assert.throws(() => parseImageDataUrl(bad), HttpError);
+  }
+});

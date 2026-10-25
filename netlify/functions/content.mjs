@@ -5,12 +5,12 @@ export default async (req) => {
   if (req.method !== "GET") return json(405, { error: "Méthode non autorisée" });
   try {
     const stored = await contentStore().get("projects", { type: "json" });
-    const content = stored ? sanitizeContent(stored) : { version: 1, projects: {}, added: [] };
+    const content = stored ? sanitizeContent(stored) : { version: 1, projects: {}, added: [], texts: {} };
     if (stored?.updatedAt) content.updatedAt = stored.updatedAt;
     return json(200, content, { "Cache-Control": "public, max-age=0, must-revalidate" });
   } catch (err) {
     console.error("content:", err);
-    return json(200, { version: 1, projects: {}, added: [] });
+    return json(200, { version: 1, projects: {}, added: [], texts: {} });
   }
 };
 

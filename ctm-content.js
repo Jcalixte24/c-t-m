@@ -25,6 +25,54 @@
 
   var TYPE_LABEL = { site: "Web", app: "App", data: "Data", produit: "Produit" };
 
+  var IMAGE_RE = /^[a-f0-9]{24}\.(jpg|png|webp)$/;
+
+  function ensureShotStyle() {
+    if (document.getElementById("ctm-shot-style")) return;
+    var st = document.createElement("style");
+    st.id = "ctm-shot-style";
+    st.textContent = ".media .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}";
+    document.head.appendChild(st);
+  }
+
+  /* Image téléversée depuis l'admin : remplace l'illustration et l'aperçu en direct de la carte. */
+  function setImage(card, id, alt) {
+    var media = card.querySelector(".media");
+    if (!media || !IMAGE_RE.test(String(id || ""))) return;
+    ensureShotStyle();
+    media.removeAttribute("data-live");
+    var old = media.querySelector(".shot");
+    if (old) old.remove();
+    var img = document.createElement("img");
+    img.className = "shot";
+    img.src = "/api/media/" + id;
+    img.alt = alt || "";
+    img.loading = "lazy";
+    img.decoding = "async";
+    media.appendChild(img);
+  }
+
+  function applyTexts(texts) {
+    Object.keys(texts || {}).forEach(function (key) {
+      var value = texts[key];
+      if (typeof value !== "string" || !value) return;
+      Array.prototype.forEach.call(document.querySelectorAll('[data-edit="' + key.replace(/[^a-z0-9-]/g, "") + '"]'), function (el) {
+        if (el.hasAttribute("data-count")) {
+          var m = /^(\d+)(\D*)$/.exec(value.trim());
+          if (!m) return;
+          el.dataset.count = m[1];
+          el.dataset.suffix = m[2];
+          el.textContent = m[1] + m[2];
+          return;
+        }
+        el.textContent = value;
+        if (el.tagName === "A" && /^mailto:/i.test(el.getAttribute("href") || "") && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          el.setAttribute("href", "mailto:" + value);
+        }
+      });
+    });
+  }
+
   function setText(el, value) { if (el && typeof value === "string") el.textContent = value; }
 
   function applyOverride(card, o) {
@@ -40,6 +88,8 @@
     setText(body.querySelector("p"), o.desc);
     if (typeof o.sub === "string" && o.sub) setText(body.querySelector(".meta span:last-child"), o.sub);
     if (o.type) setText(body.querySelector(".ty"), TYPE_LABEL[o.type] || "Web");
+
+    if (o.image) setImage(card, o.image, o.title || "");
 
     if ("url" in o) {
       var url = safeUrl(o.url);
@@ -61,7 +111,7 @@
           if (led) { led.className = "led " + (o.status === "wip" ? "wip" : "live"); label.prepend(led); }
         }
         if (media) {
-          if (o.preview) media.dataset.live = url; else media.removeAttribute("data-live");
+          if (o.preview && !o.image) media.dataset.live = url; else media.removeAttribute("data-live");
         }
       } else if (inner.tagName === "A") {
         var d = document.createElement("div");
@@ -116,6 +166,7 @@
     body.append(meta, h3, pp, lab);
     inner.append(media, body);
     wrap.append(inner);
+    if (p.image) setImage(wrap, p.image, p.title || "");
     return wrap;
   }
 
@@ -126,8 +177,10 @@
   }
 
   function apply(content) {
+    if (!content) return;
+    applyTexts(content.texts);
     var grid = document.getElementById("pgrid");
-    if (!grid || !content) return;
+    if (!grid) return;
     var overrides = content.projects || {};
     Object.keys(overrides).forEach(function (id) {
       var card = grid.querySelector('.cw[data-id="' + id.replace(/"/g, "") + '"]');
@@ -162,10 +215,12 @@
     .then(function (c) { if (c && typeof c === "object") writeCache(c); return c; })
     .catch(function () { return null; });
 
+  /* Le réseau d'abord (contenu toujours à jour) ; la copie de la session ne sert que si le serveur tarde ou échoue. */
   var cached = readCache();
-  var content = cached
-    ? Promise.resolve(cached)
-    : Promise.race([network, new Promise(function (r) { setTimeout(function () { r(null); }, WAIT_MS); })]);
+  var content = Promise.race([
+    network.then(function (c) { return c || cached; }),
+    new Promise(function (r) { setTimeout(function () { r(cached); }, WAIT_MS); })
+  ]);
 
   window.__ctmReady = Promise.all([content, domReady]).then(function (r) {
     try { apply(r[0]); } catch (e) { console.warn("ctm-content :", e); }

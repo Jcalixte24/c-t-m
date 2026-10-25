@@ -102,6 +102,18 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
 .chk{display:flex;gap:8px;align-items:center;margin:14px 0 0;color:var(--ink);font-size:.88rem}
 .chk input{width:auto}
 .savebar{position:sticky;bottom:0;display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:14px;padding:12px 14px;background:var(--panel);border:1px solid var(--acc);border-radius:var(--r)}
+.chart{padding:14px 16px;margin-bottom:16px}
+.chart h3{font-size:.85rem;color:var(--muted);margin-bottom:10px;font-weight:500}
+.daily{display:flex;align-items:flex-end;gap:3px;height:120px;border-bottom:1px solid var(--line)}
+.daily i{flex:1;min-width:3px;background:var(--acc);border-radius:3px 3px 0 0;opacity:.9}
+.daily i:hover{opacity:1;background:var(--acc2)}
+.axis{display:flex;justify-content:space-between;font:.72rem var(--mono);color:var(--muted);margin-top:4px}
+.trow{padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.trow label{margin:0 0 6px;display:flex;justify-content:space-between;gap:8px;color:var(--ink);font-size:.88rem}
+.trow small{color:var(--muted);font-size:.74rem}
+.trow textarea{min-height:60px}
+.thumb{display:flex;gap:12px;align-items:center;margin-top:6px}
+.thumb img{width:120px;height:75px;object-fit:cover;border-radius:6px;border:1px solid var(--line);background:var(--bg)}
 @media (max-width:640px){.row2{grid-template-columns:1fr}dl.kv{grid-template-columns:1fr}.prow{grid-template-columns:1fr}}
 </style>
 </head>
@@ -127,6 +139,7 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
         <button class="tab" role="tab" data-tab="visits" aria-selected="true">Visites</button>
         <button class="tab" role="tab" data-tab="visitors" aria-selected="false">Visiteurs</button>
         <button class="tab" role="tab" data-tab="projects" aria-selected="false">Projets</button>
+        <button class="tab" role="tab" data-tab="texts" aria-selected="false">Textes</button>
         <button class="tab" role="tab" data-tab="data" aria-selected="false">Données</button>
       </div>
       <span class="spacer"></span>
@@ -149,6 +162,7 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
         <button class="btn" id="csv" type="button">Exporter en CSV</button>
       </div>
       <div class="kpis" id="kpis"></div>
+      <div class="card chart"><h3 id="dailyTitle">Visites par jour</h3><div class="daily" id="daily"></div><div class="axis" id="dailyAxis"></div></div>
       <div class="grid2" id="charts"></div>
       <div class="tw"><table id="visitsTable"></table></div>
       <p class="msg" id="visitsMsg"></p>
@@ -164,11 +178,11 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
         <button class="btn pri" id="addProject" type="button">+ Ajouter un projet</button>
       </div>
       <div class="plist" id="plist"></div>
-      <div class="savebar hide" id="savebar">
-        <span id="saveInfo">Modifications non publiées</span>
-        <span><button class="btn" id="discard" type="button">Annuler</button> <button class="btn pri" id="publish" type="button">Publier</button></span>
-      </div>
-      <p class="msg" id="projMsg"></p>
+    </section>
+
+    <section id="tab-texts" role="tabpanel" class="hide">
+      <p class="muted" style="margin:0 0 12px;font-size:.88rem">Textes de la page portfolio (site perso, à propos, contact, chiffres, pied de page). Laissez tel quel pour garder l'original. Pour un chiffre, écrivez par exemple « 25+ ».</p>
+      <div class="plist" id="tlist"></div>
     </section>
 
     <section id="tab-data" role="tabpanel" class="hide">
@@ -185,6 +199,12 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
         <p class="muted" style="font-size:.88rem;margin-bottom:0">Page vue, adresse IP, pays/région/ville (estimés par Netlify), appareil, navigateur, système, écran, langues, fuseau horaire, source de la visite, temps passé, défilement et clics sur les liens de contact et les projets. Pas de cookie. Les visiteurs avec « Ne pas me suivre » activé ne sont pas comptés. Le texte public est dans <a href="/confidentialite.html">confidentialite.html</a>.</p>
       </div>
     </section>
+
+    <div class="savebar hide" id="savebar">
+      <span id="saveInfo">Modifications non publiées</span>
+      <span><button class="btn" id="discard" type="button">Annuler</button> <button class="btn pri" id="publish" type="button">Publier</button></span>
+    </div>
+    <p class="msg" id="projMsg"></p>
   </main>
 </div>
 
@@ -208,6 +228,8 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
       <div><label for="f-label">Texte du lien affiché</label><input id="f-label" type="text" maxlength="80" placeholder="Automatique si vide"></div>
       <div><label for="f-status">Statut</label><select id="f-status"><option value="live">En ligne</option><option value="wip">En cours</option></select></div>
     </div>
+    <label for="f-image">Image de la carte</label>
+    <div class="thumb"><img id="f-thumb" alt="" hidden><div><input id="f-image" type="file" accept="image/jpeg,image/png,image/webp"><button class="btn" id="f-image-rm" type="button" hidden style="margin-top:6px">Retirer l'image</button></div></div>
     <label class="chk"><input id="f-preview" type="checkbox"> Aperçu en direct dans la carte (seulement si le site autorise l'affichage en cadre)</label>
     <label class="chk"><input id="f-hidden" type="checkbox"> Masquer ce projet sur le portfolio</label>
     <div class="msg err" id="editorMsg"></div>
@@ -301,7 +323,7 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
   $$(".tab").forEach(function (t) {
     t.addEventListener("click", function () {
       $$(".tab").forEach(function (x) { x.setAttribute("aria-selected", String(x === t)); });
-      ["visits", "visitors", "projects", "data"].forEach(function (id) { $("#tab-" + id).classList.toggle("hide", id !== t.dataset.tab); });
+      ["visits", "visitors", "projects", "texts", "data"].forEach(function (id) { $("#tab-" + id).classList.toggle("hide", id !== t.dataset.tab); });
     });
   });
 
@@ -354,6 +376,40 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
     return box;
   }
 
+  function flatEvents(list, re) {
+    var out = [];
+    list.forEach(function (v) { (v.events || []).forEach(function (e) { if (re.test(e.name)) out.push(e); }); });
+    return out;
+  }
+
+  /* Visites par jour (par semaine au-delà de 31 jours). */
+  function renderDaily(list) {
+    var days = Number($("#period").value) || 30;
+    var weekly = days > 31;
+    var step = weekly ? 7 : 1;
+    var slots = Math.ceil(days / step);
+    var DAY = 86400000;
+    var now = new Date();
+    var end = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    var buckets = [];
+    for (var i = slots - 1; i >= 0; i--) buckets.push({ from: end - (i * step + step - 1) * DAY, n: 0 });
+    list.forEach(function (v) {
+      var d = new Date(v.ts);
+      var day = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+      for (var j = buckets.length - 1; j >= 0; j--) if (day >= buckets[j].from) { buckets[j].n++; break; }
+    });
+    var max = Math.max.apply(null, buckets.map(function (b) { return b.n; }).concat(1));
+    var fmt = function (t) { return new Date(t).toLocaleDateString("fr-FR", { day: "2-digit", month: "short", timeZone: "UTC" }); };
+    $("#dailyTitle").textContent = weekly ? "Visites par semaine" : "Visites par jour";
+    var box = clear($("#daily"));
+    buckets.forEach(function (b) {
+      var bar = h("i", { title: fmt(b.from) + (weekly ? " (semaine)" : "") + " : " + b.n + " visite(s)" });
+      bar.style.height = Math.max(b.n ? 4 : 1, Math.round((b.n / max) * 100)) + "%";
+      box.appendChild(bar);
+    });
+    clear($("#dailyAxis")).append(h("span", { text: fmt(buckets[0].from) }), h("span", { text: "max " + max }), h("span", { text: fmt(end) }));
+  }
+
   function renderVisits() {
     var list = filtered();
     var uniques = {}; list.forEach(function (v) { uniques[v.vid] = 1; });
@@ -365,8 +421,14 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
     [[list.length, "pages vues"], [Object.keys(uniques).length, "visiteurs uniques"], [fmtDur(avg), "durée moyenne"], [contacts, "clics de contact"]]
       .forEach(function (x) { k.appendChild(h("div", { class: "card kpi" }, h("b", { text: x[0] }), h("span", { text: x[1] }))); });
 
+    renderDaily(list);
+
     var c = clear($("#charts"));
     c.append(
+      barBlock("Clics de contact", tally(flatEvents(list, /^clic (email|téléphone|whatsapp|github|linkedin|instagram|facebook|youtube)/), function (e) { return e.name.replace("clic ", ""); })),
+      barBlock("Projets les plus cliqués", tally(flatEvents(list, /^clic projet$/), function (e) { return (e.target || "").split(" → ")[0]; })),
+      barBlock("Heures de visite (GMT)", tally(list, function (v) { return String(new Date(v.ts).getUTCHours()).padStart(2, "0") + " h"; })),
+      barBlock("Nouveaux / revenants", tally(list, function (v) { return v.returning ? "revenants" : "nouveaux"; })),
       barBlock("Pays", tally(list, function (v) { return v.country; })),
       barBlock("Villes", tally(list, function (v) { return v.city; })),
       barBlock("Sources", tally(list, source)),
@@ -510,8 +572,9 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
 
   /* ---------- projets ---------- */
   var base = [];                 // cartes d'origine lues dans portfolio.html
-  var saved = { projects: {}, added: [] };
-  var draft = { projects: {}, added: [] };
+  var baseTexts = [];            // textes d'origine marqués data-edit
+  var saved = { projects: {}, added: [], texts: {} };
+  var draft = { projects: {}, added: [], texts: {} };
   var editing = null;            // { id, isAdded }
 
   var clone = function (o) { return JSON.parse(JSON.stringify(o)); };
@@ -531,15 +594,25 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
     });
   }
 
+  function parseTexts(html) {
+    var doc = new DOMParser().parseFromString(html, "text/html");
+    return $$("[data-edit]", doc).map(function (el) {
+      var value = el.textContent.trim();
+      return { key: el.dataset.edit, label: el.dataset.editLabel || el.dataset.edit, value: value, short: value.length < 70 };
+    });
+  }
+
   function loadProjects() {
     return Promise.all([
       fetch("/portfolio.html", { cache: "no-store" }).then(function (r) { return r.text(); }),
       api("content")
     ]).then(function (r) {
       base = parseBase(r[0]);
-      saved = { projects: r[1].projects || {}, added: r[1].added || [] };
+      baseTexts = parseTexts(r[0]);
+      saved = { projects: r[1].projects || {}, added: r[1].added || [], texts: r[1].texts || {} };
       draft = clone(saved);
       renderProjects();
+      renderTexts();
     }).catch(function (err) { if (err.message !== "401") setMsg($("#projMsg"), err.message, "err"); });
   }
 
@@ -549,7 +622,23 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
     var list = clear($("#plist"));
     base.forEach(function (card) { list.appendChild(projectRow(effective(card), false, !!draft.projects[card.id])); });
     draft.added.forEach(function (p) { list.appendChild(projectRow(p, true, false)); });
-    $("#savebar").classList.toggle("hide", !dirty());
+    refreshSaveBar();
+  }
+
+  function refreshSaveBar() { $("#savebar").classList.toggle("hide", !dirty()); }
+
+  function renderTexts() {
+    var list = clear($("#tlist"));
+    baseTexts.forEach(function (t) {
+      var field = t.short ? h("input", { type: "text", id: "t-" + t.key, maxlength: "600" }) : h("textarea", { id: "t-" + t.key, maxlength: "600" });
+      field.value = draft.texts[t.key] != null ? draft.texts[t.key] : t.value;
+      field.addEventListener("input", function () {
+        var v = field.value.trim();
+        if (v && v !== t.value) draft.texts[t.key] = v; else delete draft.texts[t.key];
+        refreshSaveBar();
+      });
+      list.appendChild(h("div", { class: "trow" }, h("label", { for: "t-" + t.key }, h("span", { text: t.label }), h("small", { text: t.key })), field));
+    });
   }
 
   function projectRow(p, isAdded, modified) {
@@ -571,11 +660,49 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
     F("title").value = p.title || ""; F("desc").value = p.desc || ""; F("type").value = p.type || "site"; F("sub").value = p.sub || "";
     F("url").value = p.url || ""; F("label").value = p.label && p.label !== autoLabel(p.url) ? p.label : ""; F("status").value = p.status || "live";
     F("preview").checked = !!p.preview; F("hidden").checked = !!p.hidden;
+    editing.image = p.image || "";
+    F("image").value = "";
+    showThumb();
     $("#editorReset").textContent = isAdded ? "Supprimer ce projet" : "Rétablir l'original";
     $("#editorReset").classList.toggle("hide", !isAdded && !draft.projects[id]);
     setMsg($("#editorMsg"), "");
     $("#editor").showModal();
   }
+  function showThumb() {
+    var has = !!(editing && editing.image);
+    F("thumb").hidden = !has;
+    F("image-rm").hidden = !has;
+    if (has) F("thumb").src = "/api/media/" + editing.image;
+  }
+
+  /* Réduit l'image dans le navigateur (1200 px, JPEG) avant l'envoi : plus rapide et sous la limite de 3 Mo. */
+  function shrink(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file), img = new Image();
+      img.onload = function () {
+        var MAX = 1200, k = Math.min(1, MAX / Math.max(img.width, img.height));
+        var c = document.createElement("canvas");
+        c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        resolve(c.toDataURL("image/jpeg", 0.85));
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error("Fichier image illisible")); };
+      img.src = url;
+    });
+  }
+
+  F("image").addEventListener("change", function () {
+    var file = F("image").files[0];
+    if (!file) return;
+    setMsg($("#editorMsg"), "Envoi de l'image…");
+    shrink(file)
+      .then(function (dataUrl) { return api("media", { method: "POST", body: { dataUrl: dataUrl } }); })
+      .then(function (r) { editing.image = r.id; showThumb(); setMsg($("#editorMsg"), ""); })
+      .catch(function (err) { setMsg($("#editorMsg"), err.message, "err"); });
+  });
+  F("image-rm").addEventListener("click", function () { editing.image = ""; F("image").value = ""; showThumb(); });
+
   function autoLabel(u) {
     try { var x = new URL(u, location.href); return (x.host + x.pathname).replace(/\/$/, "").replace(/^www\./, ""); } catch (e) { return u || ""; }
   }
@@ -585,7 +712,8 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
   function readForm() {
     return {
       title: F("title").value.trim(), desc: F("desc").value.trim(), type: F("type").value, sub: F("sub").value.trim(),
-      url: F("url").value.trim(), label: F("label").value.trim(), status: F("status").value, preview: F("preview").checked, hidden: F("hidden").checked
+      url: F("url").value.trim(), label: F("label").value.trim(), status: F("status").value, preview: F("preview").checked, hidden: F("hidden").checked,
+      image: (editing && editing.image) || ""
     };
   }
   function validUrl(u) { return !u || /^(https?:\/\/\S+|\/\S+|[a-z0-9._-]+\.html(#\S*)?)$/i.test(u); }
@@ -603,6 +731,7 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
       ["title", "desc", "type", "sub", "url", "status"].forEach(function (k) { if (f[k] !== card[k]) diff[k] = f[k]; });
       if (f.label && f.label !== card.label) diff.label = f.label;
       if (diff.url !== undefined && f.preview) diff.preview = true;
+      if (f.image) diff.image = f.image;
       if (f.hidden) diff.hidden = true;
       if (Object.keys(diff).length) draft.projects[editing.id] = diff; else delete draft.projects[editing.id];
     }
@@ -632,15 +761,16 @@ dl.kv dd{margin:0;overflow-wrap:anywhere}
     openEditor(id, true);
   });
 
-  $("#discard").addEventListener("click", function () { draft = clone(saved); renderProjects(); setMsg($("#projMsg"), ""); });
+  $("#discard").addEventListener("click", function () { draft = clone(saved); renderProjects(); renderTexts(); setMsg($("#projMsg"), ""); });
   $("#publish").addEventListener("click", function () {
     var btn = $("#publish"); btn.disabled = true;
     setMsg($("#projMsg"), "Publication…");
     api("content", { method: "PUT", body: draft })
       .then(function (r) {
-        saved = { projects: r.projects || {}, added: r.added || [] };
+        saved = { projects: r.projects || {}, added: r.added || [], texts: r.texts || {} };
         draft = clone(saved);
         renderProjects();
+        renderTexts();
         setMsg($("#projMsg"), "Publié. Le portfolio est à jour (les visiteurs déjà connectés le verront à leur prochaine visite).", "ok");
       })
       .catch(function (err) { if (err.message !== "401") setMsg($("#projMsg"), err.message, "err"); })
