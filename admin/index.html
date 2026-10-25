@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Espace admin — CTM</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161a22'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='14' font-weight='700' text-anchor='middle' fill='%23ff8a3d'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0f1218;--panel:#161a22;--panel2:#1c212b;--line:#2a3140;--ink:#e8ecf3;--muted:#8d97a8;
+  --acc:#ff8a3d;--acc2:#ffb27a;--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;--r:10px;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f5f8;--panel:#fff;--panel2:#f0f2f6;--line:#d9dde6;--ink:#161a22;--muted:#5d677a;--acc:#d9531e;--acc2:#b8430f}}
+*{box-sizing:border-box}
+html{background:var(--bg);color-scheme:dark light}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;line-height:1.2}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--acc2)}
+.hide{display:none!important}
+.mono{font-family:var(--mono)}
+.muted{color:var(--muted)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+
+/* connexion */
+.login{min-height:100vh;display:grid;place-items:center;padding:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.login .card{width:min(380px,100%)}
+.brand{font:700 1.1rem var(--mono);color:var(--acc);margin-bottom:4px}
+label{display:block;font-size:.8rem;color:var(--muted);margin:14px 0 4px}
+input[type=text],input[type=password],input[type=url],input[type=search],select,textarea{width:100%;padding:9px 11px;background:var(--bg);border:1px solid var(--line);border-radius:8px}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+textarea{min-height:90px;resize:vertical}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--acc)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#1a1006;font-weight:600}
+.btn.bad{color:var(--bad)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.msg{margin-top:12px;font-size:.88rem;min-height:1.3em}
+.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
+
+/* en-tête et onglets */
+header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+header.top .spacer{flex:1}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{padding:7px 12px;border-radius:8px;border:1px solid transparent;background:none;cursor:pointer;color:var(--muted)}
+.tab[aria-selected=true]{color:var(--ink);background:var(--panel);border-color:var(--line)}
+main{padding:20px 0 60px}
+
+/* tableaux de bord */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}
+.kpi{padding:14px 16px}
+.kpi b{display:block;font:600 1.7rem var(--mono);color:var(--acc2)}
+.kpi span{font-size:.78rem;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:16px}
+.bars h3{font-size:.85rem;color:var(--muted);margin-bottom:10px;font-weight:500}
+.bar{display:grid;grid-template-columns:minmax(80px,1.2fr) 2fr auto;gap:8px;align-items:center;font-size:.85rem;margin:5px 0}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--acc);min-width:2px}
+.bar em{font-style:normal;color:var(--muted);font:.78rem var(--mono)}
+.bar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.toolbar input[type=search]{flex:1;min-width:180px;width:auto}
+.toolbar select{width:auto}
+
+/* tables */
+.tw{overflow:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:.84rem}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap;max-width:260px;overflow:hidden;text-overflow:ellipsis}
+th{position:sticky;top:0;background:var(--panel2);color:var(--muted);font-weight:500;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--panel2)}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:.72rem;border:1px solid var(--line);color:var(--muted)}
+.pill.new{color:var(--ok);border-color:var(--ok)}
+.pill.ret{color:var(--acc2);border-color:var(--acc2)}
+.pill.off{color:var(--bad);border-color:var(--bad)}
+.pill.mod{color:var(--warn);border-color:var(--warn)}
+.empty{padding:40px 16px;text-align:center;color:var(--muted)}
+
+/* détail */
+dialog{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);color:var(--ink);padding:0;width:min(720px,calc(100% - 24px));max-height:90vh}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+.dlg{display:flex;flex-direction:column;max-height:90vh}
+.dlg header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.dlg .body{padding:16px 18px;overflow:auto}
+.dlg footer{display:flex;gap:8px;justify-content:flex-end;padding:12px 18px;border-top:1px solid var(--line)}
+dl.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;margin:0;font-size:.88rem}
+dl.kv dt{color:var(--muted)}
+dl.kv dd{margin:0;overflow-wrap:anywhere}
+.ev{margin:6px 0 0;padding:0;list-style:none;font-size:.84rem}
+.ev li{padding:4px 0;border-bottom:1px dashed var(--line)}
+
+/* projets */
+.plist{display:grid;gap:8px}
+.prow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.prow h3{font-size:.98rem;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.prow p{margin:2px 0 0;color:var(--muted);font-size:.84rem}
+.prow .u{font:.78rem var(--mono);color:var(--acc2);overflow-wrap:anywhere}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chk{display:flex;gap:8px;align-items:center;margin:14px 0 0;color:var(--ink);font-size:.88rem}
+.chk input{width:auto}
+.savebar{position:sticky;bottom:0;display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:14px;padding:12px 14px;background:var(--panel);border:1px solid var(--acc);border-radius:var(--r)}
+@media (max-width:640px){.row2{grid-template-columns:1fr}dl.kv{grid-template-columns:1fr}.prow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="login" class="login hide">
+  <form class="card" id="loginForm" autocomplete="on">
+    <div class="brand">&lt;/&gt; CTM</div>
+    <h1 style="font-size:1.25rem">Espace admin</h1>
+    <p class="muted" style="margin:6px 0 0;font-size:.88rem">Visiteurs du site et projets du portfolio.</p>
+    <label for="pw">Mot de passe</label>
+    <input id="pw" type="password" autocomplete="current-password" required minlength="8">
+    <div class="msg" id="loginMsg" role="alert"></div>
+    <button class="btn pri" type="submit" style="width:100%;justify-content:center;margin-top:8px">Se connecter</button>
+  </form>
+</div>
+
+<div id="app" class="hide">
+  <header class="top">
+    <div class="wrap">
+      <span class="brand" style="margin:0">&lt;/&gt; CTM</span>
+      <div class="tabs" role="tablist" aria-label="Sections">
+        <button class="tab" role="tab" data-tab="visits" aria-selected="true">Visites</button>
+        <button class="tab" role="tab" data-tab="visitors" aria-selected="false">Visiteurs</button>
+        <button class="tab" role="tab" data-tab="projects" aria-selected="false">Projets</button>
+        <button class="tab" role="tab" data-tab="data" aria-selected="false">Données</button>
+      </div>
+      <span class="spacer"></span>
+      <a class="btn" href="/portfolio" target="_blank" rel="noopener">Voir le site</a>
+      <button class="btn" id="logout" type="button">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="tab-visits" role="tabpanel">
+      <div class="toolbar">
+        <select id="period" aria-label="Période">
+          <option value="7">7 derniers jours</option>
+          <option value="30" selected>30 derniers jours</option>
+          <option value="90">90 derniers jours</option>
+          <option value="365">12 derniers mois</option>
+        </select>
+        <input id="q" type="search" placeholder="Rechercher : IP, ville, pays, navigateur, page, source…" aria-label="Rechercher">
+        <button class="btn" id="refresh" type="button">Actualiser</button>
+        <button class="btn" id="csv" type="button">Exporter en CSV</button>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="grid2" id="charts"></div>
+      <div class="tw"><table id="visitsTable"></table></div>
+      <p class="msg" id="visitsMsg"></p>
+    </section>
+
+    <section id="tab-visitors" role="tabpanel" class="hide">
+      <div class="tw"><table id="visitorsTable"></table></div>
+    </section>
+
+    <section id="tab-projects" role="tabpanel" class="hide">
+      <div class="toolbar">
+        <p class="muted" style="margin:0;flex:1;font-size:.88rem">Modifiez un projet, masquez-le ou ajoutez-en un. Rien n'est publié tant que vous n'avez pas cliqué sur « Publier ».</p>
+        <button class="btn pri" id="addProject" type="button">+ Ajouter un projet</button>
+      </div>
+      <div class="plist" id="plist"></div>
+      <div class="savebar hide" id="savebar">
+        <span id="saveInfo">Modifications non publiées</span>
+        <span><button class="btn" id="discard" type="button">Annuler</button> <button class="btn pri" id="publish" type="button">Publier</button></span>
+      </div>
+      <p class="msg" id="projMsg"></p>
+    </section>
+
+    <section id="tab-data" role="tabpanel" class="hide">
+      <div class="card" style="max-width:640px">
+        <h2 style="font-size:1.05rem">Nettoyer les anciennes visites</h2>
+        <p class="muted" style="font-size:.88rem">Supprime définitivement les visites antérieures à la date choisie (adresses IP comprises). Pensez à exporter en CSV avant.</p>
+        <label for="purgeDate">Supprimer les visites avant le</label>
+        <input id="purgeDate" type="date" style="max-width:200px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px">
+        <div style="margin-top:14px"><button class="btn bad" id="purge" type="button">Supprimer</button></div>
+        <p class="msg" id="purgeMsg"></p>
+      </div>
+      <div class="card" style="max-width:640px;margin-top:12px">
+        <h2 style="font-size:1.05rem">Ce qui est collecté</h2>
+        <p class="muted" style="font-size:.88rem;margin-bottom:0">Page vue, adresse IP, pays/région/ville (estimés par Netlify), appareil, navigateur, système, écran, langues, fuseau horaire, source de la visite, temps passé, défilement et clics sur les liens de contact et les projets. Pas de cookie. Les visiteurs avec « Ne pas me suivre » activé ne sont pas comptés. Le texte public est dans <a href="/confidentialite.html">confidentialite.html</a>.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog id="detail"><div class="dlg">
+  <header><h2 id="detailTitle" style="font-size:1.05rem">Détail</h2><button class="btn" id="detailClose" type="button">Fermer</button></header>
+  <div class="body" id="detailBody"></div>
+</div></dialog>
+
+<dialog id="editor"><form class="dlg" id="editorForm" method="dialog">
+  <header><h2 id="editorTitle" style="font-size:1.05rem">Projet</h2><button class="btn" id="editorClose" type="button">Fermer</button></header>
+  <div class="body">
+    <label for="f-title">Titre</label><input id="f-title" type="text" maxlength="120" required>
+    <label for="f-desc">Description</label><textarea id="f-desc" maxlength="600"></textarea>
+    <div class="row2">
+      <div><label for="f-type">Catégorie</label>
+        <select id="f-type"><option value="site">Sites web</option><option value="app">Apps mobiles</option><option value="data">Data &amp; IA</option><option value="produit">Produits CTM</option></select></div>
+      <div><label for="f-sub">Secteur</label><input id="f-sub" type="text" maxlength="60" placeholder="ex. Science &amp; associations"></div>
+    </div>
+    <label for="f-url">Lien du projet</label><input id="f-url" type="url" maxlength="500" placeholder="https://… (vide = « bientôt disponible »)">
+    <div class="row2">
+      <div><label for="f-label">Texte du lien affiché</label><input id="f-label" type="text" maxlength="80" placeholder="Automatique si vide"></div>
+      <div><label for="f-status">Statut</label><select id="f-status"><option value="live">En ligne</option><option value="wip">En cours</option></select></div>
+    </div>
+    <label class="chk"><input id="f-preview" type="checkbox"> Aperçu en direct dans la carte (seulement si le site autorise l'affichage en cadre)</label>
+    <label class="chk"><input id="f-hidden" type="checkbox"> Masquer ce projet sur le portfolio</label>
+    <div class="msg err" id="editorMsg"></div>
+  </div>
+  <footer>
+    <button class="btn bad" id="editorReset" type="button">Rétablir l'original</button>
+    <button class="btn pri" type="submit">Enregistrer le brouillon</button>
+  </footer>
+</form></dialog>
+
+<script>
+(function () {
+  "use strict";
+
+  var TOKEN_KEY = "ctm-admin-token";
+  var FLAG_KEY = "ctm-admin-session";
+  var API = "/api/admin/";
+  var TYPE_NAMES = { site: "Site web", app: "App mobile", data: "Data & IA", produit: "Produit" };
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* Les données des visiteurs (user-agent, référent, titre de page) viennent de l'extérieur :
+     tout passe par textContent, jamais par innerHTML. */
+  function h(tag, attrs) {
+    var el = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (k === "class") el.className = attrs[k];
+      else if (k === "text") el.textContent = attrs[k];
+      else if (k.slice(0, 2) === "on") el.addEventListener(k.slice(2), attrs[k]);
+      else if (attrs[k] !== false && attrs[k] != null) el.setAttribute(k, attrs[k] === true ? "" : attrs[k]);
+    });
+    var add = function (c) {
+      if (c == null || c === false) return;
+      if (Array.isArray(c)) return c.forEach(add);
+      el.appendChild(typeof c === "string" || typeof c === "number" ? document.createTextNode(String(c)) : c);
+    };
+    for (var i = 2; i < arguments.length; i++) add(arguments[i]);
+    return el;
+  }
+  function clear(el) { while (el.firstChild) el.removeChild(el.firstChild); return el; }
+  function setMsg(el, text, kind) { el.textContent = text || ""; el.className = "msg" + (kind ? " " + kind : ""); }
+
+  /* ---------- API ---------- */
+  function token() { try { return sessionStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; } }
+  function setSession(t) {
+    try {
+      if (t) { sessionStorage.setItem(TOKEN_KEY, t); localStorage.setItem(FLAG_KEY, "1"); }
+      else { sessionStorage.removeItem(TOKEN_KEY); localStorage.removeItem(FLAG_KEY); }
+    } catch (e) {}
+  }
+  function api(path, opts) {
+    opts = opts || {};
+    var headers = { Accept: "application/json" };
+    if (token()) headers.Authorization = "Bearer " + token();
+    if (opts.body) headers["Content-Type"] = "application/json";
+    return fetch(API + path, { method: opts.method || "GET", headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (data) {
+          if (r.status === 401 && path !== "login") { showLogin("Session expirée, reconnectez-vous."); throw new Error("401"); }
+          if (!r.ok) throw new Error(data.error || "Erreur " + r.status);
+          return data;
+        });
+      });
+  }
+
+  /* ---------- connexion ---------- */
+  function showLogin(message) {
+    setSession("");
+    $("#app").classList.add("hide");
+    $("#login").classList.remove("hide");
+    setMsg($("#loginMsg"), message || "", message ? "err" : "");
+    $("#pw").focus();
+  }
+  function showApp() {
+    $("#login").classList.add("hide");
+    $("#app").classList.remove("hide");
+    loadVisits();
+    loadProjects();
+  }
+  $("#loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    setMsg($("#loginMsg"), "Connexion…");
+    api("login", { method: "POST", body: { password: $("#pw").value } })
+      .then(function (r) { setSession(r.token); $("#pw").value = ""; showApp(); })
+      .catch(function (err) { setMsg($("#loginMsg"), err.message, "err"); });
+  });
+  $("#logout").addEventListener("click", function () { showLogin(""); });
+
+  /* ---------- onglets ---------- */
+  $$(".tab").forEach(function (t) {
+    t.addEventListener("click", function () {
+      $$(".tab").forEach(function (x) { x.setAttribute("aria-selected", String(x === t)); });
+      ["visits", "visitors", "projects", "data"].forEach(function (id) { $("#tab-" + id).classList.toggle("hide", id !== t.dataset.tab); });
+    });
+  });
+
+  /* ---------- visites ---------- */
+  var visits = [];
+  var fmtDate = function (ts) { return new Date(ts).toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "medium" }); };
+  var fmtDur = function (s) { s = Math.round(s || 0); return s < 60 ? s + " s" : Math.floor(s / 60) + " min " + (s % 60) + " s"; };
+  var place = function (v) { return [v.city, v.region, v.country].filter(Boolean).join(", ") || "—"; };
+  var source = function (v) {
+    if (v.utm && v.utm.source) return v.utm.source;
+    if (!v.referrer) return "direct";
+    try { return new URL(v.referrer).hostname.replace(/^www\./, ""); } catch (e) { return v.referrer; }
+  };
+  var screenTxt = function (v) { return v.screen && v.screen.w ? v.screen.w + "×" + v.screen.h : "—"; };
+  var shortId = function (id) { return (id || "").slice(0, 8); };
+
+  function loadVisits() {
+    setMsg($("#visitsMsg"), "Chargement…");
+    return api("visits?days=" + $("#period").value)
+      .then(function (r) {
+        visits = r.visits || [];
+        setMsg($("#visitsMsg"), r.truncated ? "Affichage limité aux " + visits.length + " visites les plus récentes sur " + r.total + "." : "");
+        renderVisits(); renderVisitors();
+      })
+      .catch(function (err) { if (err.message !== "401") setMsg($("#visitsMsg"), err.message, "err"); });
+  }
+
+  function filtered() {
+    var q = $("#q").value.trim().toLowerCase();
+    if (!q) return visits;
+    return visits.filter(function (v) {
+      return [v.ip, v.city, v.region, v.country, v.browser, v.os, v.device, v.path, v.title, source(v), v.language, v.vid]
+        .join(" ").toLowerCase().indexOf(q) > -1;
+    });
+  }
+
+  function tally(list, fn) {
+    var m = {};
+    list.forEach(function (v) { var k = fn(v) || "—"; m[k] = (m[k] || 0) + 1; });
+    return Object.keys(m).map(function (k) { return [k, m[k]]; }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 7);
+  }
+  function barBlock(title, rows) {
+    var max = rows.length ? rows[0][1] : 1;
+    var box = h("div", { class: "card bars" }, h("h3", { text: title }));
+    if (!rows.length) box.appendChild(h("p", { class: "muted", text: "Aucune donnée" }));
+    rows.forEach(function (r) {
+      var bar = h("i"); bar.style.width = Math.max(2, Math.round((r[1] / max) * 100)) + "%";
+      box.appendChild(h("div", { class: "bar" }, h("span", { text: r[0], title: r[0] }), h("div", {}, bar), h("em", { text: r[1] })));
+    });
+    return box;
+  }
+
+  function renderVisits() {
+    var list = filtered();
+    var uniques = {}; list.forEach(function (v) { uniques[v.vid] = 1; });
+    var timed = list.filter(function (v) { return v.duration > 0; });
+    var avg = timed.length ? timed.reduce(function (s, v) { return s + v.duration; }, 0) / timed.length : 0;
+    var contacts = list.reduce(function (n, v) { return n + (v.events || []).filter(function (e) { return /^clic (email|téléphone|whatsapp)/.test(e.name); }).length; }, 0);
+
+    var k = clear($("#kpis"));
+    [[list.length, "pages vues"], [Object.keys(uniques).length, "visiteurs uniques"], [fmtDur(avg), "durée moyenne"], [contacts, "clics de contact"]]
+      .forEach(function (x) { k.appendChild(h("div", { class: "card kpi" }, h("b", { text: x[0] }), h("span", { text: x[1] }))); });
+
+    var c = clear($("#charts"));
+    c.append(
+      barBlock("Pays", tally(list, function (v) { return v.country; })),
+      barBlock("Villes", tally(list, function (v) { return v.city; })),
+      barBlock("Sources", tally(list, source)),
+      barBlock("Appareils", tally(list, function (v) { return v.device; })),
+      barBlock("Navigateurs", tally(list, function (v) { return v.browser + " / " + v.os; })),
+      barBlock("Pages", tally(list, function (v) { return v.path; }))
+    );
+
+    var t = clear($("#visitsTable"));
+    var cols = ["Date", "Visiteur", "IP", "Lieu", "Appareil", "Navigateur", "Écran", "Langue", "Source", "Page", "Durée", "Défil.", "Clics"];
+    t.appendChild(h("thead", {}, h("tr", {}, cols.map(function (x) { return h("th", { text: x }); }))));
+    var tb = h("tbody");
+    if (!list.length) tb.appendChild(h("tr", {}, h("td", { colspan: cols.length, class: "empty", text: "Aucune visite sur cette période." })));
+    list.forEach(function (v) {
+      var tr = h("tr", { tabindex: "0", onclick: function () { openDetail(v); }, onkeydown: function (e) { if (e.key === "Enter") openDetail(v); } },
+        h("td", { text: fmtDate(v.ts) }),
+        h("td", {}, h("span", { class: "mono", text: shortId(v.vid) + " " }), h("span", { class: "pill " + (v.returning ? "ret" : "new"), text: v.returning ? "revenant" : "nouveau" })),
+        h("td", { class: "mono", text: v.ip || "—" }),
+        h("td", { text: place(v) }),
+        h("td", { text: v.device || "—" }),
+        h("td", { text: v.browser + " " + (v.browserVersion || "") + " · " + v.os }),
+        h("td", { text: screenTxt(v) }),
+        h("td", { text: v.language || "—" }),
+        h("td", { text: source(v) }),
+        h("td", { text: v.path }),
+        h("td", { text: v.duration ? fmtDur(v.duration) : "—" }),
+        h("td", { text: v.scroll ? v.scroll + " %" : "—" }),
+        h("td", { text: (v.events || []).length || "" }));
+      tb.appendChild(tr);
+    });
+    t.appendChild(tb);
+  }
+
+  function renderVisitors() {
+    var by = {};
+    visits.forEach(function (v) { (by[v.vid] = by[v.vid] || []).push(v); });
+    var rows = Object.keys(by).map(function (id) {
+      var vs = by[id].slice().sort(function (a, b) { return a.ts - b.ts; });
+      return { id: id, vs: vs, first: vs[0].ts, last: vs[vs.length - 1].ts };
+    }).sort(function (a, b) { return b.last - a.last; });
+
+    var t = clear($("#visitorsTable"));
+    var cols = ["Visiteur", "Première visite", "Dernière visite", "Pages vues", "Temps total", "IP", "Lieux", "Appareils", "Clics de contact"];
+    t.appendChild(h("thead", {}, h("tr", {}, cols.map(function (x) { return h("th", { text: x }); }))));
+    var tb = h("tbody");
+    if (!rows.length) tb.appendChild(h("tr", {}, h("td", { colspan: cols.length, class: "empty", text: "Aucun visiteur sur cette période." })));
+    rows.forEach(function (r) {
+      var uniq = function (fn) { var s = {}; r.vs.forEach(function (v) { var x = fn(v); if (x) s[x] = 1; }); return Object.keys(s).join(" · ") || "—"; };
+      var contacts = r.vs.reduce(function (n, v) { return n + (v.events || []).filter(function (e) { return /^clic (email|téléphone|whatsapp)/.test(e.name); }).length; }, 0);
+      tb.appendChild(h("tr", { tabindex: "0", onclick: function () { openVisitor(r); } },
+        h("td", { class: "mono", text: shortId(r.id) }),
+        h("td", { text: fmtDate(r.first) }), h("td", { text: fmtDate(r.last) }),
+        h("td", { text: r.vs.length }),
+        h("td", { text: fmtDur(r.vs.reduce(function (s, v) { return s + (v.duration || 0); }, 0)) }),
+        h("td", { class: "mono", text: uniq(function (v) { return v.ip; }) }),
+        h("td", { text: uniq(place) }),
+        h("td", { text: uniq(function (v) { return v.device + " " + v.browser + "/" + v.os; }) }),
+        h("td", { text: contacts || "" })));
+    });
+    t.appendChild(tb);
+  }
+
+  function kv(pairs) {
+    var dl = h("dl", { class: "kv" });
+    pairs.forEach(function (p) { dl.append(h("dt", { text: p[0] }), h("dd", {}, p[1] == null || p[1] === "" ? "—" : p[1])); });
+    return dl;
+  }
+  function openDetail(v) {
+    $("#detailTitle").textContent = "Visite du " + fmtDate(v.ts);
+    var map = v.latitude != null && v.longitude != null
+      ? h("a", { href: "https://www.openstreetmap.org/?mlat=" + v.latitude + "&mlon=" + v.longitude + "#map=11/" + v.latitude + "/" + v.longitude, target: "_blank", rel: "noopener", text: v.latitude + ", " + v.longitude })
+      : null;
+    var body = clear($("#detailBody"));
+    body.appendChild(kv([
+      ["Identifiant visiteur", v.vid], ["Identifiant de session", v.sid], ["Type", v.returning ? "Revenant" : "Nouveau visiteur"],
+      ["Adresse IP", v.ip], ["Pays", v.country + (v.countryCode ? " (" + v.countryCode + ")" : "")], ["Région", v.region], ["Ville", v.city],
+      ["Coordonnées (approx.)", map], ["Fuseau (serveur)", v.geoTimezone], ["Fuseau (navigateur)", v.timezone],
+      ["Page", v.path], ["Titre", v.title], ["Provenance", v.referrer || "direct"],
+      ["UTM", [v.utm && v.utm.source, v.utm && v.utm.medium, v.utm && v.utm.campaign].filter(Boolean).join(" / ")],
+      ["Appareil", v.device + (v.touch ? " (tactile)" : "")], ["Navigateur", v.browser + " " + (v.browserVersion || "")], ["Système", v.os],
+      ["Écran", screenTxt(v) + (v.screen && v.screen.dpr ? " @" + v.screen.dpr + "x" : "")], ["Fenêtre", v.viewport && v.viewport.w ? v.viewport.w + "×" + v.viewport.h : ""],
+      ["Langue", v.language + (v.languages && v.languages.length ? " (" + v.languages.join(", ") + ")" : "")],
+      ["Thème", v.colorScheme + (v.reducedMotion ? ", animations réduites" : "")],
+      ["Processeur / mémoire", [v.cores ? v.cores + " cœurs" : "", v.memoryGb ? v.memoryGb + " Go" : ""].filter(Boolean).join(" · ")],
+      ["Connexion", v.connection], ["Temps passé", v.duration ? fmtDur(v.duration) : "—"], ["Défilement max", v.scroll ? v.scroll + " %" : "—"],
+      ["User-agent", h("span", { class: "mono", text: v.userAgent })]
+    ]));
+    body.appendChild(h("h3", { text: "Actions (" + (v.events || []).length + ")", style: "margin:18px 0 4px;font-size:.95rem" }));
+    var ul = h("ul", { class: "ev" });
+    if (!(v.events || []).length) ul.appendChild(h("li", { class: "muted", text: "Aucun clic suivi sur cette visite." }));
+    (v.events || []).forEach(function (e) { ul.appendChild(h("li", {}, h("b", { text: e.name }), " — " + e.target, h("span", { class: "muted", text: "  " + fmtDate(e.at) }))); });
+    body.appendChild(ul);
+    $("#detail").showModal();
+  }
+  function openVisitor(r) {
+    $("#detailTitle").textContent = "Visiteur " + shortId(r.id) + " — " + r.vs.length + " page(s) vue(s)";
+    var body = clear($("#detailBody"));
+    r.vs.slice().reverse().forEach(function (v) {
+      body.appendChild(h("p", { style: "margin:0 0 8px;cursor:pointer", onclick: function () { openDetail(v); } },
+        h("b", { text: fmtDate(v.ts) }), " · " + v.path + " · " + place(v) + " · " + (v.ip || "") + " · " + (v.duration ? fmtDur(v.duration) : "—")));
+    });
+    $("#detail").showModal();
+  }
+  $("#detailClose").addEventListener("click", function () { $("#detail").close(); });
+
+  /* ---------- export CSV (les cellules commençant par = + - @ sont neutralisées) ---------- */
+  function csvCell(x) {
+    var s = x == null ? "" : String(x);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+  $("#csv").addEventListener("click", function () {
+    var cols = [
+      ["date", function (v) { return new Date(v.ts).toISOString(); }], ["visiteur", function (v) { return v.vid; }], ["revenant", function (v) { return v.returning ? "oui" : "non"; }],
+      ["ip", function (v) { return v.ip; }], ["pays", function (v) { return v.country; }], ["region", function (v) { return v.region; }], ["ville", function (v) { return v.city; }],
+      ["latitude", function (v) { return v.latitude; }], ["longitude", function (v) { return v.longitude; }], ["appareil", function (v) { return v.device; }],
+      ["navigateur", function (v) { return v.browser + " " + (v.browserVersion || ""); }], ["systeme", function (v) { return v.os; }], ["ecran", screenTxt],
+      ["langue", function (v) { return v.language; }], ["fuseau", function (v) { return v.timezone; }], ["source", source], ["provenance", function (v) { return v.referrer; }],
+      ["page", function (v) { return v.path; }], ["duree_s", function (v) { return v.duration; }], ["defilement_pct", function (v) { return v.scroll; }],
+      ["actions", function (v) { return (v.events || []).map(function (e) { return e.name + ": " + e.target; }).join(" | "); }], ["user_agent", function (v) { return v.userAgent; }]
+    ];
+    var lines = [cols.map(function (c) { return csvCell(c[0]); }).join(",")];
+    filtered().forEach(function (v) { lines.push(cols.map(function (c) { return csvCell(c[1](v)); }).join(",")); });
+    var blob = new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+    var a = h("a", { href: URL.createObjectURL(blob), download: "visites-ctm-" + new Date().toISOString().slice(0, 10) + ".csv" });
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  $("#period").addEventListener("change", loadVisits);
+  $("#refresh").addEventListener("click", loadVisits);
+  $("#q").addEventListener("input", renderVisits);
+
+  $("#purge").addEventListener("click", function () {
+    var d = $("#purgeDate").value;
+    if (!d) return setMsg($("#purgeMsg"), "Choisissez une date.", "err");
+    if (!confirm("Supprimer définitivement toutes les visites avant le " + d + " ?")) return;
+    api("visits?before=" + encodeURIComponent(d), { method: "DELETE" })
+      .then(function (r) { setMsg($("#purgeMsg"), r.deleted + " visite(s) supprimée(s).", "ok"); loadVisits(); })
+      .catch(function (err) { setMsg($("#purgeMsg"), err.message, "err"); });
+  });
+
+  /* ---------- projets ---------- */
+  var base = [];                 // cartes d'origine lues dans portfolio.html
+  var saved = { projects: {}, added: [] };
+  var draft = { projects: {}, added: [] };
+  var editing = null;            // { id, isAdded }
+
+  var clone = function (o) { return JSON.parse(JSON.stringify(o)); };
+  var dirty = function () { return JSON.stringify(saved) !== JSON.stringify(draft); };
+
+  function parseBase(html) {
+    var doc = new DOMParser().parseFromString(html, "text/html");
+    return $$("#pgrid .cw[data-id]", doc).map(function (c) {
+      var a = c.querySelector("a.card");
+      var led = c.querySelector(".url i");
+      return {
+        id: c.dataset.id, type: c.dataset.type, sub: c.dataset.sub,
+        title: (c.querySelector("h3") || {}).textContent || "", desc: (c.querySelector("p") || {}).textContent || "",
+        url: a ? a.getAttribute("href") : "", label: ((c.querySelector(".url") || {}).textContent || "").trim(),
+        status: led && led.classList.contains("wip") ? "wip" : "live", preview: false
+      };
+    });
+  }
+
+  function loadProjects() {
+    return Promise.all([
+      fetch("/portfolio.html", { cache: "no-store" }).then(function (r) { return r.text(); }),
+      api("content")
+    ]).then(function (r) {
+      base = parseBase(r[0]);
+      saved = { projects: r[1].projects || {}, added: r[1].added || [] };
+      draft = clone(saved);
+      renderProjects();
+    }).catch(function (err) { if (err.message !== "401") setMsg($("#projMsg"), err.message, "err"); });
+  }
+
+  function effective(card) { return Object.assign({}, card, draft.projects[card.id] || {}); }
+
+  function renderProjects() {
+    var list = clear($("#plist"));
+    base.forEach(function (card) { list.appendChild(projectRow(effective(card), false, !!draft.projects[card.id])); });
+    draft.added.forEach(function (p) { list.appendChild(projectRow(p, true, false)); });
+    $("#savebar").classList.toggle("hide", !dirty());
+  }
+
+  function projectRow(p, isAdded, modified) {
+    var title = h("h3", {}, p.title || "(sans titre)",
+      h("span", { class: "pill", text: TYPE_NAMES[p.type] || p.type }),
+      isAdded && h("span", { class: "pill new", text: "ajouté" }),
+      modified && h("span", { class: "pill mod", text: "modifié" }),
+      p.hidden && h("span", { class: "pill off", text: "masqué" }));
+    return h("div", { class: "prow" },
+      h("div", {}, title, h("p", { text: p.desc }), h("span", { class: "u", text: p.url || "bientôt disponible" })),
+      h("div", {}, h("button", { class: "btn", type: "button", text: "Modifier", onclick: function () { openEditor(p.id, isAdded); } })));
+  }
+
+  var F = function (n) { return $("#f-" + n); };
+  function openEditor(id, isAdded) {
+    editing = { id: id, isAdded: isAdded };
+    var p = isAdded ? draft.added.filter(function (x) { return x.id === id; })[0] : effective(base.filter(function (c) { return c.id === id; })[0]);
+    $("#editorTitle").textContent = isAdded ? "Projet ajouté" : "Modifier le projet";
+    F("title").value = p.title || ""; F("desc").value = p.desc || ""; F("type").value = p.type || "site"; F("sub").value = p.sub || "";
+    F("url").value = p.url || ""; F("label").value = p.label && p.label !== autoLabel(p.url) ? p.label : ""; F("status").value = p.status || "live";
+    F("preview").checked = !!p.preview; F("hidden").checked = !!p.hidden;
+    $("#editorReset").textContent = isAdded ? "Supprimer ce projet" : "Rétablir l'original";
+    $("#editorReset").classList.toggle("hide", !isAdded && !draft.projects[id]);
+    setMsg($("#editorMsg"), "");
+    $("#editor").showModal();
+  }
+  function autoLabel(u) {
+    try { var x = new URL(u, location.href); return (x.host + x.pathname).replace(/\/$/, "").replace(/^www\./, ""); } catch (e) { return u || ""; }
+  }
+  function slug(t) {
+    return String(t).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48) || "projet";
+  }
+  function readForm() {
+    return {
+      title: F("title").value.trim(), desc: F("desc").value.trim(), type: F("type").value, sub: F("sub").value.trim(),
+      url: F("url").value.trim(), label: F("label").value.trim(), status: F("status").value, preview: F("preview").checked, hidden: F("hidden").checked
+    };
+  }
+  function validUrl(u) { return !u || /^(https?:\/\/\S+|\/\S+|[a-z0-9._-]+\.html(#\S*)?)$/i.test(u); }
+
+  $("#editorForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = readForm();
+    if (!f.title) return setMsg($("#editorMsg"), "Le titre est obligatoire.", "err");
+    if (!validUrl(f.url)) return setMsg($("#editorMsg"), "Le lien doit commencer par https:// (ou http://).", "err");
+    if (editing.isAdded) {
+      draft.added = draft.added.map(function (p) { return p.id === editing.id ? Object.assign({ id: p.id }, f) : p; });
+    } else {
+      var card = base.filter(function (c) { return c.id === editing.id; })[0];
+      var diff = {};
+      ["title", "desc", "type", "sub", "url", "status"].forEach(function (k) { if (f[k] !== card[k]) diff[k] = f[k]; });
+      if (f.label && f.label !== card.label) diff.label = f.label;
+      if (diff.url !== undefined && f.preview) diff.preview = true;
+      if (f.hidden) diff.hidden = true;
+      if (Object.keys(diff).length) draft.projects[editing.id] = diff; else delete draft.projects[editing.id];
+    }
+    $("#editor").close();
+    renderProjects();
+  });
+  $("#editorReset").addEventListener("click", function () {
+    if (editing.isAdded) {
+      if (!confirm("Supprimer ce projet ajouté ?")) return;
+      draft.added = draft.added.filter(function (p) { return p.id !== editing.id; });
+    } else {
+      delete draft.projects[editing.id];
+    }
+    $("#editor").close();
+    renderProjects();
+  });
+  $("#editorClose").addEventListener("click", function () { $("#editor").close(); });
+
+  $("#addProject").addEventListener("click", function () {
+    var title = (prompt("Titre du nouveau projet :") || "").trim();
+    if (!title) return;
+    var id = slug(title), n = 1, taken = function (x) { return base.concat(draft.added).some(function (p) { return p.id === x; }); };
+    while (taken(n === 1 ? id : id + "-" + n)) n++;
+    id = n === 1 ? id : id + "-" + n;
+    draft.added.push({ id: id, title: title, desc: "", type: "site", sub: "Divers", url: "", status: "wip" });
+    renderProjects();
+    openEditor(id, true);
+  });
+
+  $("#discard").addEventListener("click", function () { draft = clone(saved); renderProjects(); setMsg($("#projMsg"), ""); });
+  $("#publish").addEventListener("click", function () {
+    var btn = $("#publish"); btn.disabled = true;
+    setMsg($("#projMsg"), "Publication…");
+    api("content", { method: "PUT", body: draft })
+      .then(function (r) {
+        saved = { projects: r.projects || {}, added: r.added || [] };
+        draft = clone(saved);
+        renderProjects();
+        setMsg($("#projMsg"), "Publié. Le portfolio est à jour (les visiteurs déjà connectés le verront à leur prochaine visite).", "ok");
+      })
+      .catch(function (err) { if (err.message !== "401") setMsg($("#projMsg"), err.message, "err"); })
+      .then(function () { btn.disabled = false; });
+  });
+  window.addEventListener("beforeunload", function (e) { if (dirty()) { e.preventDefault(); e.returnValue = ""; } });
+
+  /* ---------- démarrage ---------- */
+  fetch(API + "status").then(function (r) { return r.json(); }).then(function (s) {
+    if (!s.configured) {
+      showLogin("L'espace admin n'est pas encore activé : ajoutez la variable ADMIN_PASSWORD dans Netlify (voir ADMIN.md).");
+      return;
+    }
+    if (token()) showApp(); else showLogin("");
+  }).catch(function () {
+    showLogin("Le serveur ne répond pas. Cet espace fonctionne uniquement sur le site Netlify (ou avec « netlify dev »).");
+  });
+})();
+</script>
+</body>
+</html>

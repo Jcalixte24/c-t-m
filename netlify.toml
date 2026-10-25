@@ -8,3 +8,16 @@
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Fonctions serveur : collecte des visites, contenu du portfolio, API de l'espace admin
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# L'espace admin ne doit jamais être indexé ni mis en cache
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+    X-Frame-Options = "DENY"
