@@ -209,3 +209,19 @@ em { font-style: italic; font-weight: 500; background: none; -webkit-text-fill-c
 .dom.new { background: linear-gradient(165deg, #7d1a38, #4d0f23); }
 .badge { background: transparent; border: 1px solid var(--gold); color: var(--gold); font-weight: 600; }
 .sec { padding: clamp(80px, 12vw, 160px) 0; }
+
+/* Fenêtre « Découvrir » d'un expert */
+.expert .act button.more { all: unset; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; color: var(--rouge); font: 600 0.72rem var(--mono); letter-spacing: 0.2em; text-transform: uppercase; }
+.expert .act button.more::before { content: ""; width: 20px; height: 1.5px; background: currentColor; }
+.expert .act a:first-child { color: var(--ink); }
+dialog.modal { border: 0; padding: 0; background: transparent; max-width: min(960px, 94vw); width: 100%; max-height: 92vh; overflow: visible; color: var(--ink); }
+dialog.modal::backdrop { background: rgba(28, 20, 16, 0.6); backdrop-filter: blur(6px); }
+.modal-in { position: relative; display: grid; border-radius: 28px; overflow: hidden; background: var(--paper); box-shadow: var(--shadow-lg); max-height: 92vh; overflow-y: auto; }
+@media (min-width: 760px) { .modal-in { grid-template-columns: 0.8fr 1.2fr; } }
+.modal-ph { aspect-ratio: 4 / 4.2; background: var(--warm); } @media (min-width: 760px) { .modal-ph { aspect-ratio: auto; min-height: 100%; } } .modal-ph img { width: 100%; height: 100%; object-fit: cover; }
+.modal-bd { padding: clamp(24px, 4vw, 46px); display: grid; gap: 12px; align-content: start; }
+.modal-bd h3 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 600; }
+.modal-bd .bio { display: grid; gap: 12px; margin: 8px 0; font-weight: 300; color: var(--dim); } .modal-bd .bio b { display: block; font: 600 0.66rem var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--rouge); margin-bottom: 2px; }
+.modal-links { display: flex; flex-wrap: wrap; gap: 8px 18px; font: 500 0.72rem var(--mono); letter-spacing: 0.14em; text-transform: uppercase; } .modal-links a { color: var(--ink); }
+.modal-bd .btn { justify-self: start; margin-top: 6px; }
+.modal-x { position: absolute; top: 14px; right: 14px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; border: 0; background: rgba(250, 246, 240, 0.92); font-size: 1.1rem; cursor: pointer; box-shadow: var(--shadow); }

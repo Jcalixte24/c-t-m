@@ -1,5 +1,6 @@
 """Génère les trois pages du site CTM (accueil, talent, entreprise) avec un en-tête et un pied de page communs."""
 import os
+import urllib.parse
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 WA = "2250719509526"
@@ -58,16 +59,27 @@ def foot(r):
 
 
 EXPERTS = [
-    ("tech", "Tech & IA", "Japhet C. N'DRI", "Développeur Web / IA & Data Analyst", "jcn.jpg"),
-    ("gastro", "Gastronomie & Événementiel", "Inaice Lago", "Cheffe de cuisine / Cheffe privée", "inaice.jpg"),
-    ("culture", "Industries Culturelles & Créatives", "Illman Touré (Sir Heal)", "Compositeur & Sound Designer", "illman.jpg"),
+    dict(k="tech", dom="Tech & IA", name="Japhet C. N'DRI", role="Développeur Web / IA & Data Analyst", img="jcn.jpg", slug="japhet",
+         contact="https://talent-ci-form.netlify.app/#jc",
+         bio=[("Profil", "Ingénierie & Solutions Data."), ("Expertise", "Modélisation de données, développement d'architectures d'Intelligence Artificielle et solutions technologiques innovantes."), ("Impact international", "Une maîtrise technique pointue alignée sur les derniers standards globaux, prête à répondre aux défis des entreprises et projets technologiques transfrontaliers.")],
+         links=[("Portfolio", "https://creative-talent-management.netlify.app/portfolio"), ("LinkedIn", "https://fr.linkedin.com/in/japhet-calixte-n%E2%80%99dri-0b73832a0")]),
+    dict(k="gastro", dom="Gastronomie & Événementiel", name="Inaice Lago", role="Cheffe de cuisine / Cheffe privée", img="inaice.jpg", slug="inaice",
+         contact="https://talent-ci-form.netlify.app/#yo",
+         bio=[("Profil", "Chef de cuisine privé / consultant culinaire."), ("Expertise", "Haute gastronomie, création de concepts culinaires modernes (notamment « Afro-fusion ») et organisation d'expériences de restauration privées ou événementielles de premier plan."), ("Impact international", "Une cuisine d'avant-garde qui réinvente et exporte les saveurs locales vers des tables et des publics internationaux exigeants.")],
+         links=[("Site internet", "https://chef-inaice.netlify.app/"), ("LinkedIn", "https://www.linkedin.com/in/inaice-lago"), ("Instagram", "https://www.instagram.com/cheffe_inaice"), ("TikTok", "https://www.tiktok.com/@cheffe.inaice")]),
+    dict(k="culture", dom="Industries Culturelles & Créatives", name="Illman Touré (Sir Heal)", role="Compositeur & Sound Designer", img="illman.jpg", slug="illman",
+         contact="https://talent-ci-form.netlify.app/",
+         bio=[("Profil", "Compositeur & sound designer."), ("Expertise", "Composition de musique à l'image, design sonore et gestion stratégique des droits de synchronisation pour le cinéma."), ("Impact international", "Un univers sonore unique qui a déjà voyagé au sein de délégations et festivals internationaux majeurs.")],
+         links=[("Portfolio", "https://sir-heal.lovable.app/"), ("LinkedIn", "https://www.linkedin.com/in/illman-tour%C3%A9-973a52bb"), ("Instagram", "https://www.instagram.com/_sir_heal")]),
 ]
 
 
 def expert(i, e, r):
-    k, dom, name, role, img = e
-    return f'''<article class="expert rv" data-dom="{k}"><div class="ph"><img src="{r}assets/img/{img}" alt="{name}" loading="lazy" width="680" height="800"></div>
-<div class="bd"><span class="tag">{dom}</span><h3>{name}</h3><p class="role">{role}</p><div class="act"><a href="{r}entreprise/index.html#besoin">Contacter</a><a href="{r}entreprise/index.html#experts">Découvrir</a></div></div></article>'''
+    bio = "".join(f"<p><b>{k}</b> {v}</p>" for k, v in e["bio"])
+    links = "".join(f'<a href="{u}" target="_blank" rel="noopener">{t} ↗</a>' for t, u in e["links"])
+    return f'''<article class="expert rv" data-dom="{e['k']}"><div class="ph"><img src="{r}assets/img/{e['img']}" alt="{e['name']}" loading="lazy" width="680" height="800"></div>
+<div class="bd"><span class="tag">{e['dom']}</span><h3>{e['name']}</h3><p class="role">{e['role']}</p><div class="act"><a href="{e['contact']}" target="_blank" rel="noopener">Contacter</a><button type="button" class="more" data-open="m-{e['slug']}">Découvrir</button></div></div>
+<dialog class="modal" id="m-{e['slug']}" aria-label="{e['name']}"><div class="modal-in"><button type="button" class="modal-x" data-close aria-label="Fermer">✕</button><div class="modal-ph"><img src="{r}assets/img/{e['img']}" alt="" loading="lazy" width="680" height="800"></div><div class="modal-bd"><span class="tag">{e['dom']}</span><h3>{e['name']}</h3><p class="role">{e['role']}</p><div class="bio">{bio}</div><div class="modal-links">{links}</div><a class="btn btn-rouge" href="{e['contact']}" target="_blank" rel="noopener">Contacter {e['name'].split(' ')[0]}</a></div></div></dialog></article>'''
 
 
 def index():
@@ -112,7 +124,7 @@ def talent():
     def sel(name, label, opts, req=True):
         o = "".join(f"<option>{x}</option>" for x in opts)
         return f'<div class="field"><label for="{name}">{label}</label><select id="{name}" name="{name}"{" required" if req else ""}>{o}</select></div>'
-    other = lambda title, hint: f'''<h2>{title}</h2><p class="hint">{hint}</p><form novalidate><div class="grid2"><div class="field"><label>Nom complet</label><input name="nom" required autocomplete="name"></div><div class="field"><label>Adresse e-mail</label><input name="email" type="email" required autocomplete="email"></div>{sel("domaine", "Votre domaine", ["Tech & IA", "Gastronomie & Événementiel", "Industries Culturelles & Créatives", "Leadership & Management", "Autre"])}<div class="field full"><label>Votre demande</label><textarea name="msg" rows="4" required></textarea></div></div><button class="btn btn-rouge btn-block" type="submit">Préparer mon message</button><div class="out"></div></form>'''
+    other = lambda title, hint, anchor: f'''<h2>{title}</h2><p class="hint">{hint}</p><a class="btn btn-rouge" href="https://talent-ci-form.netlify.app/{anchor}" target="_blank" rel="noopener">Ouvrir le formulaire CTM ↗</a><p class="hint">Vous pouvez aussi nous écrire à <a href="mailto:contact@ctm-africa.com"><b>contact@ctm-africa.com</b></a>.</p>'''
     return head("Je suis un talent · Creative Talent Management", "Espace talent de Creative Talent Management : emploi, entrepreneuriat ou autre projet, nous vous accompagnons.", r) + nav(r, "talent") + f'''<main id="contenu">
 <section class="sub-hero"><div class="inner"><a class="crumb" href="../index.html">← Accueil</a><p class="lbl" style="margin-top:18px">Espace talent</p><h1 class="rise">Vous êtes un <em>talent.</em></h1><p class="l rise" style="--i:1">Dites-nous où vous en êtes : nous vous orientons vers le bon accompagnement.</p></div></section>
 <section class="sec" style="padding-top:20px"><div class="inner">
@@ -123,8 +135,8 @@ def talent():
 </div>
 <section class="formcard" id="emploi" hidden><p class="lbl">Je cherche un emploi</p><h2>Démarrons sur <em>WhatsApp.</em></h2><p class="hint">Quelques informations, et votre message est prêt pour Cassandra. Elle vous répond sur WhatsApp.</p>
 <form novalidate><div class="grid2"><div class="field"><label>Nom complet</label><input name="nom" required autocomplete="name"></div><div class="field"><label>Numéro WhatsApp</label><input name="wa" type="tel" required autocomplete="tel"></div><div class="field"><label>Ville</label><input name="ville" placeholder="Abidjan"></div>{sel("situation", "Votre situation", ["Étudiant(e)", "Jeune diplômé(e)", "En recherche d'emploi", "Salarié(e)", "En reconversion"])}{sel("objectif", "Ce que vous cherchez", ["Trouver un emploi", "Améliorer mon CV et mes entretiens", "Gagner en confiance", "Construire mon réseau"])}<div class="field full"><label>Un mot sur votre projet (facultatif)</label><textarea name="msg" rows="3"></textarea></div></div><button class="btn btn-wa btn-block" type="submit">Préparer mon message WhatsApp</button><div class="out"></div></form></section>
-<section class="formcard" id="entrepreneur" hidden><p class="lbl">Entrepreneur</p>{other("Parlons de <em>votre projet.</em>", "Décrivez votre activité et ce dont vous avez besoin : l'équipe CTM vous recontacte.")}</section>
-<section class="formcard" id="autre" hidden><p class="lbl">Autre talent</p>{other("Présentez-nous <em>votre univers.</em>", "Dites-nous qui vous êtes et ce que vous cherchez à construire.")}</section>
+<section class="formcard" id="entrepreneur" hidden><p class="lbl">Entrepreneur</p>{other("Parlons de <em>votre projet.</em>", "Remplissez le formulaire de Creative Talent Management : décrivez votre activité et ce dont vous avez besoin, l'équipe vous recontacte.", "")}</section>
+<section class="formcard" id="autre" hidden><p class="lbl">Autre talent</p>{other("Présentez-nous <em>votre univers.</em>", "Remplissez le formulaire de Creative Talent Management : dites-nous qui vous êtes et ce que vous cherchez à construire.", "")}</section>
 </div></section></main>''' + foot(r)
 
 
@@ -141,7 +153,7 @@ PROFILS = [
 def entreprise():
     r = "../"
     ex = "".join(expert(i, e, r) for i, e in enumerate(EXPERTS))
-    pr = "".join(f'''<article class="prof rv"><span class="av">{i}</span><div><b>{t}</b><small>{d}</small><div class="meta"><span>{n}</span><span>{v}</span><span>{dp}</span></div></div><a href="#" data-ref="P-{k + 1:02d} ({t})">Demander ce profil →</a></article>''' for k, (i, t, d, n, v, dp) in enumerate(PROFILS))
+    pr = "".join(f'''<article class="prof rv"><span class="av">{i}</span><div><b>{t}</b><small>{d}</small><div class="meta"><span>{n}</span><span>{v}</span><span>{dp}</span></div></div><a href="https://wa.me/{WA}?text={urllib.parse.quote(f"Bonjour, notre entreprise est intéressée par le profil P-{k + 1:02d} ({t}). Pouvons-nous en discuter ?")}" target="_blank" rel="noopener">Demander ce profil →</a></article>''' for k, (i, t, d, n, v, dp) in enumerate(PROFILS))
     return head("Je cherche des talents · Creative Talent Management", "Espace entreprise : nos experts, nos profils disponibles au recrutement et vos besoins sur mesure.", r) + nav(r, "entreprise") + f'''<main id="contenu">
 <section class="sub-hero"><div class="inner"><a class="crumb" href="../index.html">← Accueil</a><p class="lbl" style="margin-top:18px">Espace entreprise</p><h1 class="rise">Le bon talent, <em>au bon moment.</em></h1><p class="l rise" style="--i:1">Contactez nos experts, découvrez les profils disponibles au recrutement ou décrivez-nous votre besoin.</p>
 <p style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-rouge" href="#experts">Nos experts</a><a class="btn" href="#profils">Profils disponibles</a><a class="btn" href="#besoin">Exprimer un besoin</a></p></div></section>

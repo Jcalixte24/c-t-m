@@ -98,6 +98,17 @@
     a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener");
   });
 
+  // fiche d'un expert : fenêtre « Découvrir »
+  $$("[data-open]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var d = document.getElementById(b.getAttribute("data-open"));
+      if (d && d.showModal) d.showModal(); else if (d) d.setAttribute("open", "");
+    });
+  });
+  $$("dialog.modal").forEach(function (d) {
+    d.addEventListener("click", function (e) { if (e.target === d || e.target.hasAttribute("data-close")) d.close(); });
+  });
+
   // formulaire de contact de l'accueil
   var fc = $("#contact form");
   if (fc) fc.addEventListener("submit", function (e) {
