@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Je suis un talent · Creative Talent Management</title>
+<meta name="description" content="Espace talent de Creative Talent Management : emploi, entrepreneuriat ou autre projet, nous vous accompagnons.">
+<meta name="theme-color" content="#faf6f0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="../assets/img/logo.png">
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="nav"><div class="inner nav-in">
+<a class="brand" href="../index.html" aria-label="Creative Talent Management, accueil"><img src="../assets/img/logo.png" alt="" width="60" height="49"><span><b>Creative Talent</b><span>Management</span></span></a>
+<nav class="links" aria-label="Navigation principale"><a href="../talent/" aria-current=page>Talents</a><a href="../entreprise/">Entreprises</a><a href="../index.html#domaines">Domaines</a><a href="../index.html#fondatrice">Fondatrice</a><a href="../index.html#contact">Contact</a></nav>
+<div class="lang" aria-label="Langue"><i class="fr">FR</i><i class="en" title="English (bientôt)">EN</i></div>
+<button class="burger" aria-label="Ouvrir le menu">☰</button>
+</div></header>
+<div class="mob" id="mob" role="dialog" aria-label="Menu"><button aria-label="Fermer">✕</button><a href="../talent/">Talents</a><a href="../entreprise/">Entreprises</a><a href="../index.html#domaines">Domaines</a><a href="../index.html#fondatrice">Fondatrice</a><a href="../index.html#contact">Contact</a></div>
+<main id="contenu">
+<section class="sub-hero"><div class="inner"><a class="crumb" href="../index.html">← Accueil</a><p class="lbl" style="margin-top:18px">Espace talent</p><h1 class="rise">Vous êtes un <em>talent.</em></h1><p class="l rise" style="--i:1">Dites-nous où vous en êtes : nous vous orientons vers le bon accompagnement.</p></div></section>
+<section class="sec" style="padding-top:20px"><div class="inner">
+<div class="paths">
+<button class="path rv" data-form="emploi" aria-pressed="false"><span class="ic">✦</span><b>Je cherche un emploi</b><span class="d">CV, entretien, plan d'action, réseau : un coaching personnalisé construit sur votre profil.</span><span class="wa">100 % WhatsApp</span></button>
+<button class="path rv" data-form="entrepreneur" aria-pressed="false"><span class="ic">◎</span><b>Je suis entrepreneur</b><span class="d">Cadrer votre projet, structurer votre offre, avancer avec un accompagnement dédié.</span></button>
+<button class="path rv" data-form="autre" aria-pressed="false"><span class="ic">♬</span><b>J'ai un autre talent</b><span class="d">Tech, gastronomie, arts, culture, leadership : présentez-nous votre univers.</span></button>
+</div>
+<section class="formcard" id="emploi" hidden><p class="lbl">Je cherche un emploi</p><h2>Démarrons sur <em>WhatsApp.</em></h2><p class="hint">Quelques informations, et votre message est prêt pour Cassandra. Elle vous répond sur WhatsApp.</p>
+<form novalidate><div class="grid2"><div class="field"><label>Nom complet</label><input name="nom" required autocomplete="name"></div><div class="field"><label>Numéro WhatsApp</label><input name="wa" type="tel" required autocomplete="tel"></div><div class="field"><label>Ville</label><input name="ville" placeholder="Abidjan"></div><div class="field"><label for="situation">Votre situation</label><select id="situation" name="situation" required><option>Étudiant(e)</option><option>Jeune diplômé(e)</option><option>En recherche d'emploi</option><option>Salarié(e)</option><option>En reconversion</option></select></div><div class="field"><label for="objectif">Ce que vous cherchez</label><select id="objectif" name="objectif" required><option>Trouver un emploi</option><option>Améliorer mon CV et mes entretiens</option><option>Gagner en confiance</option><option>Construire mon réseau</option></select></div><div class="field full"><label>Un mot sur votre projet (facultatif)</label><textarea name="msg" rows="3"></textarea></div></div><button class="btn btn-wa btn-block" type="submit">Préparer mon message WhatsApp</button><div class="out"></div></form></section>
+<section class="formcard" id="entrepreneur" hidden><p class="lbl">Entrepreneur</p><h2>Parlons de <em>votre projet.</em></h2><p class="hint">Décrivez votre activité et ce dont vous avez besoin : l'équipe CTM vous recontacte.</p><form novalidate><div class="grid2"><div class="field"><label>Nom complet</label><input name="nom" required autocomplete="name"></div><div class="field"><label>Adresse e-mail</label><input name="email" type="email" required autocomplete="email"></div><div class="field"><label for="domaine">Votre domaine</label><select id="domaine" name="domaine" required><option>Tech & IA</option><option>Gastronomie & Événementiel</option><option>Industries Culturelles & Créatives</option><option>Leadership & Management</option><option>Autre</option></select></div><div class="field full"><label>Votre demande</label><textarea name="msg" rows="4" required></textarea></div></div><button class="btn btn-rouge btn-block" type="submit">Préparer mon message</button><div class="out"></div></form></section>
+<section class="formcard" id="autre" hidden><p class="lbl">Autre talent</p><h2>Présentez-nous <em>votre univers.</em></h2><p class="hint">Dites-nous qui vous êtes et ce que vous cherchez à construire.</p><form novalidate><div class="grid2"><div class="field"><label>Nom complet</label><input name="nom" required autocomplete="name"></div><div class="field"><label>Adresse e-mail</label><input name="email" type="email" required autocomplete="email"></div><div class="field"><label for="domaine">Votre domaine</label><select id="domaine" name="domaine" required><option>Tech & IA</option><option>Gastronomie & Événementiel</option><option>Industries Culturelles & Créatives</option><option>Leadership & Management</option><option>Autre</option></select></div><div class="field full"><label>Votre demande</label><textarea name="msg" rows="4" required></textarea></div></div><button class="btn btn-rouge btn-block" type="submit">Préparer mon message</button><div class="out"></div></form></section>
+</div></section></main><footer class="foot"><div class="inner"><span>© 2026 Creative Talent Management · Abidjan, Côte d'Ivoire</span>
+<span><a href="mailto:contact@ctm-africa.com">contact@ctm-africa.com</a> · <a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></span></div></footer>
+<a class="wa-fab" href="https://wa.me/2250719509526?text=Bonjour%20Creative%20Talent%20Management%2C%20" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">WhatsApp</a>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>
