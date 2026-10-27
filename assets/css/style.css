@@ -174,3 +174,38 @@ em { font-style: normal; background: linear-gradient(100deg, var(--rouge), var(-
 @keyframes rise { from { opacity: 0; transform: translateY(40px); } }
 @media (prefers-reduced-motion: reduce) { .rv, .rise { opacity: 1; transform: none; animation: none; transition: none; } .ribbon path { animation: none; stroke-dashoffset: 0; } .ribbon svg, .marquee div { animation: none; } }
 @media (max-width: 759px) { .ribbon { right: -40%; top: 8%; opacity: 0.28; } .prof { grid-template-columns: auto 1fr; } .prof a { grid-column: 1 / -1; } }
+
+/* ==========================================================================
+   Version « soft & luxe » : serif élégant, plus d'air, ombres douces, accents en italique
+   ========================================================================== */
+:root { --disp: "Cormorant Garamond", "Playfair Display", Georgia, serif; --mono: "DM Sans", system-ui, sans-serif;
+  --shadow: 0 1px 3px rgba(28, 20, 16, 0.04), 0 18px 44px -18px rgba(28, 20, 16, 0.14); --shadow-lg: 0 4px 12px rgba(28, 20, 16, 0.05), 0 36px 70px -26px rgba(28, 20, 16, 0.22); }
+body { font-weight: 400; letter-spacing: 0.005em; }
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.012em; line-height: 1.02; }
+em { font-style: italic; font-weight: 500; background: none; -webkit-text-fill-color: currentColor; color: var(--rouge); }
+.lbl, .links, .door .k, .door .go, .btn, .chip, .tag, .badge, .field label, .dom .n, .expert .role, .expert .act, .prof a, .prof .meta span, .crumb, .scrollcue, .lang, .path .wa, .brand span span {
+  font-family: var(--mono); font-weight: 500; letter-spacing: 0.2em; }
+.lbl { font-size: 0.7rem; font-weight: 600; } .links { font-size: 0.72rem; } .btn { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; }
+.brand b { font: 700 1.35rem/1 var(--disp); letter-spacing: 0.01em; } .brand span span { font-size: 0.56rem; letter-spacing: 0.34em; }
+.hero h1 { font-size: clamp(3rem, 8.4vw, 7.4rem); max-width: 13ch; line-height: 0.95; font-weight: 500; }
+.sub-hero h1 { font-size: clamp(2.8rem, 7.6vw, 6.2rem); line-height: 0.96; font-weight: 500; }
+.hero .sub, .sub-hero p.l { font-size: clamp(1.05rem, 1.8vw, 1.25rem); font-weight: 300; }
+.sec-h h2 { font-size: clamp(2.5rem, 6.4vw, 5rem); font-weight: 500; } .sec-h p { font-weight: 300; }
+.door b { font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 600; line-height: 1; } .door span.d { font-weight: 300; font-size: 1.02rem; }
+.door, .dom, .expert, .path, .formcard, .prof { border-radius: 26px; } .door { border-color: rgba(28, 20, 16, 0.08); }
+.dom h3 { font-size: 1.95rem; font-weight: 600; line-height: 1.05; } .dom p { font-weight: 300; font-size: 1rem; }
+.dom .ic { font-size: 1.4rem; }
+.expert h3 { font-size: 2.1rem; font-weight: 600; } .expert .role { font-size: 0.68rem; }
+.path b { font-size: 1.9rem; font-weight: 600; line-height: 1.05; } .path span.d { font-weight: 300; }
+.formcard h2 { font-size: clamp(2rem, 4.6vw, 3.2rem); font-weight: 500; }
+.prof b { font-size: 1.35rem; font-weight: 600; } .prof .av { font-family: var(--disp); font-weight: 600; font-size: 1.2rem; }
+.cta h2 { font-size: clamp(2.4rem, 6.6vw, 4.8rem); font-weight: 500; }
+.marquee div { font: 500 italic 1.9rem var(--disp); letter-spacing: 0; } .marquee i { font-style: normal; }
+.founder blockquote { font: 500 italic 1.75rem/1.25 var(--disp); border-left-width: 2px; }
+.mob a { font: 500 2.3rem var(--disp); }
+.btn { border-width: 1px; padding-inline: 30px; } .btn-rouge { box-shadow: 0 14px 30px -14px rgba(139, 30, 63, 0.6); }
+.hero::before { background: radial-gradient(60% 50% at 84% 10%, rgba(253, 199, 88, 0.26), transparent 70%), radial-gradient(50% 50% at 6% 92%, rgba(139, 30, 63, 0.09), transparent 70%); }
+.ribbon path { stroke-width: 15; } .ribbon path.b { stroke-width: 3; }
+.dom.new { background: linear-gradient(165deg, #7d1a38, #4d0f23); }
+.badge { background: transparent; border: 1px solid var(--gold); color: var(--gold); font-weight: 600; }
+.sec { padding: clamp(80px, 12vw, 160px) 0; }
